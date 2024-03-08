@@ -24,4 +24,14 @@ public class SceneDoor : MonoBehaviour
     {
         
     }
+
+    public void OnConnectedTo(Room room)
+    {
+
+    }
+
+    public void OnDisconnectFrom(Room room)
+    {
+
+    }
 }
