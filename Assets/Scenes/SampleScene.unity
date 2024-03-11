@@ -452,54 +452,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1651772084674104218, guid: 7258474142b185344b7281d3e2e6d30c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 823658982}
-    - targetCorrespondingSourceObject: {fileID: 1651772084674104218, guid: 7258474142b185344b7281d3e2e6d30c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 823658981}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7258474142b185344b7281d3e2e6d30c, type: 3}
---- !u!1 &823658980 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1651772084674104218, guid: 7258474142b185344b7281d3e2e6d30c, type: 3}
-  m_PrefabInstance: {fileID: 823658979}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &823658981
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823658980}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1.2800006
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 5.1200013
-  m_BaseOffset: 2.5600007
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &823658982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823658980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9e2a28fbad4f147b367a18075f311a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _agent: {fileID: 0}
 --- !u!1 &903590673
 GameObject:
   m_ObjectHideFlags: 0
