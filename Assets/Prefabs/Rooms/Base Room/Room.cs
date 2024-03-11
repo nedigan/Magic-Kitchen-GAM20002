@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum RoomType
+{
+    Kitchen,
+    Storage,
+    Dining
+};
 public class Room : MonoBehaviour
 {
     [SerializeField] 
@@ -11,17 +17,6 @@ public class Room : MonoBehaviour
     public List<Item> Items = new List<Item>();
     public List<Station> Stations = new List<Station>();
 
+    public RoomType RoomType;
     public Door Door => _door;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
