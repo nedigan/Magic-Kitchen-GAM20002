@@ -26,7 +26,7 @@ public class TableDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Trigger!");
+        //Debug.Log($"Trigger!");
         TableDoor otherDoor = other.GetComponent<TableDoor>();
         if (otherDoor != null && Door.ConnectingRoom == null && otherDoor.Door.ConnectingRoom == null)
         {
@@ -46,7 +46,7 @@ public class TableDoor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log($"Trigger Exit!");
+        //Debug.Log($"Trigger Exit!");
         TableDoor otherDoor = other.GetComponent<TableDoor>();
         if (otherDoor != null && Door.ConnectingRoom == otherDoor.Door.Room)
         {
