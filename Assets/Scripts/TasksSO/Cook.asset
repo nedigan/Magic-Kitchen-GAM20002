@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4ff87ad8538464f89bea9af1135b4a, type: 3}
   m_Name: Cook
   m_EditorClassIdentifier: 
-  Room: []
-  Stations: []
-  Duration: 0
+  Room: 0
+  Station: 0
+  Duration: 5
