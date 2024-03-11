@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    protected Room _connectingRoom = null;
+    public Room ConnectingRoom = null;
+    [SerializeField]
+    protected Room _room;
     [SerializeField]
     protected SceneDoor _sceneDoor;
     [SerializeField]
     protected TableDoor _tableDoor;
 
-    public Room ConnectingRoom => _connectingRoom;
+    public Room Room => _room;
     public SceneDoor SceneDoor => _sceneDoor;
     public TableDoor TableDoor => _tableDoor;
 
@@ -24,5 +26,21 @@ public class Door : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnConnectedTo(Room room)
+    {
+        ConnectingRoom = room;
+
+        SceneDoor.OnConnectedTo(room);
+        TableDoor.OnConnectedTo(room);
+    }
+
+    public void OnDisconnectFrom(Room room)
+    {
+        ConnectingRoom = null;
+
+        SceneDoor.OnDisconnectFrom(room);
+        TableDoor.OnDisconnectFrom(room);
     }
 }
