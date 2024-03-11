@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
+    private List<Task> tasks = new List<Task>();    
+
     // Start is called before the first frame update
     void Start()
     {
