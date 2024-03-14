@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1121559497851636113}
   - component: {fileID: 1689183636110114114}
   - component: {fileID: 2768810796886255755}
+  - component: {fileID: 8540195749196348554}
   m_Layer: 0
   m_Name: chicken
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1689183636110114114
 SpriteRenderer:
@@ -106,3 +107,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8540195749196348554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201359053940498032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83e86feca9818944984789f7d12d21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _taskTypes:
+  - {fileID: 11400000, guid: 0796b702c54e2bf4880792b5a6641c03, type: 2}
+  - {fileID: 11400000, guid: 75c979f1ab9c52741bf5b04e02fa0ecc, type: 2}
