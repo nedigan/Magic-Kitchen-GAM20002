@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Animal : MonoBehaviour
+public class Animal : MonoBehaviour
 {
-    [SerializeField] protected Task[] _taskTypes;
-    protected Queue<Task> tasks = new Queue<Task>();
-    public abstract void PerformNextTask();
-    
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
