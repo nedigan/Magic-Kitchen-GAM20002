@@ -8,12 +8,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(TaskHolder))]
 public class Animal : MonoBehaviour
 {
-    [SerializeField]
     public NavMeshAgent Agent;
-    [SerializeField]
     public TaskHolder TaskHolder;
 
-    [SerializeField]
     public AnimalType Type;
 
     private bool _moving = false;
@@ -41,15 +38,21 @@ public class Animal : MonoBehaviour
     // having three of these is very hacky but I don't have the time to do it properly
     public void SetDestination(Station station)
     {
+        Agent.stoppingDistance = 0;
         Agent.SetDestination(station.StandLocation.transform.position);
         _moving = true;
     }
+    // TODO: account for the fact that an animal could be moving
     public void SetDestination(Animal animal) 
     {
+        Agent.stoppingDistance = 1;
+        Agent.SetDestination(animal.transform.position);
         _moving = true;  
     }
     public void SetDestination(Item item)
     {
+        Agent.stoppingDistance = 1;
+        Agent.SetDestination(item.transform.position);
         _moving = true;
     }
 

@@ -4,35 +4,42 @@ using UnityEngine;
 
 public class TurtleTakeOrder : Task
 {
+    private Animal _turtle;
+    private Animal _fox;
+
+    public void Setup(Animal fox)
+    {
+        _fox = fox;
+    }
+
     public override TaskHolder FindTaskHolder()
     {
-        throw new System.NotImplementedException();
+        Animal turtle = FindIdleAnimalOfType(AnimalType.Turtle);
+
+        if (turtle != null) 
+        { 
+            _turtle = turtle;
+            return _turtle.TaskHolder;
+        }
+
+        return null;
     }
 
     public override void FinishTask()
     {
-        throw new System.NotImplementedException();
+        TurtleReturnOrder returnOrder = ScriptableObject.CreateInstance<TurtleReturnOrder>();
+        returnOrder.Setup(_turtle);
+        _turtle.TaskHolder.SetTask(returnOrder);
     }
 
     public override void PerformTask()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void StartTask()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _turtle.SetDestination(_fox);
+        _turtle.ReachedDestination += FinishTask;
     }
 }

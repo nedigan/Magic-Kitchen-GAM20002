@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Task : MonoBehaviour
+public abstract class Task : ScriptableObject
 {
-    protected TaskManager Manager;
+    public TaskManager Manager;
+
+    // an IdleTask will set TaskHolder.PerformingTask to false so it can still recive a new task from the TaskManager
+    // use for things like a task to send an animal back to a wating area
+    public bool IsIdleTask = false;
 
     public abstract TaskHolder FindTaskHolder();
     public abstract void PerformTask();
@@ -18,7 +22,7 @@ public abstract class Task : MonoBehaviour
         this.FinishTask();
     }
 
-    private void Start()
+    private void Awake()
     {
         object foundObject = FindFirstObjectByType(typeof(TaskManager));
         if (foundObject != null)
@@ -48,7 +52,7 @@ public abstract class Task : MonoBehaviour
     {
         foreach (Station station in Manager.Stations)
         {
-            if (station.Type == type && station.TaskHolder.PerformingTask == false)
+            if (station.Type == type && station.Occupied == false)
             {
                 return station;
             }
@@ -74,7 +78,6 @@ public class CollectIngredient: Task
 
     public override void PerformTask()
     {
-        // 
         throw new System.NotImplementedException();
     }
 

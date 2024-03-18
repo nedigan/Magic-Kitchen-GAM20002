@@ -2,37 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Intermediary task for a fox to wait for its order to be taken and for its meal to arrive
+// TODO: set the WaitTimes and visuals for them in the editor,
+// move to Task to eat a Chicken when this Task is finished
 public class FoxWaitAtTable : Task
 {
-    public override TaskHolder FindTaskHolder()
+    private Animal _fox;
+    private Station _table;
+
+    private float _timeWaited = 0;
+    //Wait times, in s
+    List<float> WaitTimes = new List<float>();
+    public int WaitStage = 0;
+
+    public void Setup(Animal fox, Station table)
     {
-        throw new System.NotImplementedException();
+        _fox = fox;
+        _table = table;
     }
 
+    public override TaskHolder FindTaskHolder()
+    {
+        return null;
+    }
+
+    // move onto eating a Chicken
     public override void FinishTask()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void PerformTask()
     {
-        throw new System.NotImplementedException();
+        // Uncomment this when you are implimenting waiting
+        //_timeWaited += Time.deltaTime;
+        //if (_timeWaited > WaitTimes[WaitStage])
+        //{
+        //    NextWaitStage();
+        //}
     }
 
     public override void StartTask()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void NextWaitStage()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        WaitStage++;
+
+        if (WaitStage > WaitTimes.Count)
+        {
+            FinishTask();
+        }
+
+        _timeWaited = 0;
     }
 }

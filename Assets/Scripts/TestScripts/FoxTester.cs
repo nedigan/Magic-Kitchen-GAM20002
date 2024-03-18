@@ -11,7 +11,9 @@ public class FoxTester : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //fox.TaskHolder.SetTask(ScriptableObject.CreateInstance<FoxFindTable>());
+        FoxFindTable task = ScriptableObject.CreateInstance<FoxFindTable>();
+        task.Manager.ManageTask(task);
     }
 
     // Update is called once per frame
