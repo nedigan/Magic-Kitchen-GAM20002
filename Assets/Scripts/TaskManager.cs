@@ -5,7 +5,6 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
     private List<Task> _tasks = new List<Task>();
-    private List<TaskHolder> _taskHolders = new List<TaskHolder>();
 
     private List<Animal> _animals = new List<Animal>();
     private List<Station> _stations = new List<Station>();
@@ -19,7 +18,7 @@ public class TaskManager : MonoBehaviour
     private void SendTask(Task task, TaskHolder holder)
     {
         holder.SetTask(task);
-        _tasks.Remove(task);
+        _tasksToRemove.Enqueue(task);
     }
 
     // Add task for the TaskManager to manage
@@ -28,9 +27,11 @@ public class TaskManager : MonoBehaviour
         _tasks.Add(task);
     }
 
+    private Queue<Task> _tasksToRemove = new Queue<Task>();
+
     private void Update()
     {
-        foreach (var task in _tasks)
+        foreach (Task task in _tasks)
         { 
             TaskHolder holder = task.FindTaskHolder();
 
@@ -38,6 +39,12 @@ public class TaskManager : MonoBehaviour
             {
                 SendTask(task, holder);
             }
+        }
+
+        while (_tasksToRemove.Count > 0)
+        {
+            Task task = _tasksToRemove.Dequeue();
+            _tasks.Remove(task);
         }
     }
 }

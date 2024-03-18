@@ -53,9 +53,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2788116987826598525, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+      propertyPath: Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788116987826598525, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2788116987826598525, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+      propertyPath: Agent
+      value: 
+      objectReference: {fileID: 1373486244480782673}
+    - target: {fileID: 2788116987826598525, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+      propertyPath: TaskHolder
+      value: 
+      objectReference: {fileID: 7087481191819483813}
     - target: {fileID: 5796828936956374930, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
       propertyPath: m_Name
       value: turtle
@@ -85,3 +97,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+--- !u!195 &1373486244480782673 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 6471141758591174044, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+  m_PrefabInstance: {fileID: 5386735417954374861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7087481191819483813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2925736417651199592, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+  m_PrefabInstance: {fileID: 5386735417954374861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f6b61b6027dcd4089d562166b24695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

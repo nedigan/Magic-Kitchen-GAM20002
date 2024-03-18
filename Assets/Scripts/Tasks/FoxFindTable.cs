@@ -35,24 +35,15 @@ public class FoxFindTable : Task
 
     public override void PerformTask()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //throw new System.NotImplementedException();
     }
 
     public override void FinishTask()
     {
-        Manager.ManageTask(new TurtleTakeOrder());
-        _table.TaskHolder.SetTask(new FoxWaitAtTable());
+        TurtleTakeOrder turtleTakeOrder = ScriptableObject.CreateInstance<TurtleTakeOrder>();
+        turtleTakeOrder.Setup(_fox);
+        Manager.ManageTask(turtleTakeOrder);
+
+        _table.TaskHolder.SetTask(ScriptableObject.CreateInstance<FoxWaitAtTable>());
     }
 }

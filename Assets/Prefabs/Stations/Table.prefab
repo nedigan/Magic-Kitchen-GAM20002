@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164770866697961058}
   - component: {fileID: 4766360981870279978}
+  - component: {fileID: 8674299195664460861}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -76,6 +77,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ba4c332e9b69d4189be32c3f0f1784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 2
+  Type: 2
   Occupied: 0
-  _standLocation: {fileID: 4887772218851016987}
+  StandLocation: {fileID: 4887772218851016987}
+  TaskHolder: {fileID: 8674299195664460861}
+--- !u!114 &8674299195664460861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281414517014865060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f6b61b6027dcd4089d562166b24695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Task: {fileID: 0}
+  PerformingTask: 0

@@ -11,7 +11,14 @@ public class TaskHolder : MonoBehaviour
     public void SetTask(Task task)
     {
         Task = task;
+        PerformingTask = !task.IsIdleTask;
         task.StartTask();
+    }
+
+    public void RemoveCurrentTask()
+    {
+        Task = null;
+        PerformingTask = false;
     }
 
     private void Update()

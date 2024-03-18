@@ -1,0 +1,29 @@
+﻿Some notes for the handoff
+
+- Ctr + F search the Project for 'TODO'
+I've tried to leave a TODO comment next anything that hasn't been implimented yet
+
+- If you want an Animal to still have a task while it's idle (e.g. return to a waiting area) 
+give it a Task with IsIdleTask set to True
+Turtles become idle in TurtleReturnOrder.FinishTask()
+
+- added a Window Station that Turtles give orders to and pick dishes up from
+(a window btw is the name of the counter between a kitchen front-of-house. put the Station wherever works best for gameplay,
+maybe in the Kitchen, or in the Dining Room, or even in its own room)
+
+- Currently the Recipie to use is decided in TurtleReturnOrder.FinishTask() # no its not, but it should be TODO: that
+I'm imagining visuals for what orders are being made to be attached to the Window. 
+If you also want it earlier, say on a Fox when it sits or on the Turtle when it takes the order, just move that block of code
+to an earlier Task. Make sure a copy of the Recipe still reaches the Window though
+You may also want to delegate choosing a recipie to some kind of new RecipeManager that can take into account
+balance and things
+
+- We're going to need a system for getting new Ingredients, otherwise you will just run out.
+Maybe a non-moving Door on the side of the screen that you can attach a Storeroom to to get new Ingredients, 
+like a sort of loading-dock
+
+- TODO: Find a way for Animals to pathfind between rooms. You may want to use Animal.SetDestination() as the starting point
+
+- TODO: Impliment Items
+
+- TODO: Impliment Recipies

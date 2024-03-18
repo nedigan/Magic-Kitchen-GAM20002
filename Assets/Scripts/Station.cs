@@ -6,7 +6,8 @@ public enum StationType
 {
     Stove, //for cooking
     Shelf, //for grabbing ingredients
-    Table //for serving food
+    Table, //for serving food
+    Window, // for Turtles to give and take orders
 }
 
 [RequireComponent(typeof(TaskHolder))]
