@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[RequireComponent(typeof(Animal))]
+public class FoxTester : MonoBehaviour
 {
+    [SerializeField]
+    private Animal fox;
+
     // Start is called before the first frame update
     void Start()
     {
-        TaskManager manager = FindFirstObjectByType<TaskManager>();
-        if (manager != null) { manager.Items.Add(this); }
+        
     }
 
     // Update is called once per frame

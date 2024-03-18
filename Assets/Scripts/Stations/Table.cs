@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Table : Station
 {
     // Start is called before the first frame update
     void Start()
     {
-        TaskManager manager = FindFirstObjectByType<TaskManager>();
-        if (manager != null) { manager.Items.Add(this); }
+        Type = StationType.Table;
     }
 
     // Update is called once per frame
