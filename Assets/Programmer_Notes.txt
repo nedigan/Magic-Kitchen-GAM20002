@@ -21,3 +21,9 @@ balance and things
 - We're going to need a system for getting new Ingredients, otherwise you will just run out.
 Maybe a non-moving Door on the side of the screen that you can attach a Storeroom to to get new Ingredients, 
 like a sort of loading-dock
+
+- TODO: Find a way for Animals to pathfind between rooms. You may want to use Animal.SetDestination() as the starting point
+
+- TODO: Impliment Items
+
+- TODO: Impliment Recipies
