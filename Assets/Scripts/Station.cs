@@ -8,7 +8,18 @@ public enum StationType
     Shelf, //for grabbing ingredients
     Table //for serving food
 }
+
+[RequireComponent(typeof(TaskHolder))]
 public class Station : MonoBehaviour
 {
-    public StationType _type;
+    public StationType Type;
+    public bool Occupied = false;
+    public GameObject StandLocation;
+    public TaskHolder TaskHolder;
+
+    private void Start()
+    {
+        TaskManager manager = FindFirstObjectByType<TaskManager>();
+        if (manager != null) { manager.Stations.Add(this); }
+    }
 }

@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class TaskHolder : MonoBehaviour
 {
-    private Queue<Task> _tasks = new Queue<Task>();
+    public Task Task;
 
-    private bool _performingTask = false;
+    public bool PerformingTask = false;
 
-    public void AddTask(Task task)
+    public void SetTask(Task task)
     {
-        _tasks.Enqueue(task);
+        Task = task;
+        task.StartTask();
     }
 
-    public void StartTask()
+    private void Update()
     {
-        
+        if (Task != null)
+        {
+            Task.PerformTask();
+        }
     }
 }
