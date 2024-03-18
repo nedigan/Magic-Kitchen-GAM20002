@@ -1036,6 +1036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880444686}
   - component: {fileID: 1880444685}
+  - component: {fileID: 1880444687}
   m_Layer: 0
   m_Name: Magehand
   m_TagString: Untagged
@@ -1075,6 +1076,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1880444687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880444684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5516e5b409646694082f5ea5f4fe135b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5216323160006899550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1087,6 +1100,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen
       objectReference: {fileID: 0}
+    - target: {fileID: 2343507968785042537, guid: bf815954c1a107a44bc59751825dc53a, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343507968785042537, guid: bf815954c1a107a44bc59751825dc53a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6053720828745343480, guid: bf815954c1a107a44bc59751825dc53a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8632457153277872752, guid: bf815954c1a107a44bc59751825dc53a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1097,7 +1122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8632457153277872752, guid: bf815954c1a107a44bc59751825dc53a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8632457153277872752, guid: bf815954c1a107a44bc59751825dc53a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1147,6 +1172,18 @@ PrefabInstance:
     - target: {fileID: 582347894420448816, guid: f6505a3c56bac4f47a0e48522c8ff7de, type: 3}
       propertyPath: m_Name
       value: Storage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977818040966980541, guid: f6505a3c56bac4f47a0e48522c8ff7de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749425320937553796, guid: f6505a3c56bac4f47a0e48522c8ff7de, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749425320937553796, guid: f6505a3c56bac4f47a0e48522c8ff7de, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6412271128862925465, guid: f6505a3c56bac4f47a0e48522c8ff7de, type: 3}
       propertyPath: m_RootOrder
