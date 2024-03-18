@@ -25,12 +25,12 @@ public class SceneDoor : MonoBehaviour
         
     }
 
-    public void OnConnectedTo(Room room)
+    public void OnConnectedTo(Door door)
     {
 
     }
 
-    public void OnDisconnectFrom(Room room)
+    public void OnDisconnectFrom(Door door)
     {
 
     }

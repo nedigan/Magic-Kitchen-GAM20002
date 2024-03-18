@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Room ConnectingRoom = null;
+    public Door ConnectingDoor = null;
     [SerializeField]
     protected Room _room;
     [SerializeField]
@@ -28,19 +28,21 @@ public class Door : MonoBehaviour
         
     }
 
-    public void OnConnectedTo(Room room)
+    public void OnConnectedTo(Door door)
     {
-        ConnectingRoom = room;
+        ConnectingDoor = door;
 
-        SceneDoor.OnConnectedTo(room);
-        TableDoor.OnConnectedTo(room);
+        Debug.Log($"A door in the {Room.name} has connected to a door in the {door.Room.name}");
+        SceneDoor.OnConnectedTo(door);
+        TableDoor.OnConnectedTo(door);
     }
 
-    public void OnDisconnectFrom(Room room)
+    public void OnDisconnectFrom(Door door)
     {
-        ConnectingRoom = null;
+        ConnectingDoor = null;
 
-        SceneDoor.OnDisconnectFrom(room);
-        TableDoor.OnDisconnectFrom(room);
+        Debug.Log($"A door in the {Room.name}has disconnected to a door in the {door.Room.name}");
+        SceneDoor.OnDisconnectFrom(door);
+        TableDoor.OnDisconnectFrom(door);
     }
 }

@@ -12,25 +12,15 @@ public class TableDoor : MonoBehaviour
 
     public Door Door => _door;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log($"Trigger!");
+        if (other.tag != "Door")
+            return;
         TableDoor otherDoor = other.GetComponent<TableDoor>();
-        if (otherDoor != null && Door.ConnectingRoom == null && otherDoor.Door.ConnectingRoom == null)
+        if (otherDoor != null && Door.ConnectingDoor == null && otherDoor.Door.ConnectingDoor == null)
         {
-            Door.Room.ConnectToRoom(otherDoor.Door.Room);
+            Door.OnConnectedTo(otherDoor.Door);
+            otherDoor.Door.OnConnectedTo(Door); // Trigger on other door will not call so will call from here
         }
     }
 
@@ -46,11 +36,13 @@ public class TableDoor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log($"Trigger Exit!");
+        if (other.tag != "Door")
+            return;
         TableDoor otherDoor = other.GetComponent<TableDoor>();
-        if (otherDoor != null && Door.ConnectingRoom == otherDoor.Door.Room)
+        if (otherDoor != null && Door.ConnectingDoor == otherDoor.Door)
         {
-            Door.Room.DisconnectFromRoom(otherDoor.Door.Room);
+            Door.OnDisconnectFrom(otherDoor.Door);
+            otherDoor.Door.OnDisconnectFrom(Door);// Trigger on other door will not call so will call from here
         }
     }
 
@@ -64,12 +56,12 @@ public class TableDoor : MonoBehaviour
     //    }
     //}
 
-    public void OnConnectedTo(Room room)
+    public void OnConnectedTo(Door door)
     {
 
     }
 
-    public void OnDisconnectFrom(Room room)
+    public void OnDisconnectFrom(Door door)
     {
 
     }
