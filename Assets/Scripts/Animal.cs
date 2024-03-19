@@ -10,6 +10,7 @@ public class Animal : MonoBehaviour
 {
     public NavMeshAgent Agent;
     public TaskHolder TaskHolder;
+    public Room CurrentRoom;
 
     public AnimalType Type;
 
@@ -53,6 +54,13 @@ public class Animal : MonoBehaviour
     {
         Agent.stoppingDistance = 1;
         Agent.SetDestination(item.transform.position);
+        _moving = true;
+    }
+
+    public void SetDestination(Door door)
+    {
+        Agent.stoppingDistance = 1;
+        Agent.SetDestination(door.SceneDoor.transform.position);
         _moving = true;
     }
 

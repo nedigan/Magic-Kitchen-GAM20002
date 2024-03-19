@@ -15,6 +15,7 @@ public class Station : MonoBehaviour
 {
     public StationType Type;
     public bool Occupied = false;
+    public Room CurrentRoom;
     public GameObject StandLocation;
     public TaskHolder TaskHolder;
 

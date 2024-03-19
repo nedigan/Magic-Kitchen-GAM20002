@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     public List<Station> Stations = new List<Station>();
 
     public RoomType RoomType;
-    public List<Door> _doors = new List<Door>();
+    public List<Door> Doors = new List<Door>();
     public TableRoom TableRoom => _tableRoom;
 
     // Start is called before the first frame update

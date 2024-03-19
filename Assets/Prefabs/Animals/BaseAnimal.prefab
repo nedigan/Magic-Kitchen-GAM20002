@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5539279906191535332}
   m_Layer: 0
   m_Name: BaseAnimal
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd44b920fb96fd94184072bd35b5a61b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 6471141758591174044}
-  taskHolder: {fileID: 2925736417651199592}
-  type: 0
+  Agent: {fileID: 0}
+  TaskHolder: {fileID: 0}
+  CurrentRoom: {fileID: 0}
+  Type: 0
 --- !u!114 &2925736417651199592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f6b61b6027dcd4089d562166b24695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Task: {fileID: 0}
+  PerformingTask: 0
 --- !u!212 &6639736298486841042
 SpriteRenderer:
   m_ObjectHideFlags: 0

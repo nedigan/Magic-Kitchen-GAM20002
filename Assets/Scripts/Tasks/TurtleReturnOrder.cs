@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TurtleReturnOrder : Task
@@ -35,10 +36,27 @@ public class TurtleReturnOrder : Task
         if (window != null)
         {
             _window = window;
-            // purposely not calling window.Occupied = true so that more than one Turtle can use the Window at a time
+            // if turtle is in the same room as the window
+            if (window.CurrentRoom == _turtle.CurrentRoom)
+            {
+                // purposely not calling window.Occupied = true so that more than one Turtle can use the Window at a time
 
-            _turtle.SetDestination(window);
-            _turtle.ReachedDestination += FinishTask;
+                _turtle.SetDestination(window);
+                _turtle.ReachedDestination += FinishTask;
+            }
+            else
+            {
+                
+                foreach (Door door in _turtle.CurrentRoom.Doors)
+                {
+                    if (door.ConnectingDoor != null && door.ConnectingDoor.Room == window.CurrentRoom)
+                    {
+                        _turtle.SetDestination(door);
+                        return;
+                    }
+                }
+                Debug.Log("Turtle wants to deliver order to window but no doors connect to window room");
+            }
         }
         else
         {

@@ -22,6 +22,11 @@ public abstract class Task : ScriptableObject
         this.FinishTask();
     }
 
+    public void StartTask(object sender, EventArgs e)
+    {
+        this.StartTask();
+    }
+
     private void Awake()
     {
         object foundObject = FindFirstObjectByType(typeof(TaskManager));
