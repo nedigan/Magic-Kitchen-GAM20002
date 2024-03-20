@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5096620304194646170, guid: 8376ab21a0955894db2a6595a055f344, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5156621151764132427, guid: 8376ab21a0955894db2a6595a055f344, type: 3}
       propertyPath: CurrentRoom
       value: 
