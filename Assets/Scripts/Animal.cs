@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AI;
+using static System.Collections.Specialized.BitVector32;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(TaskHolder))]
@@ -37,24 +39,62 @@ public class Animal : MonoBehaviour
     // Sets a destination for the Animal to go to
     // TODO: Should handle pathfinding between rooms
     // having three of these is very hacky but I don't have the time to do it properly
-    public void SetDestination(Station station)
+    public bool SetDestination(Station station) // returns true if target is in room
     {
+        bool isInCurrentRoom = false;
+        if (station.CurrentRoom == CurrentRoom)
+        {
+            Agent.SetDestination(station.StandLocation.transform.position);
+            isInCurrentRoom = true;
+        }
+        else
+        {
+            foreach (Door door in CurrentRoom.Doors)
+            {
+                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == station.CurrentRoom)
+                {
+                    SetDestination(door);
+                    isInCurrentRoom = false;
+                }
+            }
+        }
         Agent.stoppingDistance = 0;
-        Agent.SetDestination(station.StandLocation.transform.position);
         _moving = true;
+        Agent.isStopped = false;
+        return isInCurrentRoom;
     }
     // TODO: account for the fact that an animal could be moving
-    public void SetDestination(Animal animal) 
+    public bool SetDestination(Animal animal) 
     {
+        bool isInCurrentRoom = false;
+        if (animal.CurrentRoom == CurrentRoom)
+        {
+            Agent.SetDestination(animal.transform.position);
+            isInCurrentRoom = true;
+        }
+        else
+        {
+            foreach (Door door in CurrentRoom.Doors)
+            {
+                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == animal.CurrentRoom)
+                {
+                    SetDestination(door);
+                    isInCurrentRoom = false;
+                }
+            }
+        }
+
         Agent.stoppingDistance = 1;
-        Agent.SetDestination(animal.transform.position);
-        _moving = true;  
+        _moving = true;
+        Agent.isStopped = false;
+        return isInCurrentRoom;
     }
     public void SetDestination(Item item)
     {
         Agent.stoppingDistance = 1;
         Agent.SetDestination(item.transform.position);
         _moving = true;
+        Agent.isStopped = false;
     }
 
     public void SetDestination(Door door)
@@ -62,8 +102,8 @@ public class Animal : MonoBehaviour
         Agent.stoppingDistance = 1;
         Agent.SetDestination(door.SceneDoor.transform.position);
         _moving = true;
+        Agent.isStopped = false;
     }
-
     private bool AtDestination()
     {
         // got this from here:

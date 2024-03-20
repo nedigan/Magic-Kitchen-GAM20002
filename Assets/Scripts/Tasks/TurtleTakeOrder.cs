@@ -28,6 +28,8 @@ public class TurtleTakeOrder : Task
     public override void FinishTask()
     {
         TurtleReturnOrder returnOrder = ScriptableObject.CreateInstance<TurtleReturnOrder>();
+        _turtle.ReachedDestination -= this.FinishTask;
+        Debug.Log("Create instance of new task...");
         returnOrder.Setup(_turtle);
         _turtle.TaskHolder.SetTask(returnOrder);
     }
@@ -39,7 +41,10 @@ public class TurtleTakeOrder : Task
 
     public override void StartTask()
     {
-        _turtle.SetDestination(_fox);
-        _turtle.ReachedDestination += FinishTask;
+        Debug.Log("Going to take fox order");
+        if (_turtle.SetDestination(_fox))
+        {
+            _turtle.ReachedDestination += FinishTask;
+        }
     }
 }

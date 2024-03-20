@@ -22,6 +22,8 @@ public class TurtleReturnOrder : Task
     public override void FinishTask()
     {
         _turtle.TaskHolder.RemoveCurrentTask();
+        _turtle.ReachedDestination -= this.FinishTask;
+        _turtle.Agent.isStopped = true;
     }
 
     public override void PerformTask()
@@ -31,31 +33,16 @@ public class TurtleReturnOrder : Task
 
     public override void StartTask()
     {
+        Debug.Log("Starting return order task..");
         // BEWARE: assumes only one window exists in the scene, any others will never be seen by this
         Station window = FindEmptyStationOfType(StationType.Window);
         if (window != null)
         {
             _window = window;
-            // if turtle is in the same room as the window
-            if (window.CurrentRoom == _turtle.CurrentRoom)
+            // purposely not calling window.Occupied = true so that more than one Turtle can use the Window at a time
+            if (_turtle.SetDestination(window)) // returns true if in current room
             {
-                // purposely not calling window.Occupied = true so that more than one Turtle can use the Window at a time
-
-                _turtle.SetDestination(window);
                 _turtle.ReachedDestination += FinishTask;
-            }
-            else
-            {
-                
-                foreach (Door door in _turtle.CurrentRoom.Doors)
-                {
-                    if (door.ConnectingDoor != null && door.ConnectingDoor.Room == window.CurrentRoom)
-                    {
-                        _turtle.SetDestination(door);
-                        return;
-                    }
-                }
-                Debug.Log("Turtle wants to deliver order to window but no doors connect to window room");
             }
         }
         else

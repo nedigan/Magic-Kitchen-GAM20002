@@ -22,10 +22,15 @@ public class SceneDoor : MonoBehaviour
         {
             if (_connectingDoor != null)
             {
-                Debug.Log("Try");
+                Debug.Log("Transporting...");
                 other.GetComponent<NavMeshAgent>().enabled = false;
                 other.transform.position  = _connectingDoor.SceneDoor.ExitPosition.transform.position;
                 other.GetComponent<NavMeshAgent>().enabled = true;
+
+                // Try task again once in the other room
+                other.GetComponent<Animal>().CurrentRoom = _connectingDoor.Room;
+                other.GetComponent<TaskHolder>().ResetTask();
+                // CHANGE PARENT if you want
             }
             else
             {

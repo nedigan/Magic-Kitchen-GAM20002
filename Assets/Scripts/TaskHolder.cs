@@ -12,7 +12,19 @@ public class TaskHolder : MonoBehaviour
     {
         Task = task;
         PerformingTask = !task.IsIdleTask;
-        task.StartTask();
+        Task.StartTask();
+    }
+
+    // Called from scene door to redo task when in the other room
+    public void ResetTask()
+    {
+        if (!PerformingTask)
+        {
+            Debug.Log("There was no task being performed by this animal");
+            return;
+        }
+
+        Task.StartTask();
     }
 
     public void RemoveCurrentTask()
