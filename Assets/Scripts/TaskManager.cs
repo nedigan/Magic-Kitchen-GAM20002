@@ -25,13 +25,21 @@ public class TaskManager : MonoBehaviour
     // Add task for the TaskManager to manage
     public void ManageTask(Task task)
     {
-        _tasks.Add(task);
+        _tasksToAdd.Enqueue(task);
     }
 
     private Queue<Task> _tasksToRemove = new Queue<Task>();
 
+    private Queue<Task> _tasksToAdd = new Queue<Task>();
     private void Update()
     {
+
+        while (_tasksToAdd.Count > 0)
+        {
+            Task task = _tasksToAdd.Dequeue();
+            _tasks.Add(task);
+        }
+
         foreach (Task task in _tasks)
         { 
             TaskHolder holder = task.FindTaskHolder();
@@ -47,5 +55,6 @@ public class TaskManager : MonoBehaviour
             Task task = _tasksToRemove.Dequeue();
             _tasks.Remove(task);
         }
+        
     }
 }

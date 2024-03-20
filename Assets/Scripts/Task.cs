@@ -66,28 +66,3 @@ public abstract class Task : ScriptableObject
         return null;
     }
 }
-
-public class CollectIngredient: Task
-{
-
-    public override TaskHolder FindTaskHolder()
-    {
-        // Find a chicken task holder
-        return null;
-    }
-
-    public override void StartTask()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void PerformTask()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void FinishTask()
-    {
-        throw new System.NotImplementedException();
-    }
-}

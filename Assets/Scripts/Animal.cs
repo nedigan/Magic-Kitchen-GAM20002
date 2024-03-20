@@ -44,6 +44,7 @@ public class Animal : MonoBehaviour
         bool isInCurrentRoom = false;
         if (station.CurrentRoom == CurrentRoom)
         {
+            Debug.LogWarning("animal going to station");
             Agent.SetDestination(station.StandLocation.transform.position);
             isInCurrentRoom = true;
         }

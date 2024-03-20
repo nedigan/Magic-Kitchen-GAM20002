@@ -24,6 +24,9 @@ public class TurtleReturnOrder : Task
         _turtle.TaskHolder.RemoveCurrentTask();
         _turtle.ReachedDestination -= this.FinishTask;
         _turtle.Agent.isStopped = true;
+
+        RequestIngredients request = ScriptableObject.CreateInstance<RequestIngredients>();
+        Manager.ManageTask(request);
     }
 
     public override void PerformTask()
