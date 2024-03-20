@@ -74,8 +74,8 @@ public class RequestIngredients : Task
         // Retrieve the random item
         KeyValuePair<RecipeTypes, int> randomRecipe = list[randomIndex];
 
-        _ingredientsRemaining = randomRecipe.Value;
-        //_ingredientsRemaining = 1;
+        //_ingredientsRemaining = randomRecipe.Value;
+        _ingredientsRemaining = 1;
 
         for (int i = 0; i < _ingredientsRemaining; i++)
         {

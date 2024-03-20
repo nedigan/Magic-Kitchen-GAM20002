@@ -26,6 +26,7 @@ public class GatherIngredient : Task
         _chicken.ReachedDestination -= this.FinishTask;
         returnIngredientToStove.SetUp(_chicken, _stove);
         _chicken.TaskHolder.SetTask(returnIngredientToStove);
+        Debug.Log("Got ingredient");
     }
     public override void PerformTask()
     {
@@ -37,7 +38,7 @@ public class GatherIngredient : Task
         Station shelf = FindEmptyStationOfType(StationType.Shelf);
         if (shelf != null)
         {
-            Debug.Log("Chicken going to shelf");
+            Debug.LogWarning("Chicken going to shelf");
             if (_chicken.SetDestination(shelf))
             {
                 _chicken.ReachedDestination += FinishTask;
