@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class Door : MonoBehaviour
     public SceneDoor SceneDoor => _sceneDoor;
     public TableDoor TableDoor => _tableDoor;
 
+    public event EventHandler DoorConnected;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,7 @@ public class Door : MonoBehaviour
     public void OnConnectedTo(Door door)
     {
         ConnectingDoor = door;
+        DoorConnected?.Invoke(this, EventArgs.Empty);
 
         Debug.Log($"A door in the {Room.name} has connected to a door in the {door.Room.name}");
         SceneDoor.OnConnectedTo(door);

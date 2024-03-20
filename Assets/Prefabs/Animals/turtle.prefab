@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 229320727006181166}
   - component: {fileID: 8649831245203033616}
   - component: {fileID: 307413032090723616}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,6 +177,10 @@ PrefabInstance:
     - target: {fileID: 5796828936956374930, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
       propertyPath: m_Name
       value: turtle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796828936956374930, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6639736298486841042, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
       propertyPath: m_Size.x

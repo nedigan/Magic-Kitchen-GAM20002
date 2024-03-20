@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class TaskHolder : MonoBehaviour
         }
 
         Task.StartTask();
+    }
+
+    public void ResetTask(object sender, EventArgs e)
+    {
+        this.ResetTask();
     }
 
     public void RemoveCurrentTask()

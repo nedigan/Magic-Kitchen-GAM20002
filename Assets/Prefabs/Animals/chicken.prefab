@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7763903608099861067}
   - component: {fileID: 6449749650767548703}
   - component: {fileID: 8279974325735538996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 5796828936956374930, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
       propertyPath: m_Name
       value: chicken
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796828936956374930, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6639736298486841042, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
       propertyPath: m_Size.x

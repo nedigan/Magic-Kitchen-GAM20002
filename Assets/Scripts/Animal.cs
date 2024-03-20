@@ -54,8 +54,20 @@ public class Animal : MonoBehaviour
                 if (door.ConnectingDoor != null && door.ConnectingDoor.Room == station.CurrentRoom)
                 {
                     SetDestination(door);
-                    isInCurrentRoom = false;
+                    door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
+                    
                 }
+                else if (door.ConnectingDoor != null)
+                {
+                    // listen for door connect event
+                    door.ConnectingDoor.DoorConnected += TaskHolder.ResetTask;
+                }
+                else
+                {
+                    Debug.LogWarning("no door in room");
+                }
+
+                isInCurrentRoom = false;
             }
         }
         Agent.stoppingDistance = 0;
@@ -81,6 +93,7 @@ public class Animal : MonoBehaviour
                     SetDestination(door);
                     isInCurrentRoom = false;
                 }
+                
             }
         }
 
