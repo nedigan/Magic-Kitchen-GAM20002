@@ -49,13 +49,13 @@ public class RequestIngredients : Task
 
     public override void FinishTask()
     {
-        _stove.TaskHolder.RemoveCurrentTask();
         Debug.Log("Meal is cooked");
+        _stove.TaskHolder.RemoveCurrentTask();
     }
 
     public override void PerformTask()
     {
-        if (_ingredientsRemaining == 0 && !_mealCooked)
+        if (_ingredientsRemaining <= 0 && !_mealCooked)
         {
             FinishTask();
             _mealCooked = true;

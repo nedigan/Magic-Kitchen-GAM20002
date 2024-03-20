@@ -66,7 +66,7 @@ public class Animal : MonoBehaviour
                 isInCurrentRoom = false;
             }
         }
-        Agent.stoppingDistance = 0;
+        Agent.stoppingDistance = 1;
         _moving = true;
         Agent.isStopped = false;
         return isInCurrentRoom;
