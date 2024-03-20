@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6471141758591174044, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6639736298486841042, guid: 0ea63a8befeaec34c8eaade576ef842a, type: 3}
       propertyPath: m_Size.x
       value: 3.4133334

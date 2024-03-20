@@ -57,14 +57,10 @@ public class Animal : MonoBehaviour
                     door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
                     
                 }
-                else if (door.ConnectingDoor != null)
+                else 
                 {
                     // listen for door connect event
-                    door.ConnectingDoor.DoorConnected += TaskHolder.ResetTask;
-                }
-                else
-                {
-                    Debug.LogWarning("no door in room");
+                    door.DoorConnected += TaskHolder.ResetTask;
                 }
 
                 isInCurrentRoom = false;
