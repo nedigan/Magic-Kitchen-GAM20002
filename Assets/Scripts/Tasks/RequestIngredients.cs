@@ -57,6 +57,7 @@ public class RequestIngredients : Task
     {
         Debug.Log("Meal is cooked");
         _stove.TaskHolder.RemoveCurrentTask();
+        _stove.Occupied = false;
 
         TurtleGrabMeal grabMealTask = ScriptableObject.CreateInstance<TurtleGrabMeal>();
         grabMealTask.SetUp(_stove,_fox);
@@ -75,6 +76,7 @@ public class RequestIngredients : Task
     public override void StartTask()
     {
         Debug.Log("Ask for ingredients");
+        _stove.Occupied = true;
         // Convert dictionary to list of key-value pairs
         List<KeyValuePair<RecipeTypes, int>> list = new List<KeyValuePair<RecipeTypes, int>>(_recipes);
 
