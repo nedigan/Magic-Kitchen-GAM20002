@@ -87,9 +87,16 @@ public class Animal : MonoBehaviour
                 if (door.ConnectingDoor != null && door.ConnectingDoor.Room == animal.CurrentRoom)
                 {
                     SetDestination(door);
-                    isInCurrentRoom = false;
+                    door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
+
                 }
-                
+                else
+                {
+                    // listen for door connect event
+                    door.DoorConnected += TaskHolder.ResetTask;
+                }
+
+                isInCurrentRoom = false;
             }
         }
 

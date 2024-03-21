@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurtleTakeOrder : Task
+public class TurtleGrabMeal : Task
 {
     private Animal _turtle;
     private Animal _fox;
+    private Station _stove;
 
-    public void Setup(Animal fox)
+    public void SetUp(Station stove, Animal fox)
     {
         _fox = fox;
+        _stove = stove;
     }
-
     public override TaskHolder FindTaskHolder()
     {
         Animal turtle = FindIdleAnimalOfType(AnimalType.Turtle);
 
-        if (turtle != null) 
-        { 
+        if (turtle != null)
+        {
             _turtle = turtle;
             return _turtle.TaskHolder;
         }
@@ -27,11 +28,13 @@ public class TurtleTakeOrder : Task
 
     public override void FinishTask()
     {
-        TurtleReturnOrder returnOrder = ScriptableObject.CreateInstance<TurtleReturnOrder>();
+        //throw new System.NotImplementedException();
         _turtle.ReachedDestination -= this.FinishTask;
-        Debug.Log("Create instance of new task...");
-        returnOrder.Setup(_turtle, _fox);
-        _turtle.TaskHolder.SetTask(returnOrder);
+        _turtle.TaskHolder.RemoveCurrentTask();
+
+        DeliverMeal deliverMeal = ScriptableObject.CreateInstance<DeliverMeal>();
+        deliverMeal.SetUp(_turtle, _fox);
+        _turtle.TaskHolder.SetTask(deliverMeal);
     }
 
     public override void PerformTask()
@@ -41,8 +44,7 @@ public class TurtleTakeOrder : Task
 
     public override void StartTask()
     {
-        Debug.Log("Going to take fox order");
-        if (_turtle.SetDestination(_fox))
+        if (_turtle.SetDestination(_stove))
         {
             _turtle.ReachedDestination += FinishTask;
         }

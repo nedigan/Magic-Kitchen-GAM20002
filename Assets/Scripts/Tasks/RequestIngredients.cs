@@ -29,6 +29,12 @@ public class RequestIngredients : Task
     };
 
     private Station _stove;
+    private Animal _fox;
+
+    public void SetUp(Animal fox)
+    {
+        _fox = fox;
+    }
 
     public override TaskHolder FindTaskHolder()
     {
@@ -51,6 +57,10 @@ public class RequestIngredients : Task
     {
         Debug.Log("Meal is cooked");
         _stove.TaskHolder.RemoveCurrentTask();
+
+        TurtleGrabMeal grabMealTask = ScriptableObject.CreateInstance<TurtleGrabMeal>();
+        grabMealTask.SetUp(_stove,_fox);
+        Manager.ManageTask(grabMealTask);
     }
 
     public override void PerformTask()
