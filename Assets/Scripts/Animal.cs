@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +15,9 @@ public class Animal : MonoBehaviour
     public TaskHolder TaskHolder;
     public Room CurrentRoom;
 
+    [SerializeField] private SpriteRenderer _sprite;
+    private Vector3 _prevPos;
+
     public AnimalType Type;
 
     private bool _moving = false;
@@ -23,11 +27,21 @@ public class Animal : MonoBehaviour
     {
         TaskManager manager = FindFirstObjectByType<TaskManager>();
         if (manager != null ) { manager.Animals.Add(this); }
+
+        _prevPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Sprite stuff
+        if (_sprite != null)
+        {
+            _sprite.transform.position = transform.position;
+            _sprite.flipX = _prevPos.x < transform.position.x;
+            _prevPos = transform.position;
+        }
+
         if (_moving && AtDestination())
         {
             _moving = false;
