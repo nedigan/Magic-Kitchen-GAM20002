@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 309454516}
   - component: {fileID: 309454515}
   m_Layer: 0
-  m_Name: re
+  m_Name: Carpet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,11 +221,11 @@ Transform:
   m_GameObject: {fileID: 309454514}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.64367133, z: -0, w: 0.7653021}
-  m_LocalPosition: {x: 34.62, y: 0.02, z: -44.7}
-  m_LocalScale: {x: 0.4836685, y: 0.02773, z: 1.599789}
+  m_LocalPosition: {x: -0.54909897, y: 0.02, z: -4.2000046}
+  m_LocalScale: {x: 0.48366848, y: 0.02773, z: 1.5997889}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 486714543}
   m_LocalEulerAnglesHint: {x: 0, y: 80.132, z: 0}
 --- !u!1001 &347669955
 PrefabInstance:
@@ -362,9 +362,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6513258115203328822, guid: 8376ab21a0955894db2a6595a055f344, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 309454518}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8376ab21a0955894db2a6595a055f344, type: 3}
+--- !u!4 &486714543 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6513258115203328822, guid: 8376ab21a0955894db2a6595a055f344, type: 3}
+  m_PrefabInstance: {fileID: 486714542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &658478308
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +746,7 @@ GameObject:
   - component: {fileID: 738869095}
   - component: {fileID: 738869094}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: RightCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,7 +910,7 @@ GameObject:
   - component: {fileID: 903590675}
   - component: {fileID: 903590674}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: BottomCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1018,7 @@ GameObject:
   - component: {fileID: 951738066}
   - component: {fileID: 951738070}
   m_Layer: 7
-  m_Name: Plane
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1495,7 +1503,7 @@ GameObject:
   - component: {fileID: 1384778743}
   - component: {fileID: 1384778742}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: TopCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1836,7 +1844,7 @@ GameObject:
   - component: {fileID: 1640063480}
   - component: {fileID: 1640063479}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: LeftCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1959,4 +1967,3 @@ SceneRoots:
   - {fileID: 1384778745}
   - {fileID: 347669955}
   - {fileID: 705249622}
-  - {fileID: 309454518}
