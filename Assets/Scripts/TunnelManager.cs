@@ -46,9 +46,9 @@ public class TunnelManager : MonoBehaviour
             var conn = _connections[i];
 
             _routes[i].controlPoints[0].position = conn.Item1.TableDoor.transform.position;
-            _routes[i].controlPoints[1].position = conn.Item1.TableDoor.transform.position - new Vector3(6f,0);
+            _routes[i].controlPoints[1].position = conn.Item1.TableDoor.transform.position + new Vector3(6f,0);
 
-            _routes[i].controlPoints[2].position = conn.Item2.TableDoor.transform.position + new Vector3(6f, 0);
+            _routes[i].controlPoints[2].position = conn.Item2.TableDoor.transform.position - new Vector3(6f, 0);
             _routes[i].controlPoints[3].position = conn.Item2.TableDoor.transform.position;
             
         }
