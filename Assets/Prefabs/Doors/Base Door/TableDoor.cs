@@ -12,6 +12,13 @@ public class TableDoor : MonoBehaviour
 
     public Door Door => _door;
 
+    private TunnelManager _tunnelManager;
+
+    public void Start()
+    {
+        _tunnelManager = FindFirstObjectByType<TunnelManager>(); // Slow but works?
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Door")
@@ -21,6 +28,8 @@ public class TableDoor : MonoBehaviour
         {
             Door.OnConnectedTo(otherDoor.Door);
             otherDoor.Door.OnConnectedTo(Door); // Trigger on other door will not call so will call from here
+
+            _tunnelManager.DoorsHaveConnected(otherDoor.Door, Door);
         }
     }
 
@@ -43,6 +52,8 @@ public class TableDoor : MonoBehaviour
         {
             Door.OnDisconnectFrom(otherDoor.Door);
             otherDoor.Door.OnDisconnectFrom(Door);// Trigger on other door will not call so will call from here
+
+            _tunnelManager.DoorsHaveDisconnected(otherDoor.Door, Door);
         }
     }
 
