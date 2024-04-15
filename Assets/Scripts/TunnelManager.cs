@@ -9,7 +9,7 @@ using UnityEngine;
 public class TunnelManager : MonoBehaviour
 {
     [SerializeField] private GameObject _tunnelPrefab;
-
+    [SerializeField] private float _offsetLength = 6f;
     private List<Tuple<Door, Door>> _connections = new();
     private List<Route> _routes = new();
     public void DoorsHaveConnected(Door door1, Door door2)
@@ -45,10 +45,15 @@ public class TunnelManager : MonoBehaviour
         {
             var conn = _connections[i];
 
-            _routes[i].controlPoints[0].position = conn.Item1.TableDoor.transform.position;
-            _routes[i].controlPoints[1].position = conn.Item1.TableDoor.transform.position + new Vector3(6f,0);
+            Vector3 offset = new Vector3(_offsetLength, 0);
 
-            _routes[i].controlPoints[2].position = conn.Item2.TableDoor.transform.position - new Vector3(6f, 0);
+            if (conn.Item1.TableDoor.transform.position.x > conn.Item2.TableDoor.transform.position.x)
+                offset *= -1;
+
+            _routes[i].controlPoints[0].position = conn.Item1.TableDoor.transform.position;
+            _routes[i].controlPoints[1].position = conn.Item1.TableDoor.transform.position + offset;
+
+            _routes[i].controlPoints[2].position = conn.Item2.TableDoor.transform.position - offset;
             _routes[i].controlPoints[3].position = conn.Item2.TableDoor.transform.position;
             
         }
