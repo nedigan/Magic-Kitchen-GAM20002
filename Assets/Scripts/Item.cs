@@ -1,12 +1,38 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public enum ItemType
 {
+    Sugar,
+    Flour,
+    Egg,
+}
+
+// Base class for any object in a room that Animals can pick up / interact with
+
+public class Item : MonoBehaviour, IRoomObject
+{
+    [Tooltip("Has an Animal claimed this Item to be used")]
+    public bool Claimed = false;
+
+    [SerializeField]
+    private Room _currentRoom;
+
+    // IRoomObject fields
+    public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
+
+    public Vector3 Destination => transform.position;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (_currentRoom == null)
+        {
+            _currentRoom = RoomFinder.FindRoomAbove(gameObject);
+        }
+
         TaskManager manager = FindFirstObjectByType<TaskManager>();
         if (manager != null) { manager.Items.Add(this); }
     }

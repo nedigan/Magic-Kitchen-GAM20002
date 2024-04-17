@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,24 +8,50 @@ using UnityEngine;
 using UnityEngine.AI;
 using static System.Collections.Specialized.BitVector32;
 
+public enum AnimalType
+{
+    Fox,
+    Chicken,
+    Turtle
+}
+
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(TaskHolder))]
-public class Animal : MonoBehaviour
+public class Animal : MonoBehaviour, IRoomObject
 {
     public NavMeshAgent Agent;
     public TaskHolder TaskHolder;
-    public Room CurrentRoom;
+    [SerializeField]
+    private Room _currentRoom;
 
-    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] 
+    private SpriteRenderer _sprite;
     private Vector3 _prevPos;
+
+    private bool _moving = false;
 
     public AnimalType Type;
 
-    private bool _moving = false;
+    [SerializeField]
+    private GameObject _itemHoldLocation;
+    private Item _heldItem;
+
+    public Item HeldItem { get => _heldItem; }
+
+    // IRoomObject fields
+    public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
+
+    public Vector3 Destination => transform.position;
 
     // Start is called before the first frame update
     void Start()
     {
+        // find the first room above this in the Hierarchy
+        if (_currentRoom == null) 
+        {
+            _currentRoom = RoomFinder.FindRoomAbove(gameObject);
+        }
+        
         TaskManager manager = FindFirstObjectByType<TaskManager>();
         if (manager != null ) { manager.Animals.Add(this); }
 
@@ -52,53 +79,19 @@ public class Animal : MonoBehaviour
 
     // Sets a destination for the Animal to go to
     // TODO: Should handle pathfinding between rooms
-    // having three of these is very hacky but I don't have the time to do it properly
-    public bool SetDestination(Station station) // returns true if target is in room
+    public bool SetDestination(IRoomObject roomObject)
     {
         bool isInCurrentRoom = false;
-        if (station.CurrentRoom == CurrentRoom)
+        if (roomObject.CurrentRoom == CurrentRoom)
         {
-            Agent.SetDestination(station.StandLocation.transform.position);
+            Agent.SetDestination(roomObject.Destination);
             isInCurrentRoom = true;
         }
         else
         {
             foreach (Door door in CurrentRoom.Doors)
             {
-                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == station.CurrentRoom)
-                {
-                    SetDestination(door);
-                    door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
-                    
-                }
-                else 
-                {
-                    // listen for door connect event
-                    door.DoorConnected += TaskHolder.ResetTask;
-                }
-
-                isInCurrentRoom = false;
-            }
-        }
-        Agent.stoppingDistance = 1;
-        _moving = true;
-        Agent.isStopped = false;
-        return isInCurrentRoom;
-    }
-    // TODO: account for the fact that an animal could be moving
-    public bool SetDestination(Animal animal) 
-    {
-        bool isInCurrentRoom = false;
-        if (animal.CurrentRoom == CurrentRoom)
-        {
-            Agent.SetDestination(animal.transform.position);
-            isInCurrentRoom = true;
-        }
-        else
-        {
-            foreach (Door door in CurrentRoom.Doors)
-            {
-                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == animal.CurrentRoom)
+                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == roomObject.CurrentRoom)
                 {
                     SetDestination(door);
                     door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
@@ -113,19 +106,116 @@ public class Animal : MonoBehaviour
                 isInCurrentRoom = false;
             }
         }
-
         Agent.stoppingDistance = 1;
         _moving = true;
         Agent.isStopped = false;
         return isInCurrentRoom;
     }
-    public void SetDestination(Item item)
-    {
-        Agent.stoppingDistance = 1;
-        Agent.SetDestination(item.transform.position);
-        _moving = true;
-        Agent.isStopped = false;
-    }
+    // having three of these is very hacky but I don't have the time to do it properly
+    //public bool SetDestination(Station station) // returns true if target is in room
+    //{
+    //    bool isInCurrentRoom = false;
+    //    if (station.CurrentRoom == CurrentRoom)
+    //    {
+    //        Agent.SetDestination(station.StandLocation.transform.position);
+    //        isInCurrentRoom = true;
+    //    }
+    //    else
+    //    {
+    //        foreach (Door door in CurrentRoom.Doors)
+    //        {
+    //            if (door.ConnectingDoor != null && door.ConnectingDoor.Room == station.CurrentRoom)
+    //            {
+    //                SetDestination(door);
+    //                door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
+                    
+    //            }
+    //            else 
+    //            {
+    //                // listen for door connect event
+    //                door.DoorConnected += TaskHolder.ResetTask;
+    //            }
+
+    //            isInCurrentRoom = false;
+    //        }
+    //    }
+    //    Agent.stoppingDistance = 1;
+    //    _moving = true;
+    //    Agent.isStopped = false;
+    //    return isInCurrentRoom;
+    //}
+    //// TODO: account for the fact that an animal could be moving
+    //public bool SetDestination(Animal animal) 
+    //{
+    //    bool isInCurrentRoom = false;
+    //    if (animal.CurrentRoom == CurrentRoom)
+    //    {
+    //        Agent.SetDestination(animal.transform.position);
+    //        isInCurrentRoom = true;
+    //    }
+    //    else
+    //    {
+    //        foreach (Door door in CurrentRoom.Doors)
+    //        {
+    //            if (door.ConnectingDoor != null && door.ConnectingDoor.Room == animal.CurrentRoom)
+    //            {
+    //                SetDestination(door);
+    //                door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
+
+    //            }
+    //            else
+    //            {
+    //                // listen for door connect event
+    //                door.DoorConnected += TaskHolder.ResetTask;
+    //            }
+
+    //            isInCurrentRoom = false;
+    //        }
+    //    }
+
+    //    Agent.stoppingDistance = 1;
+    //    _moving = true;
+    //    Agent.isStopped = false;
+    //    return isInCurrentRoom;
+    //}
+    //public bool SetDestination(Item item)
+    //{
+    //    bool isInCurrentRoom = false;
+    //    if (item.CurrentRoom == CurrentRoom)
+    //    {
+    //        Agent.SetDestination(item.transform.position);
+    //        isInCurrentRoom = true;
+    //    }
+    //    else
+    //    {
+    //        foreach (Door door in CurrentRoom.Doors)
+    //        {
+    //            if (door.ConnectingDoor != null && door.ConnectingDoor.Room == item.CurrentRoom)
+    //            {
+    //                SetDestination(door);
+    //                door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
+
+    //            }
+    //            else
+    //            {
+    //                // listen for door connect event
+    //                door.DoorConnected += TaskHolder.ResetTask;
+    //            }
+
+    //            isInCurrentRoom = false;
+    //        }
+    //    }
+
+    //    Agent.stoppingDistance = 1;
+    //    _moving = true;
+    //    Agent.isStopped = false;
+    //    return isInCurrentRoom;
+
+    //    //Agent.stoppingDistance = 1;
+    //    //Agent.SetDestination(item.transform.position);
+    //    //_moving = true;
+    //    //Agent.isStopped = false;
+    //}
 
     public void SetDestination(Door door)
     {
@@ -159,11 +249,16 @@ public class Animal : MonoBehaviour
     {
         ReachedDestination?.Invoke(this, EventArgs.Empty);
     }
-}
 
-public enum AnimalType
-{
-    Fox,
-    Chicken,
-    Turtle
+    // Item stuff
+
+    public void PickUpItem(Item item)
+    {
+
+    }
+
+    public void DropCurrentItem()
+    {
+
+    }
 }
