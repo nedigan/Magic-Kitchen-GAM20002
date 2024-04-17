@@ -29,11 +29,11 @@ public class RequestIngredients : Task
     };
 
     private Station _stove;
-    private Animal _fox;
+    private OrderTicket _ticket;
 
-    public void SetUp(Animal fox)
+    public void SetUp(OrderTicket ticket)
     {
-        _fox = fox;
+        _ticket = ticket;
     }
 
     public override TaskHolder FindTaskHolder()
@@ -60,7 +60,7 @@ public class RequestIngredients : Task
         _stove.Occupied = false;
 
         TurtleGrabMeal grabMealTask = ScriptableObject.CreateInstance<TurtleGrabMeal>();
-        grabMealTask.SetUp(_stove,_fox);
+        grabMealTask.SetUp(_stove, _ticket.Recipient);
         Manager.ManageTask(grabMealTask);
     }
 

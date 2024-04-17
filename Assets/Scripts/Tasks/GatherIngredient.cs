@@ -38,7 +38,7 @@ public class GatherIngredient : Task
         Station shelf = FindEmptyStationOfType(StationType.Shelf);
         if (shelf != null)
         {
-            Debug.LogWarning("Chicken going to shelf");
+            Debug.Log("Chicken going to shelf");
             if (_chicken.SetDestination(shelf))
             {
                 _chicken.ReachedDestination += FinishTask;

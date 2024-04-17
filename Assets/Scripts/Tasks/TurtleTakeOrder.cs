@@ -5,11 +5,11 @@ using UnityEngine;
 public class TurtleTakeOrder : Task
 {
     private Animal _turtle;
-    private Animal _fox;
+    private OrderTicket _ticket;
 
-    public void Setup(Animal fox)
+    public void Setup(OrderTicket ticket)
     {
-        _fox = fox;
+        _ticket = ticket;
     }
 
     public override TaskHolder FindTaskHolder()
@@ -29,8 +29,8 @@ public class TurtleTakeOrder : Task
     {
         TurtleReturnOrder returnOrder = ScriptableObject.CreateInstance<TurtleReturnOrder>();
         _turtle.ReachedDestination -= this.FinishTask;
-        Debug.Log("Create instance of new task...");
-        returnOrder.Setup(_turtle, _fox);
+        //Debug.Log("Create instance of new task...");
+        returnOrder.Setup(_turtle, _ticket);
         _turtle.TaskHolder.SetTask(returnOrder);
     }
 
@@ -42,7 +42,7 @@ public class TurtleTakeOrder : Task
     public override void StartTask()
     {
         Debug.Log("Going to take fox order");
-        if (_turtle.SetDestination(_fox))
+        if (_turtle.SetDestination(_ticket.Recipient))
         {
             _turtle.ReachedDestination += FinishTask;
         }

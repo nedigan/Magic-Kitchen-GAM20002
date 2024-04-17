@@ -8,10 +8,10 @@ public enum ItemType
     Sugar,
     Flour,
     Egg,
+    Meal,
 }
 
-// Base class for any object in a room that Animals can pick up / interact with
-
+// Base class for any object in a room that Animals can pick up
 public class Item : MonoBehaviour, IRoomObject
 {
     [SerializeField]
@@ -43,11 +43,5 @@ public class Item : MonoBehaviour, IRoomObject
 
         TaskManager manager = FindFirstObjectByType<TaskManager>();
         if (manager != null) { manager.Items.Add(this); }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

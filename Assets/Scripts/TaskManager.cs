@@ -11,9 +11,18 @@ public class TaskManager : MonoBehaviour
     private List<Station> _stations = new List<Station>();
     private List<Item> _items = new List<Item>();
 
+    private OrderManager _orderManager;
+
     public List<Animal> Animals => _animals;
     public List<Station> Stations => _stations;
     public List<Item> Items => _items;
+
+    public OrderManager OrderManager => _orderManager;
+
+    private void Awake()
+    {
+        _orderManager = gameObject.AddComponent<OrderManager>();
+    }
 
     // Give a task to a task holder
     private void SendTask(Task task, TaskHolder holder)

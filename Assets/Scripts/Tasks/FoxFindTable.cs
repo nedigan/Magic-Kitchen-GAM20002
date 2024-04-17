@@ -40,10 +40,9 @@ public class FoxFindTable : Task
 
     public override void FinishTask()
     {
-        TurtleTakeOrder turtleTakeOrder = ScriptableObject.CreateInstance<TurtleTakeOrder>();
-        turtleTakeOrder.Setup(_fox);
-        Manager.ManageTask(turtleTakeOrder);
+        FoxWaitAtTable task = ScriptableObject.CreateInstance<FoxWaitAtTable>();
+        task.Setup(_fox, _table);
 
-        _table.TaskHolder.SetTask(ScriptableObject.CreateInstance<FoxWaitAtTable>());
+        _table.TaskHolder.SetTask(task);
     }
 }
