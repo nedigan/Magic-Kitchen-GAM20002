@@ -73,7 +73,6 @@ public class Animal : MonoBehaviour, IRoomObject
         {
             _moving = false;
             OnReachedDestination();
-
         }
     }
 
@@ -111,111 +110,6 @@ public class Animal : MonoBehaviour, IRoomObject
         Agent.isStopped = false;
         return isInCurrentRoom;
     }
-    // having three of these is very hacky but I don't have the time to do it properly
-    //public bool SetDestination(Station station) // returns true if target is in room
-    //{
-    //    bool isInCurrentRoom = false;
-    //    if (station.CurrentRoom == CurrentRoom)
-    //    {
-    //        Agent.SetDestination(station.StandLocation.transform.position);
-    //        isInCurrentRoom = true;
-    //    }
-    //    else
-    //    {
-    //        foreach (Door door in CurrentRoom.Doors)
-    //        {
-    //            if (door.ConnectingDoor != null && door.ConnectingDoor.Room == station.CurrentRoom)
-    //            {
-    //                SetDestination(door);
-    //                door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
-                    
-    //            }
-    //            else 
-    //            {
-    //                // listen for door connect event
-    //                door.DoorConnected += TaskHolder.ResetTask;
-    //            }
-
-    //            isInCurrentRoom = false;
-    //        }
-    //    }
-    //    Agent.stoppingDistance = 1;
-    //    _moving = true;
-    //    Agent.isStopped = false;
-    //    return isInCurrentRoom;
-    //}
-    //// TODO: account for the fact that an animal could be moving
-    //public bool SetDestination(Animal animal) 
-    //{
-    //    bool isInCurrentRoom = false;
-    //    if (animal.CurrentRoom == CurrentRoom)
-    //    {
-    //        Agent.SetDestination(animal.transform.position);
-    //        isInCurrentRoom = true;
-    //    }
-    //    else
-    //    {
-    //        foreach (Door door in CurrentRoom.Doors)
-    //        {
-    //            if (door.ConnectingDoor != null && door.ConnectingDoor.Room == animal.CurrentRoom)
-    //            {
-    //                SetDestination(door);
-    //                door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
-
-    //            }
-    //            else
-    //            {
-    //                // listen for door connect event
-    //                door.DoorConnected += TaskHolder.ResetTask;
-    //            }
-
-    //            isInCurrentRoom = false;
-    //        }
-    //    }
-
-    //    Agent.stoppingDistance = 1;
-    //    _moving = true;
-    //    Agent.isStopped = false;
-    //    return isInCurrentRoom;
-    //}
-    //public bool SetDestination(Item item)
-    //{
-    //    bool isInCurrentRoom = false;
-    //    if (item.CurrentRoom == CurrentRoom)
-    //    {
-    //        Agent.SetDestination(item.transform.position);
-    //        isInCurrentRoom = true;
-    //    }
-    //    else
-    //    {
-    //        foreach (Door door in CurrentRoom.Doors)
-    //        {
-    //            if (door.ConnectingDoor != null && door.ConnectingDoor.Room == item.CurrentRoom)
-    //            {
-    //                SetDestination(door);
-    //                door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
-
-    //            }
-    //            else
-    //            {
-    //                // listen for door connect event
-    //                door.DoorConnected += TaskHolder.ResetTask;
-    //            }
-
-    //            isInCurrentRoom = false;
-    //        }
-    //    }
-
-    //    Agent.stoppingDistance = 1;
-    //    _moving = true;
-    //    Agent.isStopped = false;
-    //    return isInCurrentRoom;
-
-    //    //Agent.stoppingDistance = 1;
-    //    //Agent.SetDestination(item.transform.position);
-    //    //_moving = true;
-    //    //Agent.isStopped = false;
-    //}
 
     public void SetDestination(Door door)
     {
@@ -250,15 +144,35 @@ public class Animal : MonoBehaviour, IRoomObject
         ReachedDestination?.Invoke(this, EventArgs.Empty);
     }
 
+    public void MoveToRoom(Door exitDoor)
+    {
+        //Debug.Log("Transporting...");
+        Agent.enabled = false;
+        transform.position = exitDoor.SceneDoor.ExitPosition.transform.position;
+        Agent.enabled = true;
+
+        // Try task again once in the other room
+        CurrentRoom = exitDoor.Room;
+        TaskHolder.ResetTask();
+        // CHANGE PARENT if you want
+    }
+
     // Item stuff
 
     public void PickUpItem(Item item)
     {
+        if (_heldItem != null) { DropCurrentItem(); }
 
+        _heldItem = item;
     }
 
     public void DropCurrentItem()
     {
 
+    }
+
+    public void RemoveCurrentItem()
+    {
+        _heldItem = null;
     }
 }

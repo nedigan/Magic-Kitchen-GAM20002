@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    // this should only be used to aid in setting up test scenes
+    // it should never be used in a finalised scene bc its way too slow
     public static class RoomFinder
     {
         public static Room FindRoomAbove(GameObject gameObject)
