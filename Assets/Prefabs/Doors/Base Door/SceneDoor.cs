@@ -18,26 +18,6 @@ public class SceneDoor : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Animal"))
-        //{
-        //    if (_connectingDoor != null)
-        //    {
-        //        Debug.Log("Transporting...");
-        //        other.GetComponent<NavMeshAgent>().enabled = false;
-        //        other.transform.position  = _connectingDoor.SceneDoor.ExitPosition.transform.position;
-        //        other.GetComponent<NavMeshAgent>().enabled = true;
-
-        //        // Try task again once in the other room
-        //        other.GetComponent<Animal>().CurrentRoom = _connectingDoor.Room;
-        //        other.GetComponent<TaskHolder>().ResetTask();
-        //        // CHANGE PARENT if you want
-        //    }
-        //    else
-        //    {
-        //        //Debug.Log("No connecting door, will not transport animal");
-        //    }
-        //}
-
         if (_connectingDoor != null && other.TryGetComponent(out Animal animal))
         {
             animal.MoveToRoom(_connectingDoor);
@@ -46,26 +26,6 @@ public class SceneDoor : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        //if (other.CompareTag("Animal"))
-        //{
-        //    if (_connectingDoor != null)
-        //    {
-        //        //Debug.Log("Transporting...");
-        //        other.GetComponent<NavMeshAgent>().enabled = false;
-        //        other.transform.position = _connectingDoor.SceneDoor.ExitPosition.transform.position;
-        //        other.GetComponent<NavMeshAgent>().enabled = true;
-
-        //        // Try task again once in the other room
-        //        other.GetComponent<Animal>().CurrentRoom = _connectingDoor.Room;
-        //        other.GetComponent<TaskHolder>().ResetTask();
-        //        // CHANGE PARENT if you want
-        //    }
-        //    else
-        //    {
-        //       // Debug.Log("No connecting door, will not transport animal");
-        //    }
-        //}
-
         if (_connectingDoor != null && other.TryGetComponent(out Animal animal))
         {
             animal.MoveToRoom(_connectingDoor);
