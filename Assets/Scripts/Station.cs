@@ -28,12 +28,17 @@ public class Station : MonoBehaviour, IRoomObject
 
     private void Start()
     {
-        if (_currentRoom == null)
+        if (_currentRoom == null && RoomFinder.TryFindRoomAbove(gameObject, out Room foundRoom))
         {
-            _currentRoom = RoomFinder.FindRoomAbove(gameObject);
+            SetCurrentRoom(foundRoom);
         }
 
         TaskManager manager = FindFirstObjectByType<TaskManager>();
         if (manager != null) { manager.Stations.Add(this); }
+    }
+
+    public void SetCurrentRoom(Room room)
+    {
+        _currentRoom = room;
     }
 }

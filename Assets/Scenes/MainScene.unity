@@ -1613,6 +1613,10 @@ PrefabInstance:
       propertyPath: CurrentRoom
       value: 
       objectReference: {fileID: 1323947010}
+    - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
+      propertyPath: _currentRoom
+      value: 
+      objectReference: {fileID: 1323947010}
     - target: {fileID: 7504008669377811616, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
       propertyPath: m_Name
       value: Chicken (1)
@@ -1697,6 +1701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tunnelPrefab: {fileID: 4998981752855901827, guid: 66acc21a16cf7de4b8a188a4ef183c62, type: 3}
+  _offsetLength: 6
 --- !u!4 &1465720658
 Transform:
   m_ObjectHideFlags: 0
@@ -1722,6 +1727,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
       propertyPath: CurrentRoom
+      value: 
+      objectReference: {fileID: 1323947010}
+    - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
+      propertyPath: _currentRoom
       value: 
       objectReference: {fileID: 1323947010}
     - target: {fileID: 7504008669377811616, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
@@ -1783,6 +1792,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
       propertyPath: CurrentRoom
+      value: 
+      objectReference: {fileID: 1323947010}
+    - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
+      propertyPath: _currentRoom
       value: 
       objectReference: {fileID: 1323947010}
     - target: {fileID: 7504008669377811616, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
@@ -1863,7 +1876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Occupied: 0
-  CurrentRoom: {fileID: 1323947010}
+  _currentRoom: {fileID: 0}
   StandLocation: {fileID: 716997969}
   TaskHolder: {fileID: 1554422955}
 --- !u!114 &1554422955

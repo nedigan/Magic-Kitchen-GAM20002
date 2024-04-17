@@ -14,6 +14,9 @@ public enum ItemType
 
 public class Item : MonoBehaviour, IRoomObject
 {
+    [SerializeField]
+    private ItemType type;
+
     [Tooltip("Has an Animal claimed this Item to be used")]
     public bool Claimed = false;
 
@@ -25,12 +28,17 @@ public class Item : MonoBehaviour, IRoomObject
 
     public Vector3 Destination => transform.position;
 
+    public void SetCurrentRoom(Room room)
+    {
+        _currentRoom = room;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        if (_currentRoom == null)
+        if (_currentRoom == null && RoomFinder.TryFindRoomAbove(gameObject, out Room foundRoom))
         {
-            _currentRoom = RoomFinder.FindRoomAbove(gameObject);
+            SetCurrentRoom(foundRoom);
         }
 
         TaskManager manager = FindFirstObjectByType<TaskManager>();

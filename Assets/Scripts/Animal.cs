@@ -3,10 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AI;
-using static System.Collections.Specialized.BitVector32;
 
 public enum AnimalType
 {
@@ -46,10 +46,9 @@ public class Animal : MonoBehaviour, IRoomObject
     // Start is called before the first frame update
     void Start()
     {
-        // find the first room above this in the Hierarchy
-        if (_currentRoom == null) 
+        if (_currentRoom == null && RoomFinder.TryFindRoomAbove(gameObject, out Room foundRoom))
         {
-            _currentRoom = RoomFinder.FindRoomAbove(gameObject);
+            SetCurrentRoom(foundRoom);
         }
         
         TaskManager manager = FindFirstObjectByType<TaskManager>();
@@ -64,9 +63,21 @@ public class Animal : MonoBehaviour, IRoomObject
         // Sprite stuff
         if (_sprite != null)
         {
+            bool shouldFlip = _prevPos.x < transform.position.x;
+
             _sprite.transform.position = transform.position;
-            _sprite.flipX = _prevPos.x < transform.position.x;
+            _sprite.flipX = shouldFlip;
             _prevPos = transform.position;
+
+            if (_heldItem != null)
+            {
+                _heldItem.transform.position = _itemHoldLocation.transform.position;
+
+                if (shouldFlip)
+                {
+                    _heldItem.transform.position -= new Vector3(0, _itemHoldLocation.transform.position.y * 2, 0);
+                }
+            }
         }
 
         if (_moving && AtDestination())
@@ -152,7 +163,8 @@ public class Animal : MonoBehaviour, IRoomObject
         Agent.enabled = true;
 
         // Try task again once in the other room
-        CurrentRoom = exitDoor.Room;
+        //CurrentRoom = exitDoor.Room;
+        SetCurrentRoom(exitDoor.Room);
         TaskHolder.ResetTask();
         // CHANGE PARENT if you want
     }
@@ -161,18 +173,31 @@ public class Animal : MonoBehaviour, IRoomObject
 
     public void PickUpItem(Item item)
     {
-        if (_heldItem != null) { DropCurrentItem(); }
+        if (_heldItem != null) { DropCurrentItemOnGround(); }
 
         _heldItem = item;
+
+        _heldItem.Claimed = true;
     }
 
-    public void DropCurrentItem()
+    public void DropCurrentItemOnGround()
     {
+        _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
 
+        RemoveCurrentItem();
     }
 
     public void RemoveCurrentItem()
     {
+        _heldItem.Claimed = false;
+
         _heldItem = null;
+    }
+
+    public void SetCurrentRoom(Room room)
+    {
+        _currentRoom = room;
+
+        if (_heldItem != null) { _heldItem.SetCurrentRoom(room); }
     }
 }
