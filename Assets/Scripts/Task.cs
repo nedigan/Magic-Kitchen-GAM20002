@@ -52,6 +52,11 @@ public abstract class Task : ScriptableObject
 
         return null;
     }
+    protected bool TryFindIdleAnimalOfType(AnimalType type, out Animal foundAnimal)
+    {
+        foundAnimal = FindIdleAnimalOfType(type);
+        return foundAnimal != null;
+    }
 
     protected Station FindEmptyStationOfType(StationType type)
     {
@@ -64,5 +69,28 @@ public abstract class Task : ScriptableObject
         }
 
         return null;
+    }
+    protected bool TryFindEmptyStationOfType(StationType type, out Station foundStation)
+    {
+        foundStation = FindEmptyStationOfType(type);
+        return foundStation != null;
+    }
+
+    protected Item FindUnclaimedItemOfType(ItemType type)
+    {
+        foreach (Item item in Manager.Items)
+        {
+            if (item.Type == type && item.Claimed == false)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
+    protected bool TryFindUnclaimedItemOfType(ItemType type, out Item foundItem)
+    {
+        foundItem = FindUnclaimedItemOfType(type);
+        return foundItem != null;
     }
 }

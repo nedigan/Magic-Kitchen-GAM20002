@@ -89,19 +89,19 @@ public class Animal : MonoBehaviour, IRoomObject
 
     // Sets a destination for the Animal to go to
     // TODO: Should handle pathfinding between rooms
-    public bool SetDestination(IRoomObject roomObject)
+    public bool SetDestination(IRoomObject destination)
     {
         bool isInCurrentRoom = false;
-        if (roomObject.CurrentRoom == CurrentRoom)
+        if (destination.CurrentRoom == CurrentRoom)
         {
-            Agent.SetDestination(roomObject.Destination);
+            Agent.SetDestination(destination.Destination);
             isInCurrentRoom = true;
         }
         else
         {
             foreach (Door door in CurrentRoom.Doors)
             {
-                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == roomObject.CurrentRoom)
+                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == destination.CurrentRoom)
                 {
                     SetDestination(door);
                     door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
@@ -121,6 +121,7 @@ public class Animal : MonoBehaviour, IRoomObject
         Agent.isStopped = false;
         return isInCurrentRoom;
     }
+    public bool SetDestinationAnd(IRoomObject destination)
 
     public void SetDestination(Door door)
     {

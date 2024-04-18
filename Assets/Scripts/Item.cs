@@ -15,7 +15,8 @@ public enum ItemType
 public class Item : MonoBehaviour, IRoomObject
 {
     [SerializeField]
-    private ItemType type;
+    private ItemType _type;
+    public ItemType Type => _type;
 
     [Tooltip("Has an Animal claimed this Item to be used")]
     public bool Claimed = false;
