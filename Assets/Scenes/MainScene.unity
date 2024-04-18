@@ -235,6 +235,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5385613572294883277, guid: c1608bf9b00b5b641b0d4cae30878257, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 5778814104305837733, guid: c1608bf9b00b5b641b0d4cae30878257, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1697,6 +1701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tunnelPrefab: {fileID: 4998981752855901827, guid: 66acc21a16cf7de4b8a188a4ef183c62, type: 3}
+  _offsetLength: 6
 --- !u!4 &1465720658
 Transform:
   m_ObjectHideFlags: 0
