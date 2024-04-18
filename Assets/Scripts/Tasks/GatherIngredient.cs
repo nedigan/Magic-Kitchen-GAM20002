@@ -5,12 +5,13 @@ using UnityEngine;
 public class GatherIngredient : Task
 {
     private Animal _chicken;
-    private Station _stove;
+    private RequestIngredients _requester;
     private ItemType _itemType;
+    private Item _foundItem;
 
-    public void SetUp(Station stove, ItemType itemType) 
+    public void SetUp(RequestIngredients requester, ItemType itemType) 
     { 
-        _stove = stove; 
+        _requester = requester;
         _itemType = itemType;
     }   
     public override TaskHolder FindTaskHolder()
@@ -27,10 +28,14 @@ public class GatherIngredient : Task
 
     public override void FinishTask()
     {
-        ReturnIngredient returnIngredientToStove = ScriptableObject.CreateInstance<ReturnIngredient>();
+        _chicken.PickUpItem(_foundItem);
+        
         _chicken.ReachedDestination -= this.FinishTask;
-        returnIngredientToStove.SetUp(_chicken, _stove);
+
+        ReturnIngredient returnIngredientToStove = ScriptableObject.CreateInstance<ReturnIngredient>();
+        returnIngredientToStove.SetUp(_chicken, _requester, _foundItem);
         _chicken.TaskHolder.SetTask(returnIngredientToStove);
+        
         Debug.Log("Got ingredient");
     }
     public override void PerformTask()
@@ -42,7 +47,19 @@ public class GatherIngredient : Task
     {
         if (TryFindUnclaimedItemOfType(_itemType, out Item foundItem))
         {
-            _chicken.SetDestination(foundItem);
+            //_chicken.SetDestinationAndSubcribe(foundItem, FinishTask);
+
+            if (_chicken.SetDestination(foundItem))
+            {
+                _chicken.ReachedDestination += this.FinishTask;
+            }
+
+            _foundItem = foundItem;
+            _foundItem.Claimed = true;
+        }
+        else
+        {
+            Debug.LogWarning($"Could not find Ingredient of type {_itemType}");
         }
 
         //Station shelf = FindEmptyStationOfType(StationType.Shelf);

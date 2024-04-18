@@ -122,10 +122,17 @@ public class Animal : MonoBehaviour, IRoomObject
         Agent.isStopped = false;
         return isInCurrentRoom;
     }
-    //public bool SetDestinationAnd<Delaga>(IRoomObject destination)
-    //{
-    //    if (SetDestination(destination)) { }
-    //}
+    // TODO: Test if this works or not
+    public bool SetDestinationAndSubcribe(IRoomObject destination, EventHandler handler)
+    {
+        if (SetDestination(destination))
+        {
+            ReachedDestination += handler;
+            return true;
+        }
+        
+        return false;
+    }
 
     public void SetDestination(Door door)
     {
