@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
@@ -121,7 +122,10 @@ public class Animal : MonoBehaviour, IRoomObject
         Agent.isStopped = false;
         return isInCurrentRoom;
     }
-    public bool SetDestinationAnd(IRoomObject destination)
+    //public bool SetDestinationAnd<Delaga>(IRoomObject destination)
+    //{
+    //    if (SetDestination(destination)) { }
+    //}
 
     public void SetDestination(Door door)
     {
