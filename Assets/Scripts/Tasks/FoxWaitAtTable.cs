@@ -10,10 +10,11 @@ public class FoxWaitAtTable : Task
     private Animal _fox;
     private Station _table;
 
-    private float _timeWaited = 0;
+    //private float _timeWaited = 0;
+    
     //Wait times, in s
-    List<float> WaitTimes = new List<float>();
-    public int WaitStage = 0;
+    //public List<float> WaitTimes = new List<float>();
+    //public int WaitStage = 0;
 
     public void Setup(Animal fox, Station table)
     {
@@ -35,6 +36,7 @@ public class FoxWaitAtTable : Task
     public override void PerformTask()
     {
         // Uncomment this when you are implimenting waiting
+
         //_timeWaited += Time.deltaTime;
         //if (_timeWaited > WaitTimes[WaitStage])
         //{
@@ -44,19 +46,24 @@ public class FoxWaitAtTable : Task
 
     public override void StartTask()
     {
-        //throw new System.NotImplementedException();
+        OrderTicket ticket = Manager.OrderManager.GenerateRandomOrderTicket(_fox);
+        Debug.Log($"Fox ordered {ticket.Recipe.Result}");
+
+        TurtleTakeOrder turtleTakeOrder = ScriptableObject.CreateInstance<TurtleTakeOrder>();
+        turtleTakeOrder.Setup(ticket);
+        Manager.ManageTask(turtleTakeOrder);
     }
 
-    private void NextWaitStage()
-    {
+    //private void NextWaitStage()
+    //{
 
-        WaitStage++;
+    //    WaitStage++;
 
-        if (WaitStage > WaitTimes.Count)
-        {
-            FinishTask();
-        }
+    //    if (WaitStage > WaitTimes.Count)
+    //    {
+    //        FinishTask();
+    //    }
 
-        _timeWaited = 0;
-    }
+    //    _timeWaited = 0;
+    //}
 }

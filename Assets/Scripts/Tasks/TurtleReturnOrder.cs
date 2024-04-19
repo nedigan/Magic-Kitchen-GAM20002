@@ -7,12 +7,12 @@ public class TurtleReturnOrder : Task
 {
     private Animal _turtle;
     private Station _window;
-    private Animal _fox;
+    private OrderTicket _ticket;
 
-    public void Setup(Animal turtle, Animal fox)
+    public void Setup(Animal turtle, OrderTicket ticket)
     {
         _turtle = turtle;
-        _fox = fox;
+        _ticket = ticket;
     }
 
     public override TaskHolder FindTaskHolder()
@@ -28,7 +28,7 @@ public class TurtleReturnOrder : Task
         _turtle.Agent.isStopped = true;
 
         RequestIngredients request = ScriptableObject.CreateInstance<RequestIngredients>();
-        request.SetUp(_fox);
+        request.SetUp(_ticket);
         Manager.ManageTask(request);
     }
 

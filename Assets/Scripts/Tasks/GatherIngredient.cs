@@ -6,8 +6,13 @@ public class GatherIngredient : Task
 {
     private Animal _chicken;
     private Station _stove;
+    private ItemType _itemType;
 
-    public void SetUp(Station stove) { _stove = stove; }   
+    public void SetUp(Station stove, ItemType itemType) 
+    { 
+        _stove = stove; 
+        _itemType = itemType;
+    }   
     public override TaskHolder FindTaskHolder()
     {
         Animal chicken = FindIdleAnimalOfType(AnimalType.Chicken);
@@ -35,16 +40,21 @@ public class GatherIngredient : Task
 
     public override void StartTask()
     {
-        Station shelf = FindEmptyStationOfType(StationType.Shelf);
-        if (shelf != null)
+        if (TryFindUnclaimedItemOfType(_itemType, out Item foundItem))
         {
-            Debug.LogWarning("Chicken going to shelf");
-            if (_chicken.SetDestination(shelf))
-            {
-                _chicken.ReachedDestination += FinishTask;
-            }
+            _chicken.SetDestination(foundItem);
         }
-        else
-            Debug.LogError("Couldnt find a shelf");
+
+        //Station shelf = FindEmptyStationOfType(StationType.Shelf);
+        //if (shelf != null)
+        //{
+        //    Debug.Log("Chicken going to shelf");
+        //    if (_chicken.SetDestination(shelf))
+        //    {
+        //        _chicken.ReachedDestination += FinishTask;
+        //    }
+        //}
+        //else
+        //    Debug.LogError("Couldnt find a shelf");
     }
 }

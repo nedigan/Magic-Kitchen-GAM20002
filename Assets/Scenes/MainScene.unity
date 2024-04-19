@@ -1617,6 +1617,10 @@ PrefabInstance:
       propertyPath: CurrentRoom
       value: 
       objectReference: {fileID: 1323947010}
+    - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
+      propertyPath: _currentRoom
+      value: 
+      objectReference: {fileID: 1323947010}
     - target: {fileID: 7504008669377811616, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
       propertyPath: m_Name
       value: Chicken (1)
@@ -1729,6 +1733,10 @@ PrefabInstance:
       propertyPath: CurrentRoom
       value: 
       objectReference: {fileID: 1323947010}
+    - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
+      propertyPath: _currentRoom
+      value: 
+      objectReference: {fileID: 1323947010}
     - target: {fileID: 7504008669377811616, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
       propertyPath: m_Name
       value: Chicken
@@ -1788,6 +1796,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
       propertyPath: CurrentRoom
+      value: 
+      objectReference: {fileID: 1323947010}
+    - target: {fileID: 2587328174671846941, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
+      propertyPath: _currentRoom
       value: 
       objectReference: {fileID: 1323947010}
     - target: {fileID: 7504008669377811616, guid: 063a6aeacd66a734597065529d6da2dd, type: 3}
@@ -1868,7 +1880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Occupied: 0
-  CurrentRoom: {fileID: 1323947010}
+  _currentRoom: {fileID: 0}
   StandLocation: {fileID: 716997969}
   TaskHolder: {fileID: 1554422955}
 --- !u!114 &1554422955
