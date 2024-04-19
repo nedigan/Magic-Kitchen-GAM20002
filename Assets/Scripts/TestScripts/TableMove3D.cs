@@ -38,7 +38,7 @@ public class TableMove3D : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask))
         {
             // If the ray hits an object in the specified layer, you can access the hit object here
-            Debug.Log("Hit object: " + hit.collider.gameObject.name);
+            //Debug.Log("Hit object: " + hit.collider.gameObject.name);
 
             // Do something with the hit object if needed
             // For example, you can get its position:
