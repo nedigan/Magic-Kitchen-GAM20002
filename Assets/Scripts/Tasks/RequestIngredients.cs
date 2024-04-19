@@ -31,6 +31,8 @@ public class RequestIngredients : Task
     private Station _stove;
     private OrderTicket _ticket;
 
+    public Station Stove => _stove;
+
     public void SetUp(OrderTicket ticket)
     {
         _ticket = ticket;
@@ -50,7 +52,12 @@ public class RequestIngredients : Task
 
     public void DeliverIngredient(Item ingredient)
     {
-        //_ingredientsRemaining--;
+        _ticket.Recipe.Ingredients.Remove(ingredient.Type);
+
+        if (_ticket.Recipe.Ingredients.Count <= 0)
+        {
+            FinishTask();
+        }
     }
 
     public override void FinishTask()
@@ -82,7 +89,7 @@ public class RequestIngredients : Task
         foreach (ItemType ingredient in _ticket.Recipe.Ingredients)
         {
             GatherIngredient gather = ScriptableObject.CreateInstance<GatherIngredient>();
-            gather.SetUp(_stove);
+            gather.SetUp(this, ingredient);
             Manager.ManageTask(gather);
         }
 
