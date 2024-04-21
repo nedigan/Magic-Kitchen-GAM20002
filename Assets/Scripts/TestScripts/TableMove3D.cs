@@ -53,19 +53,20 @@ public class TableMove3D : MonoBehaviour
         return Vector3.zero;
     }
 
-    private void OnMouseDown()
+    public void OnMouseDownRoom()
     {
         _mousePos = GetMousePos() - transform.position;
         _moving = true;
+        Debug.Log(this);
     }
 
-    private void OnMouseDrag()
+    public void OnMouseDragRoom()
     {
         _targetPos = GetMousePos() - _mousePos;
         //ClampPosition();
     }
 
-    private void OnMouseUp()
+    public void OnMouseUpRoom()
     {
         _moving = false;
         _rb.velocity = Vector3.zero;
