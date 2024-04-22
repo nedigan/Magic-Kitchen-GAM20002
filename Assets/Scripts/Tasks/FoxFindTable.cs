@@ -40,6 +40,7 @@ public class FoxFindTable : Task
 
     public override void FinishTask()
     {
+        _fox.ReachedDestination -= FinishTask;
         FoxWaitAtTable task = ScriptableObject.CreateInstance<FoxWaitAtTable>();
         task.Setup(_fox, _table);
 
