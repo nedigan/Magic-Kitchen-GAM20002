@@ -24,6 +24,7 @@ public class DeliverMeal : Task
         //throw new System.NotImplementedException();
         _turtle.TaskHolder.RemoveCurrentTask();
         _turtle.ReachedDestination -= FinishTask;
+        MoneyHandler.AddMoney(20); // TODO: Change price based on meal
         Debug.Log("Delivered meal to fox");
     }
 
