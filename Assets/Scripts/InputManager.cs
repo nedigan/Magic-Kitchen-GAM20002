@@ -39,7 +39,8 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            _roomDragging.OnMouseUpRoom();
+            if (_roomDragging != null)
+                _roomDragging.OnMouseUpRoom();
             _roomDragging = null;
         }
     }
