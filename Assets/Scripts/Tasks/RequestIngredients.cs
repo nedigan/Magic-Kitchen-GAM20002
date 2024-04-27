@@ -54,6 +54,8 @@ public class RequestIngredients : Task
     {
         _ticket.Recipe.Ingredients.Remove(ingredient.Type);
 
+        //Destroy(ingredient);
+
         if (_ticket.Recipe.Ingredients.Count <= 0)
         {
             FinishTask();
@@ -66,8 +68,16 @@ public class RequestIngredients : Task
         _stove.TaskHolder.RemoveCurrentTask();
         _stove.Occupied = false;
 
+        // Create Item for the Meal
+        _ticket.Meal = Instantiate(_ticket.Recipe.Result);
+        _ticket.Meal.transform.position = _stove.ItemPlaceLocation.transform.position;
+        //_ticket.Meal.transform.rotation = _stove.ItemPlaceLocation.transform.rotation;
+
+        _ticket.Meal.SetCurrentRoom(_stove.CurrentRoom);
+
+        // Create TurtleGrabMeal Task
         TurtleGrabMeal grabMealTask = ScriptableObject.CreateInstance<TurtleGrabMeal>();
-        grabMealTask.SetUp(_stove, _ticket.Recipient);
+        grabMealTask.SetUp(_ticket);
         Manager.ManageTask(grabMealTask);
     }
 

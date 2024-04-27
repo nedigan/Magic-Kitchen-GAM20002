@@ -6,12 +6,13 @@ using UnityEngine;
 public class DeliverMeal : Task
 {
     private Animal _turtle;
-    private Animal _fox;
 
-    public void SetUp(Animal turtle, Animal fox)
+    private OrderTicket _ticket;
+
+    public void SetUp(Animal turtle, OrderTicket ticket)
     {
         _turtle = turtle;
-        _fox = fox; 
+        _ticket = ticket;
     }
     public override TaskHolder FindTaskHolder()
     {
@@ -25,6 +26,11 @@ public class DeliverMeal : Task
         _turtle.TaskHolder.RemoveCurrentTask();
         _turtle.ReachedDestination -= FinishTask;
         Debug.Log("Delivered meal to fox");
+
+        // Turtle drop Meal Item
+        // this should eventually hand it off to the Fox Recipient
+        _turtle.DropCurrentItemOnGround();
+        Destroy(_ticket.Meal);
     }
 
     public override void PerformTask()
@@ -34,10 +40,9 @@ public class DeliverMeal : Task
 
     public override void StartTask()
     {
-        if (_turtle.SetDestination(_fox))
+        if (_turtle.SetDestination(_ticket.Recipient))
         {
             _turtle.ReachedDestination += FinishTask;
         }
-
     }
 }

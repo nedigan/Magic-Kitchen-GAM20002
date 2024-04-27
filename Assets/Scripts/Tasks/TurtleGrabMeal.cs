@@ -5,14 +5,13 @@ using UnityEngine;
 public class TurtleGrabMeal : Task
 {
     private Animal _turtle;
-    private Animal _fox;
-    private Station _stove;
+    private OrderTicket _ticket;
 
-    public void SetUp(Station stove, Animal fox)
+    public void SetUp(OrderTicket ticket)
     {
-        _fox = fox;
-        _stove = stove;
+        _ticket = ticket;
     }
+
     public override TaskHolder FindTaskHolder()
     {
         Animal turtle = FindIdleAnimalOfType(AnimalType.Turtle);
@@ -32,8 +31,11 @@ public class TurtleGrabMeal : Task
         _turtle.ReachedDestination -= this.FinishTask;
         _turtle.TaskHolder.RemoveCurrentTask();
 
+        // Turtle pick up Meal Item
+        _turtle.PickUpItem(_ticket.Meal);
+
         DeliverMeal deliverMeal = ScriptableObject.CreateInstance<DeliverMeal>();
-        deliverMeal.SetUp(_turtle, _fox);
+        deliverMeal.SetUp(_turtle, _ticket);
         _turtle.TaskHolder.SetTask(deliverMeal);
     }
 
@@ -44,9 +46,11 @@ public class TurtleGrabMeal : Task
 
     public override void StartTask()
     {
-        if (_turtle.SetDestination(_stove))
+        if (_turtle.SetDestination(_ticket.Meal))
         {
             _turtle.ReachedDestination += FinishTask;
         }
+
+        _ticket.Meal.Claimed = true;
     }
 }

@@ -61,6 +61,17 @@ public class Animal : MonoBehaviour, IRoomObject
     // Update is called once per frame
     void Update()
     {
+        UpdateSprite();
+
+        if (_moving && AtDestination())
+        {
+            _moving = false;
+            OnReachedDestination();
+        }
+    }
+
+    private void UpdateSprite()
+    {
         // Sprite stuff
         if (_sprite != null)
         {
@@ -79,12 +90,6 @@ public class Animal : MonoBehaviour, IRoomObject
                     _heldItem.transform.position -= new Vector3(0, _itemHoldLocation.transform.position.y * 2, 0);
                 }
             }
-        }
-
-        if (_moving && AtDestination())
-        {
-            _moving = false;
-            OnReachedDestination();
         }
     }
 
@@ -190,6 +195,8 @@ public class Animal : MonoBehaviour, IRoomObject
         _heldItem = item;
 
         _heldItem.Claimed = true;
+
+        UpdateSprite();
     }
 
     public void DropCurrentItemOnGround()
@@ -201,9 +208,12 @@ public class Animal : MonoBehaviour, IRoomObject
 
     public void RemoveCurrentItem()
     {
-        _heldItem.Claimed = false;
+        if (_heldItem != null)
+        {
+            _heldItem.Claimed = false;
 
-        _heldItem = null;
+            _heldItem = null;
+        }        
     }
 
     public void SetCurrentRoom(Room room)
