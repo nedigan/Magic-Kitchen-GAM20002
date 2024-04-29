@@ -17,12 +17,18 @@ public class GatherIngredient : Task
     public override TaskHolder FindTaskHolder()
     {
         Animal chicken = FindIdleAnimalOfType(AnimalType.Chicken);
+        Item foundItem = FindUnclaimedItemOfType(_itemType);
 
-        if (chicken != null)
+        if (chicken != null && foundItem != null)
         {
             _chicken = chicken;
+
+            _foundItem = foundItem;
+            _foundItem.Claimed = true;
+
             return _chicken.TaskHolder;
         }
+
         return null;
     }
 
@@ -45,21 +51,9 @@ public class GatherIngredient : Task
 
     public override void StartTask()
     {
-        if (TryFindUnclaimedItemOfType(_itemType, out Item foundItem))
+        if (_chicken.SetDestination(_foundItem))
         {
-            //_chicken.SetDestinationAndSubcribe(foundItem, FinishTask);
-
-            if (_chicken.SetDestination(foundItem))
-            {
-                _chicken.ReachedDestination += this.FinishTask;
-            }
-
-            _foundItem = foundItem;
-            _foundItem.Claimed = true;
-        }
-        else
-        {
-            Debug.LogWarning($"Could not find Ingredient of type {_itemType}");
+            _chicken.ReachedDestination += this.FinishTask;
         }
 
         //Station shelf = FindEmptyStationOfType(StationType.Shelf);

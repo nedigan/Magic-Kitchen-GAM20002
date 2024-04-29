@@ -26,7 +26,7 @@ public class ReturnIngredient : Task
         _chicken.Agent.isStopped = true;
         _chicken.TaskHolder.RemoveCurrentTask();
         
-        //_chicken.RemoveCurrentItem();
+        _chicken.RemoveCurrentItem();
         
         _requester.DeliverIngredient(_item);
 

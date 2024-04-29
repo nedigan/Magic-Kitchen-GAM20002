@@ -54,7 +54,7 @@ public class RequestIngredients : Task
     {
         _ticket.Recipe.Ingredients.Remove(ingredient.Type);
 
-        //Destroy(ingredient);
+        Destroy(ingredient.gameObject);
 
         if (_ticket.Recipe.Ingredients.Count <= 0)
         {

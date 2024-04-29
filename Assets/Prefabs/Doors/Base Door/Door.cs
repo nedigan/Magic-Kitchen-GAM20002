@@ -18,6 +18,7 @@ public class Door : MonoBehaviour
     public TableDoor TableDoor => _tableDoor;
 
     public event EventHandler DoorConnected;
+    public event EventHandler DoorDisconnected;
 
     // Start is called before the first frame update
     void Start()
@@ -34,19 +35,24 @@ public class Door : MonoBehaviour
     public void OnConnectedTo(Door door)
     {
         ConnectingDoor = door;
-        DoorConnected?.Invoke(this, EventArgs.Empty);
 
         Debug.Log($"A door in the {Room.name} has connected to a door in the {door.Room.name}");
         SceneDoor.OnConnectedTo(door);
         TableDoor.OnConnectedTo(door);
+
+        DoorConnected?.Invoke(this, EventArgs.Empty);
+        door.DoorConnected?.Invoke(this, EventArgs.Empty);
     }
 
     public void OnDisconnectFrom(Door door)
     {
-        ConnectingDoor = null;
+        ConnectingDoor = null;        
 
         Debug.Log($"A door in the {Room.name}has disconnected to a door in the {door.Room.name}");
         SceneDoor.OnDisconnectFrom(door);
         TableDoor.OnDisconnectFrom(door);
+
+        DoorDisconnected?.Invoke(this, EventArgs.Empty);
+        door.DoorDisconnected?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -25,7 +25,7 @@ public class DeliverMeal : Task
         //throw new System.NotImplementedException();
         _turtle.TaskHolder.RemoveCurrentTask();
         _turtle.ReachedDestination -= FinishTask;
-        Debug.Log("Delivered meal to fox");
+        Debug.Log($"Delivered {_ticket.Meal.Type} to fox");
 
         // Turtle drop Meal Item
         // this should eventually hand it off to the Fox Recipient
