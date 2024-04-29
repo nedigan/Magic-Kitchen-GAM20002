@@ -6,6 +6,7 @@ public class MageHand : MonoBehaviour
 {
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Camera _cam;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class MageHand : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10;
-        transform.position = Camera.main.ScreenToWorldPoint(mousePos);
+        transform.position = _cam.ScreenToWorldPoint(mousePos);
 
         if (Input.GetMouseButtonDown(0))
         {
