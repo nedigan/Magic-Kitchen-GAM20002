@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flour
       objectReference: {fileID: 0}
+    - target: {fileID: 1718670430996249293, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ba1c0660c432bfb4e8ada44d1215ff34, type: 3}
     - target: {fileID: 7857533135277302452, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: type
       value: 1
@@ -34,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.z
@@ -54,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

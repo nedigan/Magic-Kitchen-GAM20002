@@ -30,6 +30,7 @@ public class Animal : MonoBehaviour, IRoomObject
     private Vector3 _prevPos;
 
     private bool _moving = false;
+    private GameObject _destination;
 
     public AnimalType Type;
 
@@ -61,6 +62,16 @@ public class Animal : MonoBehaviour, IRoomObject
     // Update is called once per frame
     void Update()
     {
+        UpdateSprite();
+
+        if (_moving && AtDestination())
+        {
+            OnReachedDestination();
+        }
+    }
+
+    private void UpdateSprite()
+    {
         // Sprite stuff
         if (_sprite != null)
         {
@@ -76,15 +87,9 @@ public class Animal : MonoBehaviour, IRoomObject
 
                 if (shouldFlip)
                 {
-                    _heldItem.transform.position -= new Vector3(0, _itemHoldLocation.transform.position.y * 2, 0);
+                    _heldItem.transform.localPosition -= new Vector3(_itemHoldLocation.transform.localPosition.x * 2, 0, 0);
                 }
             }
-        }
-
-        if (_moving && AtDestination())
-        {
-            _moving = false;
-            OnReachedDestination();
         }
     }
 
@@ -96,6 +101,7 @@ public class Animal : MonoBehaviour, IRoomObject
         bool isInCurrentRoom = false;
         if (destination.CurrentRoom == CurrentRoom)
         {
+            _destination = null;
             Agent.SetDestination(destination.Destination);
             isInCurrentRoom = true;
         }
@@ -106,12 +112,16 @@ public class Animal : MonoBehaviour, IRoomObject
                 if (door.ConnectingDoor != null && door.ConnectingDoor.Room == destination.CurrentRoom)
                 {
                     SetDestination(door);
-                    //door.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
-
+                    door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
+                    door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
                 }
                 // listen for door connect event
                 if (!_subscribedToDoorConnectEvents)
                     door.DoorConnected += TaskHolder.ResetTask;
+                    // remove any old disconnect subscriptions
+                    door.DoorDisconnected -= TaskHolder.ResetTask;
+                }
+
                 isInCurrentRoom = false;
             }
             _subscribedToDoorConnectEvents = true;
@@ -137,6 +147,7 @@ public class Animal : MonoBehaviour, IRoomObject
     {
         Agent.stoppingDistance = 1;
         Agent.SetDestination(door.SceneDoor.transform.position);
+        _destination = door.gameObject;
         _moving = true;
         Agent.isStopped = false;
     }
@@ -163,7 +174,23 @@ public class Animal : MonoBehaviour, IRoomObject
     public event EventHandler ReachedDestination;
     private void OnReachedDestination()
     {
-        ReachedDestination?.Invoke(this, EventArgs.Empty);
+        _moving = false;
+
+        if (_destination != null && _destination.TryGetComponent(out Door door))
+        {
+            if (door.ConnectingDoor != null)
+            {
+                MoveToRoom(door.ConnectingDoor);
+            }
+            else
+            {
+                Debug.LogWarning($"{this} arrived at a door without a connection! This should be prevented from happening");
+            }
+        }
+        else
+        {
+            ReachedDestination?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public void MoveToRoom(Door exitDoor)
@@ -199,6 +226,8 @@ public class Animal : MonoBehaviour, IRoomObject
         _heldItem = item;
 
         _heldItem.Claimed = true;
+
+        UpdateSprite();
     }
 
     public void DropCurrentItemOnGround()
@@ -210,9 +239,12 @@ public class Animal : MonoBehaviour, IRoomObject
 
     public void RemoveCurrentItem()
     {
-        _heldItem.Claimed = false;
+        if (_heldItem != null)
+        {
+            _heldItem.Claimed = false;
 
-        _heldItem = null;
+            _heldItem = null;
+        }        
     }
 
     public void SetCurrentRoom(Room room)

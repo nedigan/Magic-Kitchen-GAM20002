@@ -21,6 +21,8 @@ public class Station : MonoBehaviour, IRoomObject
     public GameObject StandLocation;
     public TaskHolder TaskHolder;
 
+    public GameObject ItemPlaceLocation;
+
     // IRoomObject fields
     public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
 

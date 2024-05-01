@@ -26,10 +26,9 @@ public class ReturnIngredient : Task
         _chicken.Agent.isStopped = true;
         _chicken.TaskHolder.RemoveCurrentTask();
         
-        _requester.DeliverIngredient(_item);
-        
         _chicken.RemoveCurrentItem();
-        Destroy(_item.gameObject, 0.1f);
+        
+        _requester.DeliverIngredient(_item);
 
         // SUPER HACKY but trying to get it to work
         //Task task = _stove.GetComponent<TaskHolder>().Task;

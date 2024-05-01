@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2842392269271931722}
   - component: {fileID: 5546943677753051468}
   m_Layer: 0
-  m_Name: Stove
+  m_Name: Stove_Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

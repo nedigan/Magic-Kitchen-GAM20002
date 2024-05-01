@@ -16,21 +16,21 @@ public class SceneDoor : MonoBehaviour
 
     private Door _connectingDoor = null;
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (_connectingDoor != null && other.TryGetComponent(out Animal animal))
-        {
-            animal.MoveToRoom(_connectingDoor);
-        }
-    }
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (_connectingDoor != null && other.TryGetComponent(out Animal animal))
+    //    {
+    //        animal.MoveToRoom(_connectingDoor);
+    //    }
+    //}
 
-    public void OnTriggerStay(Collider other)
-    {
-        if (_connectingDoor != null && other.TryGetComponent(out Animal animal))
-        {
-            //animal.MoveToRoom(_connectingDoor);
-        }
-    }
+    //public void OnTriggerStay(Collider other)
+    //{
+    //    if (_connectingDoor != null && other.TryGetComponent(out Animal animal))
+    //    {
+    //        animal.MoveToRoom(_connectingDoor);
+    //    }
+    //}
 
     public void OnConnectedTo(Door door)
     {

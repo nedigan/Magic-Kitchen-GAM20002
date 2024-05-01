@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 488584246700110799, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.94
+      objectReference: {fileID: 0}
     - target: {fileID: 1245391240499724008, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_Name
       value: Omelette
       objectReference: {fileID: 0}
+    - target: {fileID: 3908093152724763053, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6bd89a37b9014324f800e5394d42173e, type: 3}
     - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -22,22 +30,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
