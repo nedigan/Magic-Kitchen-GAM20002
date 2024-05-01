@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sugar
       objectReference: {fileID: 0}
+    - target: {fileID: 1718670430996249293, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dd7f9732abf2aa243a50230fd0a000c5, type: 3}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -26,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.x
@@ -34,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalRotation.z
@@ -46,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: 07f1792f59abae44e89ded2bafef1d19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 488584246700110799, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1245391240499724008, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_Name
-      value: Meal
+      value: BirthdayCake
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25,28 +29,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 7937816788920674673, guid: b62815231ad15864786b2dddd6829d7b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

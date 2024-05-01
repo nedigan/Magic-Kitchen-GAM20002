@@ -87,7 +87,7 @@ public class Animal : MonoBehaviour, IRoomObject
 
                 if (shouldFlip)
                 {
-                    _heldItem.transform.position -= new Vector3(0, _itemHoldLocation.transform.position.y * 2, 0);
+                    _heldItem.transform.localPosition -= new Vector3(_itemHoldLocation.transform.localPosition.x * 2, 0, 0);
                 }
             }
         }
