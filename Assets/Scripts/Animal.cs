@@ -117,6 +117,7 @@ public class Animal : MonoBehaviour, IRoomObject
                 }
                 // listen for door connect event
                 if (!_subscribedToDoorConnectEvents)
+                { 
                     door.DoorConnected += TaskHolder.ResetTask;
                     // remove any old disconnect subscriptions
                     door.DoorDisconnected -= TaskHolder.ResetTask;
