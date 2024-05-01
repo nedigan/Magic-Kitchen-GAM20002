@@ -90,6 +90,7 @@ public class Animal : MonoBehaviour, IRoomObject
 
     // Sets a destination for the Animal to go to
     // TODO: Should handle pathfinding between rooms
+    private bool _subscribedToDoorConnectEvents = false;
     public bool SetDestination(IRoomObject destination)
     {
         bool isInCurrentRoom = false;
@@ -105,17 +106,15 @@ public class Animal : MonoBehaviour, IRoomObject
                 if (door.ConnectingDoor != null && door.ConnectingDoor.Room == destination.CurrentRoom)
                 {
                     SetDestination(door);
-                    door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
+                    //door.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
 
                 }
-                else
-                {
-                    // listen for door connect event
+                // listen for door connect event
+                if (!_subscribedToDoorConnectEvents)
                     door.DoorConnected += TaskHolder.ResetTask;
-                }
-
                 isInCurrentRoom = false;
             }
+            _subscribedToDoorConnectEvents = true;
         }
         Agent.stoppingDistance = 1;
         _moving = true;
@@ -176,9 +175,19 @@ public class Animal : MonoBehaviour, IRoomObject
 
         // Try task again once in the other room
         //CurrentRoom = exitDoor.Room;
+        ClearAnimalFromDoorConnectEvents();
         SetCurrentRoom(exitDoor.Room);
         TaskHolder.ResetTask();
         // CHANGE PARENT if you want
+    }
+
+    private void ClearAnimalFromDoorConnectEvents()
+    {
+        foreach (Door door in CurrentRoom.Doors)
+        {
+            door.DoorConnected -= TaskHolder.ResetTask;
+        }
+        _subscribedToDoorConnectEvents = false;
     }
 
     // Item stuff

@@ -28,7 +28,7 @@ public class SceneDoor : MonoBehaviour
     {
         if (_connectingDoor != null && other.TryGetComponent(out Animal animal))
         {
-            animal.MoveToRoom(_connectingDoor);
+            //animal.MoveToRoom(_connectingDoor);
         }
     }
 

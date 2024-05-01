@@ -38,6 +38,7 @@ public class DeliverMeal : Task
         if (_turtle.SetDestination(_fox))
         {
             _turtle.ReachedDestination += FinishTask;
+            Debug.LogWarning("Subscribing deliver meal");
         }
 
     }

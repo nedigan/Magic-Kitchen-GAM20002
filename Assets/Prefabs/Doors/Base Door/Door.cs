@@ -35,7 +35,6 @@ public class Door : MonoBehaviour
     {
         ConnectingDoor = door;
         DoorConnected?.Invoke(this, EventArgs.Empty);
-
         Debug.Log($"A door in the {Room.name} has connected to a door in the {door.Room.name}");
         SceneDoor.OnConnectedTo(door);
         TableDoor.OnConnectedTo(door);
