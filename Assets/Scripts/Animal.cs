@@ -96,31 +96,44 @@ public class Animal : MonoBehaviour, IRoomObject
     // Sets a destination for the Animal to go to
     // TODO: Should handle pathfinding between rooms
     private bool _subscribedToDoorConnectEvents = false;
-    public bool SetDestination(IRoomObject destination)
+    public bool SetDestination(IRoomObject destination, Room currentRoom = null, int depth = 0, List<Room> checkedRooms = null)
     {
+        if (currentRoom == null)
+            currentRoom = CurrentRoom;
+
+        if (checkedRooms == null)
+            checkedRooms = new List<Room>();
+
+        if (checkedRooms.Contains(currentRoom))
+            return false;
+
+        checkedRooms.Add(currentRoom);
+
         bool isInCurrentRoom = false;
-        if (destination.CurrentRoom == CurrentRoom)
+        if (destination.CurrentRoom == currentRoom)
         {
             _destination = null;
-            Agent.SetDestination(destination.Destination);
+            if (depth == 0) // if the animal is actually in the room
+                Agent.SetDestination(destination.Destination);
             isInCurrentRoom = true;
         }
         else
         {
-            foreach (Door door in CurrentRoom.Doors)
+            foreach (Door door in currentRoom.Doors)
             {
-                if (door.ConnectingDoor != null && door.ConnectingDoor.Room == destination.CurrentRoom)
-                {
-                    SetDestination(door);
-                    door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
-                    door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
-                }
                 // listen for door connect event
                 if (!_subscribedToDoorConnectEvents)
-                { 
+                {
                     door.DoorConnected += TaskHolder.ResetTask;
                     // remove any old disconnect subscriptions
                     door.DoorDisconnected -= TaskHolder.ResetTask;
+                }
+
+                if (door.ConnectingDoor != null && SetDestination(destination, door.ConnectingDoor.Room, depth + 1, checkedRooms))
+                {
+                    SetDestination(door);
+                    door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
+                    //door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
                 }
 
                 isInCurrentRoom = false;
