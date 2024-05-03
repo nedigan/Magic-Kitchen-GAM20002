@@ -6,7 +6,8 @@ public enum RoomType
 {
     Kitchen,
     Storage,
-    Dining
+    Dining,
+    SideWalk
 };
 public class Room : MonoBehaviour
 {
