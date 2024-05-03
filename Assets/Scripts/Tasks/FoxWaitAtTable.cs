@@ -52,6 +52,8 @@ public class FoxWaitAtTable : Task
         TurtleTakeOrder turtleTakeOrder = ScriptableObject.CreateInstance<TurtleTakeOrder>();
         turtleTakeOrder.Setup(ticket);
         Manager.ManageTask(turtleTakeOrder);
+
+        _fox.ThoughtManager.ThinkAbout(Thought.FromThinkable(ticket.Recipe).SetEmotion(ThoughtEmotion.Neutral));
     }
 
     //private void NextWaitStage()

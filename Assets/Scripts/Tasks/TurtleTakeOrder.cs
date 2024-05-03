@@ -7,6 +7,8 @@ public class TurtleTakeOrder : Task
     private Animal _turtle;
     private OrderTicket _ticket;
 
+    private Thought _thought;
+
     public void Setup(OrderTicket ticket)
     {
         _ticket = ticket;
@@ -32,6 +34,8 @@ public class TurtleTakeOrder : Task
         //Debug.Log("Create instance of new task...");
         returnOrder.Setup(_turtle, _ticket);
         _turtle.TaskHolder.SetTask(returnOrder);
+
+        _turtle.ThoughtManager.StopThinkingAbout(_thought);
     }
 
     public override void PerformTask()
@@ -46,5 +50,7 @@ public class TurtleTakeOrder : Task
         {
             _turtle.ReachedDestination += FinishTask;
         }
+
+        _thought = _turtle.ThoughtManager.ThinkAbout(Thought.FromThinkable(_ticket.Recipient).SetEmotion(ThoughtEmotion.Neutral));
     }
 }

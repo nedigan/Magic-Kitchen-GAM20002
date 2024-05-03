@@ -30,6 +30,7 @@ public class RequestIngredients : Task
 
     private Station _stove;
     private OrderTicket _ticket;
+    private Thought _recipeThought;
 
     public Station Stove => _stove;
 
@@ -79,6 +80,8 @@ public class RequestIngredients : Task
         TurtleGrabMeal grabMealTask = ScriptableObject.CreateInstance<TurtleGrabMeal>();
         grabMealTask.SetUp(_ticket);
         Manager.ManageTask(grabMealTask);
+
+        _stove.ThoughtManager.StopThinking();
     }
 
     public override void PerformTask()
@@ -94,6 +97,8 @@ public class RequestIngredients : Task
     {
         Debug.Log("Asking for ingredients");
         _stove.Occupied = true;
+
+        _stove.ThoughtManager.ThinkAbout(Thought.FromThinkable(_ticket.Recipe).SetEmotion(ThoughtEmotion.Info));
 
         // Create a GatherIngredient task for each ingredient in the recipe
         foreach (ItemType ingredient in _ticket.Recipe.Ingredients)

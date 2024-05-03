@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using Assets.Scripts.ThoughtBubble;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public enum ItemType
 }
 
 // Base class for any object in a room that Animals can pick up
-public class Item : MonoBehaviour, IRoomObject
+public class Item : MonoBehaviour, IRoomObject, IThinkable
 {
     [SerializeField]
     private ItemType _type;
@@ -24,10 +25,16 @@ public class Item : MonoBehaviour, IRoomObject
     [SerializeField]
     private Room _currentRoom;
 
+    [SerializeField]
+    SpriteRenderer _sprite;
+
     // IRoomObject fields
     public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
 
     public Vector3 Destination => transform.position;
+
+    // IThinkable fields
+    public Sprite ThoughtIcon => _sprite.sprite;
 
     public void SetCurrentRoom(Room room)
     {

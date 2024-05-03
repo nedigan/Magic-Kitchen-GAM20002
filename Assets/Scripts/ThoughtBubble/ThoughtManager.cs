@@ -11,6 +11,8 @@ public class ThoughtManager : MonoBehaviour
 
     [SerializeField]
     private ThoughtBubble _neutralBubble;
+    [SerializeField]
+    private ThoughtBubble _infoBubble;
 
     private List<ThoughtBubble> _thoughtBubbles = new();
 
@@ -40,12 +42,18 @@ public class ThoughtManager : MonoBehaviour
 
     public void StopThinkingAbout(Thought thought)
     {
-
+        foreach (ThoughtBubble bubble in _thoughtBubbles)
+        {
+            if (bubble.Thought == thought)
+            {
+                StopThinkingAbout(bubble);
+            }
+        }
     }
     public void StopThinkingAbout(ThoughtBubble bubble)
     {
         _thoughtBubbles.Remove(bubble);
-        Destroy(bubble);
+        Destroy(bubble.gameObject);
     }
 
     public void StopThinking()
@@ -66,6 +74,8 @@ public class ThoughtManager : MonoBehaviour
         {
             case ThoughtEmotion.Neutral:
                 return Instantiate(_neutralBubble);
+            case ThoughtEmotion.Info:
+                return Instantiate(_infoBubble);
             default:
                 Debug.LogError($"Thought Manager cannot handle Thought of Emotion {emotion}");
                 return null;
@@ -83,7 +93,7 @@ public class ThoughtManager : MonoBehaviour
                 _thoughtBubbles.Prepend(bubble);
                 break;
             case ThoughtBubbleSortMode.FirstToDisapearFirstDrawn:
-                // haven't tested this yet. chances are its nonsence
+                // haven't tested this yet. chances are it's nonsence
                 _thoughtBubbles.Insert(_thoughtBubbles.FindIndex(match => match.LifetimeRemaining > bubble.LifetimeRemaining), bubble);
                 break;
             default:
@@ -91,12 +101,31 @@ public class ThoughtManager : MonoBehaviour
                 break;
         }
         bubble.SetManager(this);
+        bubble.transform.SetParent(this.transform, false);
+
+        ResetBubblePositions();
     }
 
-    // now does nothing but should handle putting bubbles in the correct positions and/or showing/hiding them
-    private void ResetBubbles()
+    private void ResetBubblePositions()
     {
+        int i = 1;
+        foreach (var bubble in _thoughtBubbles.Skip(1))
+        {
+            Vector3 offset = Vector3.back * 0.1f * i;
 
+            if (i % 2 == 0)
+            {
+                offset += Vector3.left * 0.25f;
+            }
+            else
+            {
+                offset += Vector3.right * 0.25f;
+            }
+
+            bubble.transform.localPosition = offset;
+
+            i++;
+        }
     }
 }
 
