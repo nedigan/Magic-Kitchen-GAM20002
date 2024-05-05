@@ -224,6 +224,14 @@ public class Animal : MonoBehaviour, IRoomObject
         _moving = true;
         Agent.isStopped = false;
     }
+
+    public void SetDestination(Vector3 position)
+    {
+        Agent.stoppingDistance = 1;
+        Agent.SetDestination(position);
+        _moving = true;
+        Agent.isStopped = false;
+    }
     private bool AtDestination()
     {
         // got this from here:
@@ -266,6 +274,7 @@ public class Animal : MonoBehaviour, IRoomObject
         }
     }
 
+    public event EventHandler MovedRoom;
     public void MoveToRoom(Door exitDoor)
     {
         //Debug.Log("Transporting...");
@@ -276,6 +285,7 @@ public class Animal : MonoBehaviour, IRoomObject
         // Try task again once in the other room
         //CurrentRoom = exitDoor.Room;
         ClearAnimalFromDoorConnectEvents();
+        MovedRoom?.Invoke(this, EventArgs.Empty);
         SetCurrentRoom(exitDoor.Room);
         TaskHolder.ResetTask();
         // CHANGE PARENT if you want
