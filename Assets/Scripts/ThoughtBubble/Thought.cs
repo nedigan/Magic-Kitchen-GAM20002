@@ -1,4 +1,5 @@
 using Assets.Scripts.ThoughtBubble;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class Thought : ScriptableObject
     public bool KeepUntilStopped;
     public float Duration;
     public float Scale;
+
+    //private Func<> _onClickMethod;
 
     public static Thought FromThinkable(IThinkable thinkable)
     {

@@ -42,13 +42,17 @@ public class ThoughtManager : MonoBehaviour
 
     public void StopThinkingAbout(Thought thought)
     {
+        ThoughtBubble foundBubble = null;
         foreach (ThoughtBubble bubble in _thoughtBubbles)
         {
             if (bubble.Thought == thought)
             {
-                StopThinkingAbout(bubble);
+                foundBubble = bubble;
+                break;
             }
         }
+
+        if (foundBubble != null) { StopThinkingAbout(foundBubble); }
     }
     public void StopThinkingAbout(ThoughtBubble bubble)
     {
@@ -60,7 +64,7 @@ public class ThoughtManager : MonoBehaviour
     {
         foreach (ThoughtBubble bubble in _thoughtBubbles)
         {
-            Destroy(bubble);
+            Destroy(bubble.gameObject);
         }
 
         _thoughtBubbles.Clear();

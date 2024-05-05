@@ -68,10 +68,6 @@ public class ThoughtBubble : MonoBehaviour
                 smaller_cord = _iconSize.y;
             }
 
-            //Vector3 newScale = spriteRenderer.transform.localScale;
-            //newScale = new Vector3(newScale.x * transform.localScale.x, newScale.y * transform.localScale.y, newScale.z * transform.localScale.z) /** smaller_cord*/;
-            //spriteRenderer.transform.localScale = newScale;
-
             spriteRenderer.transform.localScale = new Vector3(smaller_cord / spriteRenderer.bounds.size.x, smaller_cord / spriteRenderer.bounds.size.y, 1);
             spriteRenderer.sortingLayerName = "ThoughtBubble";
             spriteRenderer.sortingOrder = 1;

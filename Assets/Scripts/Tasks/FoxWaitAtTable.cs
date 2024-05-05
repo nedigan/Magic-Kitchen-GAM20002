@@ -54,6 +54,7 @@ public class FoxWaitAtTable : Task
         Manager.ManageTask(turtleTakeOrder);
 
         _fox.ThoughtManager.ThinkAbout(Thought.FromThinkable(ticket.Recipe).SetEmotion(ThoughtEmotion.Neutral));
+        //SetTaskThought(_fox.ThoughtManager, Thought.FromThinkable(ticket.Recipe).SetEmotion(ThoughtEmotion.Neutral));
     }
 
     //private void NextWaitStage()

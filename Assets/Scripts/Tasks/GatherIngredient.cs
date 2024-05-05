@@ -43,6 +43,9 @@ public class GatherIngredient : Task
         _chicken.TaskHolder.SetTask(returnIngredientToStove);
         
         Debug.Log("Got ingredient");
+
+        //_chicken.ThoughtManager.StopThinkingAbout(_thought);
+        UnsetTaskThought(_chicken.ThoughtManager);
     }
     public override void PerformTask()
     {
@@ -55,6 +58,9 @@ public class GatherIngredient : Task
         {
             _chicken.ReachedDestination += this.FinishTask;
         }
+
+        //_thought = _chicken.ThoughtManager.ThinkAbout(Thought.FromThinkable(_foundItem).SetEmotion(ThoughtEmotion.Neutral));
+        SetTaskThought(_chicken.ThoughtManager, Thought.FromThinkable(_foundItem).SetEmotion(ThoughtEmotion.Neutral));
 
         //Station shelf = FindEmptyStationOfType(StationType.Shelf);
         //if (shelf != null)

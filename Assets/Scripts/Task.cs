@@ -11,10 +11,17 @@ public abstract class Task : ScriptableObject
     // use for things like a task to send an animal back to a wating area
     public bool IsIdleTask = false;
 
+    private Thought _taskThought;
+
     public abstract TaskHolder FindTaskHolder();
     public abstract void PerformTask();
     public abstract void StartTask();
     public abstract void FinishTask();
+    //public abstract void OnCancelTask();
+    public void CancelTask()
+    {
+
+    }
     // allows this to subscribe to events
     // using it to subscribe to an Animal's ReachedDestination Event
     public void FinishTask(object sender, EventArgs e)
@@ -92,5 +99,21 @@ public abstract class Task : ScriptableObject
     {
         foundItem = FindUnclaimedItemOfType(type);
         return foundItem != null;
+    }
+
+    // Task Thought
+
+    public void SetTaskThought(ThoughtManager manager, Thought thought)
+    {
+        // pathfinding sometimes needs to spam StartTask so this failsafe is meant to
+        // stop multiple thoughts from popping up when that happens
+        if (_taskThought != null) { UnsetTaskThought(manager); }
+
+        _taskThought = manager.ThinkAbout(thought);
+    }
+
+    public void UnsetTaskThought(ThoughtManager manager)
+    {
+        manager.StopThinkingAbout(_taskThought);
     }
 }
