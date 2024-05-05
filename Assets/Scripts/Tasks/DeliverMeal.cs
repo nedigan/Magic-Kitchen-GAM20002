@@ -33,6 +33,8 @@ public class DeliverMeal : Task
         Destroy(_ticket.Meal.gameObject);
         
         MoneyHandler.AddMoney(20); // TODO: Change price based on meal
+
+        UnsetTaskThought(_turtle.ThoughtManager);
     }
 
     public override void PerformTask()
@@ -47,5 +49,7 @@ public class DeliverMeal : Task
             _turtle.ReachedDestination += FinishTask;
             Debug.LogWarning("Subscribing deliver meal");
         }
+
+        SetTaskThought(_turtle.ThoughtManager, Thought.FromThinkable(_ticket.Recipient).SetEmotion(ThoughtEmotion.Neutral));
     }
 }
