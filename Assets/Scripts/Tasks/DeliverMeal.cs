@@ -35,11 +35,10 @@ public class DeliverMeal : Task
         Debug.Log($"Delivered {_ticket.Meal} to fox");
 
         // Turtle drop Meal Item
-        // this should eventually hand it off to the Fox Recipient
         _turtle.DropCurrentItemOnGround();
-        Destroy(_ticket.Meal.gameObject);
-        
-        MoneyHandler.AddMoney(20); // TODO: Change price based on meal
+
+        // hand off the meal for the fox to handle
+        _ticket.Task.DeliverMeal(_ticket);
 
         UnsetTaskThought();
     }
