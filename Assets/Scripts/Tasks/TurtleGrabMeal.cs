@@ -38,7 +38,7 @@ public class TurtleGrabMeal : Task
         deliverMeal.SetUp(_turtle, _ticket);
         _turtle.TaskHolder.SetTask(deliverMeal);
 
-        UnsetTaskThought(_turtle.ThoughtManager);
+        UnsetTaskThought();
     }
 
     public override void PerformTask()
@@ -56,5 +56,12 @@ public class TurtleGrabMeal : Task
         _ticket.Meal.Claimed = true;
 
         SetTaskThought(_turtle.ThoughtManager, Thought.FromThinkable(_ticket.Meal).SetEmotion(ThoughtEmotion.Neutral));
+    }
+
+    protected override void OnCancelTask()
+    {
+        base.OnCancelTask();
+
+        _ticket.Meal.Claimed = false;
     }
 }

@@ -33,7 +33,7 @@ public class TurtleTakeOrder : Task
         returnOrder.Setup(_turtle, _ticket);
         _turtle.TaskHolder.SetTask(returnOrder);
 
-        UnsetTaskThought(_turtle.ThoughtManager);
+        UnsetTaskThought();
     }
 
     public override void PerformTask()

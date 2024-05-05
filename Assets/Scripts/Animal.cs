@@ -242,9 +242,12 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
 
     public void DropCurrentItemOnGround()
     {
-        _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
+        if (_heldItem != null)
+        {
+            _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
 
-        RemoveCurrentItem();
+            RemoveCurrentItem();
+        }
     }
 
     public void RemoveCurrentItem()

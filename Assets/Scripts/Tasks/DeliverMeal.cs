@@ -16,7 +16,14 @@ public class DeliverMeal : Task
     }
     public override TaskHolder FindTaskHolder()
     {
-        //throw new System.NotImplementedException();
+        Animal turtle = FindIdleAnimalOfType(AnimalType.Turtle);
+
+        if (turtle != null)
+        {
+            _turtle = turtle;
+            return _turtle.TaskHolder;
+        }
+
         return null;
     }
 
@@ -34,7 +41,7 @@ public class DeliverMeal : Task
         
         MoneyHandler.AddMoney(20); // TODO: Change price based on meal
 
-        UnsetTaskThought(_turtle.ThoughtManager);
+        UnsetTaskThought();
     }
 
     public override void PerformTask()
@@ -44,6 +51,8 @@ public class DeliverMeal : Task
 
     public override void StartTask()
     {
+        RemanageTaskOnCancel = false;
+
         if (_turtle.SetDestination(_ticket.Recipient))
         {
             _turtle.ReachedDestination += FinishTask;
@@ -51,5 +60,17 @@ public class DeliverMeal : Task
         }
 
         SetTaskThought(_turtle.ThoughtManager, Thought.FromThinkable(_ticket.Recipient).SetEmotion(ThoughtEmotion.Neutral));
+    }
+
+    protected override void OnCancelTask()
+    {
+        base.OnCancelTask();
+
+        TurtleGrabMeal turtleGrabMeal = CreateInstance<TurtleGrabMeal>();
+        turtleGrabMeal.SetUp(_ticket);
+        Manager.ManageTask(turtleGrabMeal);
+
+        _turtle.DropCurrentItemOnGround();
+        _ticket.Meal.Claimed = false;
     }
 }

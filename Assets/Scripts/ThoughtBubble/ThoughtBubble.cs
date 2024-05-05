@@ -78,7 +78,10 @@ public class ThoughtBubble : MonoBehaviour
     {
         Debug.LogWarning("MOUSE DOWN! I REREAT, MOUSE DOWN!");
 
-        _thought.OnClickMethod();
+        if (_thought.OnClickMethod != null)
+        {
+            _thought.OnClickMethod();
+        }
     }
 
     private void OnDrawGizmosSelected()
