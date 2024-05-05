@@ -98,7 +98,7 @@ public class RequestIngredients : Task
         Debug.Log("Asking for ingredients");
         _stove.Occupied = true;
 
-        _stove.ThoughtManager.ThinkAbout(Thought.FromThinkable(_ticket.Recipe).SetEmotion(ThoughtEmotion.Info));
+        _stove.ThoughtManager.ThinkAbout(Thought.FromThinkable(_ticket.Recipe).SetEmotion(ThoughtEmotion.Info).SetScale(0.5f));
 
         // Create a GatherIngredient task for each ingredient in the recipe
         foreach (ItemType ingredient in _ticket.Recipe.Ingredients)

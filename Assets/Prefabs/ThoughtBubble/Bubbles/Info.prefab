@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 280611491776131014, guid: 45848b3485dc50c4fbfc7ce528f4d087, type: 3}
       propertyPath: _iconSize.x
-      value: 4.5
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: 280611491776131014, guid: 45848b3485dc50c4fbfc7ce528f4d087, type: 3}
       propertyPath: _iconSize.y
-      value: 2.96
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 4424510097637541914, guid: 45848b3485dc50c4fbfc7ce528f4d087, type: 3}
       propertyPath: m_Size.x

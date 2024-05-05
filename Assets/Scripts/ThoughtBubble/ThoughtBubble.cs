@@ -16,6 +16,7 @@ public class ThoughtBubble : MonoBehaviour
     private GameObject _iconCenter;
     [SerializeField]
     private Vector2 _iconSize;
+    private Vector2 IconSize => _iconSize * transform.lossyScale;
 
     private float _lifetime = 0;
     private ThoughtManager _manager;
@@ -52,20 +53,23 @@ public class ThoughtBubble : MonoBehaviour
     public void SetManager(ThoughtManager manager) { _manager = manager; }
     public void SetThought(Thought thought) 
     { 
-        _thought = thought; 
+        _thought = thought;
+
+        transform.localScale = transform.localScale * _thought.Scale;
+
         if (_thought.ThoughtIcon != null)
         {
             SpriteRenderer spriteRenderer = _iconCenter.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = _thought.ThoughtIcon;
 
             float smaller_cord;
-            if (_iconSize.x < _iconSize.y)
+            if (IconSize.x < IconSize.y)
             {
-                smaller_cord = _iconSize.x;
+                smaller_cord = IconSize.x;
             }
             else
             {
-                smaller_cord = _iconSize.y;
+                smaller_cord = IconSize.y;
             }
 
             spriteRenderer.transform.localScale = new Vector3(smaller_cord / spriteRenderer.bounds.size.x, smaller_cord / spriteRenderer.bounds.size.y, 1);
@@ -89,7 +93,7 @@ public class ThoughtBubble : MonoBehaviour
         if (_iconCenter != null)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(_iconCenter.transform.position, new Vector3(_iconSize.x, _iconSize.y, 0.01f));
+            Gizmos.DrawWireCube(_iconCenter.transform.position, new Vector3(IconSize.x, IconSize.y, 0.01f));
         }
     }
 }
