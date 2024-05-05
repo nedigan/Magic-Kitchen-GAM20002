@@ -98,7 +98,7 @@ public class RequestIngredients : Task
         Debug.Log("Asking for ingredients");
         _stove.Occupied = true;
 
-        _stove.ThoughtManager.ThinkAbout(Thought.FromThinkable(_ticket.Recipe).SetEmotion(ThoughtEmotion.Info).SetScale(0.5f));
+        _stove.ThoughtManager.ThinkAbout(Thought.FromThinkable(_ticket.Recipe).SetEmotion(ThoughtEmotion.Info).SetScale(1));
 
         // Create a GatherIngredient task for each ingredient in the recipe
         foreach (ItemType ingredient in _ticket.Recipe.Ingredients)
@@ -107,24 +107,5 @@ public class RequestIngredients : Task
             gather.SetUp(this, ingredient);
             Manager.ManageTask(gather);
         }
-
-        // Convert dictionary to list of key-value pairs
-        //List<KeyValuePair<RecipeTypes, int>> list = new List<KeyValuePair<RecipeTypes, int>>(_recipes);
-
-        // Get a random index within the range of the list
-        //int randomIndex = Random.Range(0, list.Count);
-
-        // Retrieve the random item
-        //KeyValuePair<RecipeTypes, int> randomRecipe = list[randomIndex];
-
-        //_ingredientsRemaining = randomRecipe.Value;
-        //_ingredientsRemaining = 1;
-
-        //for (int i = 0; i < _ingredientsRemaining; i++)
-        //{
-        //    GatherIngredient gather = ScriptableObject.CreateInstance<GatherIngredient>();
-        //    gather.SetUp(_stove);
-        //    Manager.ManageTask(gather);
-        //}
     }
 }
