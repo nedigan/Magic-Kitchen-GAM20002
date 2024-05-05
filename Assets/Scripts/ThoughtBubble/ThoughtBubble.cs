@@ -74,6 +74,13 @@ public class ThoughtBubble : MonoBehaviour
         }
     }
 
+    private void OnMouseDown()
+    {
+        Debug.LogWarning("MOUSE DOWN! I REREAT, MOUSE DOWN!");
+
+        _thought.OnClickMethod();
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (_iconCenter != null)

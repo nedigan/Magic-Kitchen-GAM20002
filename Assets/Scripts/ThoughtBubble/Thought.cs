@@ -13,7 +13,7 @@ public class Thought : ScriptableObject
     public float Duration;
     public float Scale;
 
-    //private Func<> _onClickMethod;
+    public BubbleClickMethod OnClickMethod;
 
     public static Thought FromThinkable(IThinkable thinkable)
     {
@@ -26,6 +26,8 @@ public class Thought : ScriptableObject
     }
 }
 
+public delegate void BubbleClickMethod();
+
 public static class ThoughtExtensions
 {
     public static Thought SetEmotion(this Thought thought, ThoughtEmotion emotion) { thought.Emotion = emotion; return thought; }
@@ -33,4 +35,5 @@ public static class ThoughtExtensions
     public static Thought SetDuration(this Thought thought, bool keepUntilStopped) { thought.KeepUntilStopped = keepUntilStopped; return thought; }
     public static Thought SetThoughtIcon(this Thought thought, Sprite thoughtIcon) { thought.ThoughtIcon = thoughtIcon; return thought; }
     public static Thought SetScale(this Thought thought, float scale) { thought.Scale = scale; return thought; }
+    public static Thought SetOnClickMethod(this Thought thought, BubbleClickMethod onClickMethod) { thought.OnClickMethod = onClickMethod; return thought; }
 }

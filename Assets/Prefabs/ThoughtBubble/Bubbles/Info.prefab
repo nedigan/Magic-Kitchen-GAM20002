@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: _iconSize.y
       value: 2.96
       objectReference: {fileID: 0}
+    - target: {fileID: 4424510097637541914, guid: 45848b3485dc50c4fbfc7ce528f4d087, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424510097637541914, guid: 45848b3485dc50c4fbfc7ce528f4d087, type: 3}
+      propertyPath: m_Center.y
+      value: 1.55
+      objectReference: {fileID: 0}
     - target: {fileID: 4467098071128834496, guid: 45848b3485dc50c4fbfc7ce528f4d087, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

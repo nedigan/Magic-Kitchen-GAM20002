@@ -20,7 +20,7 @@ public abstract class Task : ScriptableObject
     //public abstract void OnCancelTask();
     public void CancelTask()
     {
-
+        Debug.LogWarning("hi :)");
     }
     // allows this to subscribe to events
     // using it to subscribe to an Animal's ReachedDestination Event
@@ -103,13 +103,14 @@ public abstract class Task : ScriptableObject
 
     // Task Thought
 
-    public void SetTaskThought(ThoughtManager manager, Thought thought)
+    public void SetTaskThought(ThoughtManager manager, Thought thought, BubbleClickMethod onClickMethod = null)
     {
         // pathfinding sometimes needs to spam StartTask so this failsafe is meant to
         // stop multiple thoughts from popping up when that happens
         if (_taskThought != null) { UnsetTaskThought(manager); }
 
         _taskThought = manager.ThinkAbout(thought);
+        thought.OnClickMethod = onClickMethod ?? CancelTask;
     }
 
     public void UnsetTaskThought(ThoughtManager manager)
