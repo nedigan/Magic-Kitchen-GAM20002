@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using Assets.Scripts.ThoughtBubble;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ public enum AnimalType
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(TaskHolder))]
-public class Animal : MonoBehaviour, IRoomObject
+public class Animal : MonoBehaviour, IRoomObject, IThinkable
 {
     public NavMeshAgent Agent;
     public TaskHolder TaskHolder;
@@ -40,10 +41,18 @@ public class Animal : MonoBehaviour, IRoomObject
 
     public Item HeldItem { get => _heldItem; }
 
+    [SerializeField]
+    private ThoughtManager _thoughtManager;
+
+    public ThoughtManager ThoughtManager => _thoughtManager;
+
     // IRoomObject fields
     public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
 
     public Vector3 Destination => transform.position;
+
+    // IThinkable fields
+    public Sprite ThoughtIcon => _sprite.sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -246,9 +255,12 @@ public class Animal : MonoBehaviour, IRoomObject
 
     public void DropCurrentItemOnGround()
     {
-        _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
+        if (_heldItem != null)
+        {
+            _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
 
-        RemoveCurrentItem();
+            RemoveCurrentItem();
+        }
     }
 
     public void RemoveCurrentItem()

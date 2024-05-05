@@ -30,7 +30,7 @@ public class FoxWaitAtTable : Task
     // move onto eating a Chicken
     public override void FinishTask()
     {
-        //throw new System.NotImplementedException();
+        _fox.ThoughtManager.StopThinking();
     }
 
     public override void PerformTask()
@@ -47,11 +47,14 @@ public class FoxWaitAtTable : Task
     public override void StartTask()
     {
         OrderTicket ticket = Manager.OrderManager.GenerateRandomOrderTicket(_fox);
+        ticket.Task = this;
         Debug.Log($"Fox ordered {ticket.Recipe.Result}");
 
         TurtleTakeOrder turtleTakeOrder = ScriptableObject.CreateInstance<TurtleTakeOrder>();
         turtleTakeOrder.Setup(ticket);
         Manager.ManageTask(turtleTakeOrder);
+
+        _fox.ThoughtManager.ThinkAbout(Thought.FromThinkable(ticket.Recipe).SetEmotion(ThoughtEmotion.Neutral));
     }
 
     //private void NextWaitStage()
@@ -66,4 +69,13 @@ public class FoxWaitAtTable : Task
 
     //    _timeWaited = 0;
     //}
+
+    public void DeliverMeal(OrderTicket ticket)
+    {
+        Destroy(ticket.Meal.gameObject);
+
+        MoneyHandler.AddMoney(20); // TODO: Change price based on meal
+
+        FinishTask();
+    }
 }

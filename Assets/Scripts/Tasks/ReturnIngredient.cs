@@ -17,6 +17,14 @@ public class ReturnIngredient : Task
 
     public override TaskHolder FindTaskHolder()
     {
+        Animal chicken = FindIdleAnimalOfType(AnimalType.Chicken);
+
+        if (chicken != null)
+        {
+            _chicken = chicken;
+            return _chicken.TaskHolder;
+        }
+
         return null;
     }
 
@@ -52,9 +60,23 @@ public class ReturnIngredient : Task
 
     public override void StartTask()
     {
+        RemanageTaskOnCancel = false;
+
         if (_chicken.SetDestination(_requester.Stove))
         {
             _chicken.ReachedDestination += FinishTask;
         }
+    }
+
+    protected override void OnCancelTask()
+    {
+        base.OnCancelTask();
+
+        GatherIngredient gatherIngredient = CreateInstance<GatherIngredient>();
+        gatherIngredient.SetUp(_requester, _item.Type);
+        Manager.ManageTask(gatherIngredient);
+
+        _chicken.DropCurrentItemOnGround();
+        _item.Claimed = false;
     }
 }

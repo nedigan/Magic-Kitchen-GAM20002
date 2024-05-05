@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ThoughtBubble
+    uniqueID: 2025636789
+    locked: 0

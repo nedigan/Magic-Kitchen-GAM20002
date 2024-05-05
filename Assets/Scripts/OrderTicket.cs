@@ -7,4 +7,5 @@ public class OrderTicket : ScriptableObject
     public Recipe Recipe;
     public Animal Recipient;
     public Item Meal;
+    public FoxWaitAtTable Task;
 }

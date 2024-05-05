@@ -43,6 +43,8 @@ public class GatherIngredient : Task
         _chicken.TaskHolder.SetTask(returnIngredientToStove);
         
         Debug.Log("Got ingredient");
+
+        UnsetTaskThought();
     }
     public override void PerformTask()
     {
@@ -56,16 +58,13 @@ public class GatherIngredient : Task
             _chicken.ReachedDestination += this.FinishTask;
         }
 
-        //Station shelf = FindEmptyStationOfType(StationType.Shelf);
-        //if (shelf != null)
-        //{
-        //    Debug.Log("Chicken going to shelf");
-        //    if (_chicken.SetDestination(shelf))
-        //    {
-        //        _chicken.ReachedDestination += FinishTask;
-        //    }
-        //}
-        //else
-        //    Debug.LogError("Couldnt find a shelf");
+        SetTaskThought(_chicken.ThoughtManager, Thought.FromThinkable(_foundItem).SetEmotion(ThoughtEmotion.Neutral));
+    }
+
+    protected override void OnCancelTask()
+    {
+        base.OnCancelTask();
+
+        _foundItem.Claimed = false;
     }
 }

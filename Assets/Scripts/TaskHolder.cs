@@ -13,6 +13,7 @@ public class TaskHolder : MonoBehaviour
     {
         Task = task;
         PerformingTask = !task.IsIdleTask;
+        Task.Holder = this;
         Task.StartTask();
     }
 
