@@ -46,7 +46,7 @@ public class Animal : MonoBehaviour, IRoomObject
     public Vector3 Destination => transform.position;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (_currentRoom == null && RoomFinder.TryFindRoomAbove(gameObject, out Room foundRoom))
         {
@@ -145,6 +145,65 @@ public class Animal : MonoBehaviour, IRoomObject
         Agent.isStopped = false;
         return isInCurrentRoom;
     }
+
+    public bool SetDestination(RoomType roomType, bool waitForValidConnection, Room currentRoom = null, int depth = 0, List<Room> checkedRooms = null)
+    {
+        if (currentRoom == null)
+            currentRoom = CurrentRoom;
+
+        if (checkedRooms == null)
+            checkedRooms = new List<Room>();
+
+        if (checkedRooms.Contains(currentRoom))
+            return false;
+
+        checkedRooms.Add(currentRoom);
+
+        bool isInCurrentRoom = false;
+        if (roomType == currentRoom.RoomType)
+        {
+            _destination = null;
+            isInCurrentRoom = true;
+        }
+        else
+        {
+            foreach (Door door in currentRoom.Doors)
+            {
+                // listen for door connect event
+                if (!_subscribedToDoorConnectEvents)
+                {
+                    door.DoorConnected += TaskHolder.ResetTask;
+                    // remove any old disconnect subscriptions
+                    door.DoorDisconnected -= TaskHolder.ResetTask;
+                }
+
+                if (waitForValidConnection)
+                {
+                    if (door.ConnectingDoor != null && SetDestination(roomType, waitForValidConnection, door.ConnectingDoor.Room, depth + 1, checkedRooms))
+                    {
+                        SetDestination(door);
+                        door.DoorDisconnected += TaskHolder.ResetTask;
+                        //door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
+                    }
+                }
+                else // go to first door even with no connection - for the fox queue
+                {
+                    SetDestination(door);
+                    door.DoorDisconnected += TaskHolder.ResetTask;
+                    break;
+                }
+            
+
+                isInCurrentRoom = false;
+            }
+            _subscribedToDoorConnectEvents = true;
+        }
+        Agent.stoppingDistance = 1;
+        _moving = true;
+        Agent.isStopped = false;
+        return isInCurrentRoom;
+    }
+
     // TODO: Test if this works or not
     public bool SetDestinationAndSubcribe(IRoomObject destination, EventHandler handler)
     {
