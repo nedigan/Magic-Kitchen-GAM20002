@@ -42,10 +42,6 @@ public class DeliverMeal : Task
         _ticket.Task.DeliverMeal(_ticket);
 
         UnsetTaskThought();
-
-        FoxExit task = ScriptableObject.CreateInstance<FoxExit>();
-        task.Setup(_ticket.Recipient);
-        _ticket.Recipient.TaskHolder.SetTask(task);
     }
 
     public override void PerformTask()

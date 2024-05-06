@@ -31,6 +31,11 @@ public class FoxWaitAtTable : Task
     public override void FinishTask()
     {
         _fox.ThoughtManager.StopThinking();
+        _fox.TaskHolder.RemoveCurrentTask();
+
+        FoxExit task = ScriptableObject.CreateInstance<FoxExit>();
+        task.Setup(_fox);
+        _fox.TaskHolder.SetTask(task);
     }
 
     public override void PerformTask()
@@ -75,6 +80,7 @@ public class FoxWaitAtTable : Task
         Destroy(ticket.Meal.gameObject);
 
         MoneyHandler.AddMoney(20); // TODO: Change price based on meal
+        _table.Occupied = false;
 
         FinishTask();
     }
