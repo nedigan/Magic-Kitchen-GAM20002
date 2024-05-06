@@ -25,13 +25,13 @@ public class FoxQueue : Task
 
     public override void FinishTask()
     {
-        _fox.MovedRoom -= FinishTask;
+        _fox.MovedRoom -= this.FinishTask;
         AnimalsInQueue.Remove(_fox);
         _fox.TaskHolder.RemoveCurrentTask();
         Debug.Log("Finished queue task");
 
-        //FoxFindTable task = ScriptableObject.CreateInstance<FoxFindTable>();
-        //task.Manager.ManageTask(task);
+        FoxFindTable task = ScriptableObject.CreateInstance<FoxFindTable>();
+        task.Manager.ManageTask(task);
     }
 
     public override void PerformTask()

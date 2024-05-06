@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -33,6 +34,10 @@ public class DeliverMeal : Task
         Destroy(_ticket.Meal.gameObject);
         
         MoneyHandler.AddMoney(20); // TODO: Change price based on meal
+
+        FoxExit task = ScriptableObject.CreateInstance<FoxExit>();
+        task.Setup(_ticket.Recipient);
+        _ticket.Recipient.TaskHolder.SetTask(task);
     }
 
     public override void PerformTask()

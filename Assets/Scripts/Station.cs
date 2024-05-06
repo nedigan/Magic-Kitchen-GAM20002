@@ -9,6 +9,7 @@ public enum StationType
     Shelf, //for grabbing ingredients
     Table, //for serving food
     Window, // for Turtles to give and take orders
+    FoxExit, // For foxes to exit the scene
 }
 
 [RequireComponent(typeof(TaskHolder))]
