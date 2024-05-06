@@ -2284,8 +2284,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Money: 500'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3531,6 +3531,7 @@ MonoBehaviour:
   _currentRoom: {fileID: 8759976394232717423}
   StandLocation: {fileID: 2043623837}
   TaskHolder: {fileID: 2043623840}
+  _thoughtManager: {fileID: 0}
   ItemPlaceLocation: {fileID: 2043623837}
 --- !u!114 &2043623840
 MonoBehaviour:
