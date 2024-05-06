@@ -28,7 +28,7 @@ public class CustomerSpawner : MonoBehaviour
         TaskHolder taskHolder = Instantiate(_customer, transform.position, Quaternion.identity, transform.parent).GetComponentInChildren<TaskHolder>();
         FoxQueue task = ScriptableObject.CreateInstance<FoxQueue>();
 
-        task.Setup(taskHolder.gameObject.GetComponent<Animal>(), transform.position, _navMeshPath); // yucky
+        task.Setup(taskHolder.gameObject.GetComponent<Animal>(), _navMeshPath); // yucky
         taskHolder.SetTask(task);
 
         yield return new WaitForSeconds(_spawnTimeInterval);

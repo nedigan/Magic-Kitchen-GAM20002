@@ -7,17 +7,15 @@ using UnityEngine.AI;
 public class FoxQueue : Task
 {
     private Animal _fox;
-    private Animal _foxInfront;
-
-    private Vector3 _spawnLocation;
     public static List<Animal> AnimalsInQueue = new List<Animal>();
     private NavMeshPath _navMeshPath;
     private float _spacing = 3f;
 
-    public void Setup(Animal fox, Vector3 spawnLocation, NavMeshPath path)
+    private bool _isFrontOfLine = false;
+
+    public void Setup(Animal fox,NavMeshPath path)
     {
         _fox = fox;
-        _spawnLocation = spawnLocation;
         _navMeshPath = path;
     }
     public override TaskHolder FindTaskHolder()
@@ -29,6 +27,11 @@ public class FoxQueue : Task
     {
         _fox.MovedRoom -= FinishTask;
         AnimalsInQueue.Remove(_fox);
+        _fox.TaskHolder.RemoveCurrentTask();
+        Debug.Log("Finished queue task");
+
+        //FoxFindTable task = ScriptableObject.CreateInstance<FoxFindTable>();
+        //task.Manager.ManageTask(task);
     }
 
     public override void PerformTask()
@@ -40,6 +43,11 @@ public class FoxQueue : Task
             {
                 _fox.SetDestination(CalculatePositionOnPath(index));
             } 
+            else if (index == 0 && !_isFrontOfLine)
+            {
+                _fox.SetDestination(RoomType.Dining, false);
+                _isFrontOfLine=true;
+            }
         }
         else
         {
@@ -49,15 +57,12 @@ public class FoxQueue : Task
 
     public override void StartTask()
     {
-        AnimalsInQueue.Add(_fox);
-        _fox.MovedRoom += FinishTask;
-
-        if (AnimalsInQueue.Count == 1)
-            _fox.SetDestination(RoomType.Dining, false);
-        // The false here indicates that the fox will not wait for a connection to the door first,
-        // the fox will just go to the first door regardless. Which for the sidewalk there is only one anyway
-        else
-            _foxInfront = AnimalsInQueue[AnimalsInQueue.Count - 1];
+        if (!AnimalsInQueue.Contains(_fox))
+        {
+            _fox.MovedRoom += FinishTask;
+            AnimalsInQueue.Add(_fox);
+        }
+        _isFrontOfLine = false;
     }
 
     // Imma be honest i got my mate gpt to help with this one

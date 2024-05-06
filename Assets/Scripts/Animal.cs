@@ -182,14 +182,14 @@ public class Animal : MonoBehaviour, IRoomObject
                     if (door.ConnectingDoor != null && SetDestination(roomType, waitForValidConnection, door.ConnectingDoor.Room, depth + 1, checkedRooms))
                     {
                         SetDestination(door);
-                        door.DoorDisconnected += TaskHolder.ResetTask;
+                        door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
                         //door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
                     }
                 }
                 else // go to first door even with no connection - for the fox queue
                 {
                     SetDestination(door);
-                    door.DoorDisconnected += TaskHolder.ResetTask;
+                    //door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
                     break;
                 }
             
