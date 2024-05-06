@@ -32,6 +32,8 @@ public class TurtleTakeOrder : Task
         //Debug.Log("Create instance of new task...");
         returnOrder.Setup(_turtle, _ticket);
         _turtle.TaskHolder.SetTask(returnOrder);
+
+        UnsetTaskThought();
     }
 
     public override void PerformTask()
@@ -46,5 +48,7 @@ public class TurtleTakeOrder : Task
         {
             _turtle.ReachedDestination += FinishTask;
         }
+
+        SetTaskThought(_turtle.ThoughtManager, Thought.FromThinkable(_ticket.Recipient).SetEmotion(ThoughtEmotion.Neutral));
     }
 }

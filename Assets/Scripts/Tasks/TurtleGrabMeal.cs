@@ -37,6 +37,8 @@ public class TurtleGrabMeal : Task
         DeliverMeal deliverMeal = ScriptableObject.CreateInstance<DeliverMeal>();
         deliverMeal.SetUp(_turtle, _ticket);
         _turtle.TaskHolder.SetTask(deliverMeal);
+
+        UnsetTaskThought();
     }
 
     public override void PerformTask()
@@ -52,5 +54,14 @@ public class TurtleGrabMeal : Task
         }
 
         _ticket.Meal.Claimed = true;
+
+        SetTaskThought(_turtle.ThoughtManager, Thought.FromThinkable(_ticket.Meal).SetEmotion(ThoughtEmotion.Neutral));
+    }
+
+    protected override void OnCancelTask()
+    {
+        base.OnCancelTask();
+
+        _ticket.Meal.Claimed = false;
     }
 }

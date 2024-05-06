@@ -17,7 +17,14 @@ public class DeliverMeal : Task
     }
     public override TaskHolder FindTaskHolder()
     {
-        //throw new System.NotImplementedException();
+        Animal turtle = FindIdleAnimalOfType(AnimalType.Turtle);
+
+        if (turtle != null)
+        {
+            _turtle = turtle;
+            return _turtle.TaskHolder;
+        }
+
         return null;
     }
 
@@ -29,11 +36,12 @@ public class DeliverMeal : Task
         Debug.Log($"Delivered {_ticket.Meal} to fox");
 
         // Turtle drop Meal Item
-        // this should eventually hand it off to the Fox Recipient
         _turtle.DropCurrentItemOnGround();
-        Destroy(_ticket.Meal.gameObject);
-        
-        MoneyHandler.AddMoney(20); // TODO: Change price based on meal
+
+        // hand off the meal for the fox to handle
+        _ticket.Task.DeliverMeal(_ticket);
+
+        UnsetTaskThought();
 
         FoxExit task = ScriptableObject.CreateInstance<FoxExit>();
         task.Setup(_ticket.Recipient);
@@ -47,10 +55,26 @@ public class DeliverMeal : Task
 
     public override void StartTask()
     {
+        RemanageTaskOnCancel = false;
+
         if (_turtle.SetDestination(_ticket.Recipient))
         {
             _turtle.ReachedDestination += FinishTask;
             Debug.LogWarning("Subscribing deliver meal");
         }
+
+        SetTaskThought(_turtle.ThoughtManager, Thought.FromThinkable(_ticket.Recipient).SetEmotion(ThoughtEmotion.Neutral));
+    }
+
+    protected override void OnCancelTask()
+    {
+        base.OnCancelTask();
+
+        TurtleGrabMeal turtleGrabMeal = CreateInstance<TurtleGrabMeal>();
+        turtleGrabMeal.SetUp(_ticket);
+        Manager.ManageTask(turtleGrabMeal);
+
+        _turtle.DropCurrentItemOnGround();
+        _ticket.Meal.Claimed = false;
     }
 }

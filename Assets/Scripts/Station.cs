@@ -21,6 +21,10 @@ public class Station : MonoBehaviour, IRoomObject
     private Room _currentRoom;
     public GameObject StandLocation;
     public TaskHolder TaskHolder;
+    [SerializeField]
+    private ThoughtManager _thoughtManager;
+
+    public ThoughtManager ThoughtManager => _thoughtManager;
 
     public GameObject ItemPlaceLocation;
 

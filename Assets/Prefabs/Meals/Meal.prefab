@@ -48,6 +48,7 @@ MonoBehaviour:
   _type: 3
   Claimed: 0
   _currentRoom: {fileID: 0}
+  _sprite: {fileID: 3908093152724763053}
 --- !u!1 &8555319862424119847
 GameObject:
   m_ObjectHideFlags: 0

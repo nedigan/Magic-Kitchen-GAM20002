@@ -6,15 +6,45 @@ using UnityEngine;
 public abstract class Task : ScriptableObject
 {
     public TaskManager Manager;
+    public TaskHolder Holder;
 
-    // an IdleTask will set TaskHolder.PerformingTask to false so it can still recive a new task from the TaskManager
-    // use for things like a task to send an animal back to a wating area
+    [Tooltip("An IdleTask will set TaskHolder.PerformingTask to false so it can still recive a new Task from the TaskManager. " +
+        "use for things like a Task to send an animal back to a wating area")]
     public bool IsIdleTask = false;
+
+    [Tooltip("When true this Task is re-added to the TaskManager when canceled. " +
+        "Otherwise the Task is removed from its TaskHolder and abandoned; may the garbage collector find it well")]
+    public bool RemanageTaskOnCancel = true;
+
+    private Thought _taskThought;
+    private ThoughtManager _taskThoughtManager;
 
     public abstract TaskHolder FindTaskHolder();
     public abstract void PerformTask();
     public abstract void StartTask();
     public abstract void FinishTask();
+
+    public void CancelTask()
+    {
+        Holder.RemoveCurrentTask();
+        if (RemanageTaskOnCancel) { Manager.ManageTask(this); }
+        UnsetTaskThought();
+        if (Holder.TryGetComponent(out Animal animal))
+        {
+            animal.ReachedDestination -= this.FinishTask;
+            animal.SetDestination(animal);
+        }
+        OnCancelTask();
+    }
+
+    /// <summary>
+    /// Called at the end of CancelTask. base will give the TaskHolder a Wait Task with default values (1s last I checked)
+    /// </summary>
+    protected virtual void OnCancelTask()
+    {
+        Holder.SetTask(CreateInstance<Wait>());
+    }
+
     // allows this to subscribe to events
     // using it to subscribe to an Animal's ReachedDestination Event
     public void FinishTask(object sender, EventArgs e)
@@ -92,5 +122,23 @@ public abstract class Task : ScriptableObject
     {
         foundItem = FindUnclaimedItemOfType(type);
         return foundItem != null;
+    }
+
+    // Task Thought
+
+    public void SetTaskThought(ThoughtManager manager, Thought thought, BubbleClickMethod onClickMethod = null)
+    {
+        // pathfinding sometimes needs to spam StartTask so this failsafe is meant to
+        // stop multiple thoughts from popping up when that happens
+        if (_taskThought != null) { UnsetTaskThought(); }
+
+        _taskThought = manager.ThinkAbout(thought);
+        _taskThoughtManager = manager;
+        thought.OnClickMethod = onClickMethod ?? CancelTask;
+    }
+
+    public void UnsetTaskThought()
+    {
+        if (_taskThought != null && _taskThoughtManager != null) { _taskThoughtManager.StopThinkingAbout(_taskThought); }
     }
 }
