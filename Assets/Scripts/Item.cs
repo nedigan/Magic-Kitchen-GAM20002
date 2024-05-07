@@ -28,6 +28,8 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
     [SerializeField]
     SpriteRenderer _sprite;
 
+    private ItemHolder _holder;
+
     // IRoomObject fields
     public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
 
@@ -51,5 +53,17 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
 
         TaskManager manager = FindFirstObjectByType<TaskManager>();
         if (manager != null) { manager.Items.Add(this); }
+    }
+
+    public void OnPickedUp(ItemHolder holder)
+    {
+        if (_holder != null) { _holder.RemoveCurrentItem(); }
+
+        _holder = holder;
+    }
+
+    public void OnPutDown()
+    {
+        _holder = null;
     }
 }
