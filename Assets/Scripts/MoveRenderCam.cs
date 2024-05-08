@@ -29,5 +29,7 @@ public class MoveRenderCam : MonoBehaviour
         float height = 2f* _camera.orthographicSize;
         float width = height * _camera.aspect;
         transform.localPosition = new Vector3((-pos.x * width) + width / 2f, (-pos.y * height) +  height / 2f, transform.localPosition.z);
+
+        _camera.depth = 100 - (pos.y * 100);
     }
 }

@@ -21,6 +21,9 @@ public abstract class Task : ScriptableObject
     private Thought _taskThought;
     private ThoughtManager _taskThoughtManager;
 
+    protected MoneyHandler MoneyHandler;
+
+
     public abstract TaskHolder FindTaskHolder();
     public abstract void PerformTask();
     public abstract void StartTask();
@@ -75,6 +78,8 @@ public abstract class Task : ScriptableObject
         {
             Debug.LogError("Task could not find TaskManager in scene!");
         }
+
+        MoneyHandler = FindFirstObjectByType<MoneyHandler>();
     }
 
     protected Animal FindIdleAnimalOfType(AnimalType type)
