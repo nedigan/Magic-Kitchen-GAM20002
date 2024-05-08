@@ -30,6 +30,8 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
 
     private ItemHolder _holder;
 
+    private StoreRoom _storeRoom;
+
     // IRoomObject fields
     public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
 
@@ -65,5 +67,22 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
     public void OnPutDown()
     {
         _holder = null;
+    }
+
+    public void AddToStoreRoom(StoreRoom storeRoom)
+    {
+        _storeRoom = storeRoom;
+        _storeRoom.CurrentStock.Add(this);
+    }
+
+    public void RemoveFromCurrentStoreRoom()
+    {
+        _storeRoom?.CurrentStock.Remove(this);
+        _storeRoom = null;
+    }
+
+    private void OnDestroy()
+    {
+        RemoveFromCurrentStoreRoom();
     }
 }

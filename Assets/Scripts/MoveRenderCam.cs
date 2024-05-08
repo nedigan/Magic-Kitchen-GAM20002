@@ -12,11 +12,11 @@ public class MoveRenderCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (_mainCamera == null) { _mainCamera = Camera.main; }
+        
         _camera = GetComponent<Camera>();    
         Debug.Log(_mainCamera.WorldToViewportPoint(_physicalRoom.position));
         Debug.Log(_camera.WorldToViewportPoint(_camRoom.position));
-
-        if (_mainCamera == null) { _mainCamera = Camera.main; }
     }
 
     // Update is called once per frame

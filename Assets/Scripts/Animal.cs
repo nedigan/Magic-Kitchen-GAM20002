@@ -19,6 +19,7 @@ public enum AnimalType
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(TaskHolder))]
+[RequireComponent(typeof(ItemHolder))]
 public class Animal : MonoBehaviour, IRoomObject, IThinkable
 {
     public NavMeshAgent Agent;
@@ -37,14 +38,16 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
 
     [SerializeField]
     private GameObject _itemHoldLocation;
+    private GameObject _secretThirdItemHoldLocation;
     private Item _heldItem;
-
-    public Item HeldItem { get => _heldItem; }
 
     [SerializeField]
     private ThoughtManager _thoughtManager;
 
     public ThoughtManager ThoughtManager => _thoughtManager;
+
+    private ItemHolder _itemHolder;
+    public ItemHolder ItemHolder => _itemHolder;
 
     // IRoomObject fields
     public Room CurrentRoom { get => _currentRoom; set => _currentRoom = value; }
@@ -66,6 +69,13 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
         if (manager != null ) { manager.Animals.Add(this); }
 
         _prevPos = transform.position;
+
+        _itemHolder = GetComponent<ItemHolder>();
+
+        _secretThirdItemHoldLocation = new GameObject();
+        _secretThirdItemHoldLocation.transform.SetParent(_itemHoldLocation.transform);
+
+        _itemHolder.HoldLocation = _secretThirdItemHoldLocation;
     }
 
     // Update is called once per frame
@@ -90,14 +100,13 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
             _sprite.flipX = shouldFlip;
             _prevPos = transform.position;
 
-            if (_heldItem != null)
+            if (shouldFlip)
             {
-                _heldItem.transform.position = _itemHoldLocation.transform.position;
-
-                if (shouldFlip)
-                {
-                    _heldItem.transform.localPosition -= new Vector3(_itemHoldLocation.transform.localPosition.x * 2, 0, 0);
-                }
+                _secretThirdItemHoldLocation.transform.localPosition = new Vector3(-_itemHoldLocation.transform.localPosition.x, 0, 0);
+            }
+            else
+            {
+                _secretThirdItemHoldLocation.transform.localPosition = Vector3.zero;
             }
         }
     }
@@ -313,23 +322,27 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
 
     public void PickUpItem(Item item)
     {
-        if (_heldItem != null) { DropCurrentItemOnGround(); }
+        //if (_heldItem != null) { DropCurrentItemOnGround(); }
 
-        _heldItem = item;
+        //_heldItem = item;
 
-        _heldItem.Claimed = true;
+        //_heldItem.Claimed = true;
+
+        _itemHolder.PickUpItem(item);
 
         UpdateSprite();
     }
 
     public void DropCurrentItemOnGround()
     {
-        if (_heldItem != null)
-        {
-            _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
+        //if (_heldItem != null)
+        //{
+        //    _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
 
-            RemoveCurrentItem();
-        }
+        //    RemoveCurrentItem();
+        //}
+
+        _itemHolder.DropCurrentItemOnGround();
     }
 
     public void RemoveCurrentItem()

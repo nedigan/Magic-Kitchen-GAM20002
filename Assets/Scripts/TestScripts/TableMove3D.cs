@@ -18,6 +18,12 @@ public class TableMove3D : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        if (_concreteScrape == null ) 
+        {
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.clip = Resources.Load<AudioClip>("Audio/Table_Move");
+            _concreteScrape = source;
+        }
     }
 
     // Update is called once per frame

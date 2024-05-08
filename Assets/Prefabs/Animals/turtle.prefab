@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 197795523345828924, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
+      propertyPath: HoldLocation
+      value: 
+      objectReference: {fileID: 809697794694441763}
     - target: {fileID: 590792196594317219, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
       propertyPath: m_Controller
       value: 
@@ -157,3 +161,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
+--- !u!1 &809697794694441763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1037669328877389554, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
+  m_PrefabInstance: {fileID: 385643923972025809}
+  m_PrefabAsset: {fileID: 0}

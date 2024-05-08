@@ -176,5 +176,27 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8523670315338075890, guid: b52fd74b8fb7cf249acd157b1ce98535, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1652439219371853018, guid: b52fd74b8fb7cf249acd157b1ce98535, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1110284966849942740}
   m_SourcePrefab: {fileID: 100100000, guid: b52fd74b8fb7cf249acd157b1ce98535, type: 3}
+--- !u!1 &2977261079861371463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1652439219371853018, guid: b52fd74b8fb7cf249acd157b1ce98535, type: 3}
+  m_PrefabInstance: {fileID: 4593671184099239581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1110284966849942740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977261079861371463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310ad04d30758b24c9f301555218142b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StoreRoom: {fileID: 0}
+  Cost: 100
