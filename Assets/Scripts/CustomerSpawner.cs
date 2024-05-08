@@ -12,6 +12,8 @@ public class CustomerSpawner : MonoBehaviour
     [SerializeField] private Transform _targetDoor;
     private NavMeshPath _navMeshPath;
 
+    public float SpawnTimeInterval { get { return _spawnTimeInterval; } }
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,16 @@ public class CustomerSpawner : MonoBehaviour
             Debug.LogError("Path couldnt be created");
 
         StartCoroutine(SpawnCustomer());
+    }
+
+    public void SetSpawnInterval(float interval, bool instantlySpawn)
+    {
+        _spawnTimeInterval = interval;
+        if (instantlySpawn)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SpawnCustomer());
+        }
     }
 
     IEnumerator SpawnCustomer()
