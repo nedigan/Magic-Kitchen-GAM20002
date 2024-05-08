@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: 9079030697f29654790e737df5493dba
   - enabled: 1
-    path: Assets/Scenes/3DRoomTest_Placeholder_Stations.unity
-    guid: 43a3ddf86b5c4df4aa56696ace421920
+    path: Assets/Scenes/3DRoomTest_Placeholder_Stations Copy.unity
+    guid: a257c598bab15be48bf7e8589c09bb0e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
