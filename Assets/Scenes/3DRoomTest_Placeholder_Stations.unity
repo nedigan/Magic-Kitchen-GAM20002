@@ -1013,8 +1013,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9315667ad0af004439091a06dd8655f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayLengthSeconds: 20
+  _dayLengthSeconds: 60
   _slider: {fileID: 696261182}
+  _customerSpawner: {fileID: 1610251190}
+  Waves:
+  - StartWave: 0.5
+    EndWave: 0.6
+    SpawnInterval: 5
+  - StartWave: 0.9
+    EndWave: 1
+    SpawnInterval: 1
 --- !u!4 &407506066
 Transform:
   m_ObjectHideFlags: 0
@@ -3079,7 +3087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _customer: {fileID: 3688131001220556852, guid: 78fd30f28556ab1408749dd12506ad8b, type: 3}
-  _spawnTimeInterval: 2
+  _spawnTimeInterval: 20
   _targetDoor: {fileID: 1467392615}
 --- !u!1 &1611699847
 GameObject:
