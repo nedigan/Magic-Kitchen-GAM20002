@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MageHand : MonoBehaviour
 {
     [SerializeField] private Sprite[] _sprites;
-    [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private Camera _cam;
+    [SerializeField] private Image _renderer;
+    //[SerializeField] private Camera _cam;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,8 @@ public class MageHand : MonoBehaviour
     void Update()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 10;
-        transform.position = _cam.ScreenToWorldPoint(mousePos);
+        //mousePos.z = 10;
+        transform.position = mousePos;
 
         if (Input.GetMouseButtonDown(0))
         {

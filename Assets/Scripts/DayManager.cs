@@ -19,6 +19,8 @@ public class DayManager : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private CustomerSpawner _customerSpawner;
 
+    public EventHandler OnDayEnd;
+
     private int _waveIndex = 0;
     private bool _waveInProgress = false;
     private float _defaultSpawnInterval;
@@ -26,11 +28,20 @@ public class DayManager : MonoBehaviour
     public WavePair[] Waves;
 
     private float _currentTime = 0f;
-    public static float DayProgress = 0f;
+    public float DayProgress = 0f;
 
     private void Start()
     {
         _defaultSpawnInterval = _customerSpawner.SpawnTimeInterval;
+    }
+
+    private bool _dayEnded = false;
+    public void EndDay()
+    {
+        _customerSpawner.StopSpawning();
+        _dayEnded = true;
+
+        OnDayEnd?.Invoke(this, EventArgs.Empty);
     }
 
     // Update is called once per frame
@@ -59,5 +70,8 @@ public class DayManager : MonoBehaviour
                 _customerSpawner.SetSpawnInterval(_defaultSpawnInterval, false);
             }
         }
+
+        if (!_dayEnded && DayProgress >= 1)
+            EndDay();
     }
 }

@@ -24,6 +24,8 @@ public abstract class Task : ScriptableObject
     public abstract void StartTask();
     public abstract void FinishTask();
 
+    protected MoneyHandler MoneyHandler;
+
     public void CancelTask()
     {
         Holder.RemoveCurrentTask();
@@ -68,6 +70,8 @@ public abstract class Task : ScriptableObject
         {
             Debug.LogError("Task could not find TaskManager in scene!");
         }
+
+        MoneyHandler = FindFirstObjectByType<MoneyHandler>();
     }
 
     protected Animal FindIdleAnimalOfType(AnimalType type)

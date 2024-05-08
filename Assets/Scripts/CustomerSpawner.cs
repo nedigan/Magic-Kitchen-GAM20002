@@ -35,6 +35,11 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
 
+    public void StopSpawning()
+    {
+        StopAllCoroutines();
+    }
+
     IEnumerator SpawnCustomer()
     {
         TaskHolder taskHolder = Instantiate(_customer, transform.position, Quaternion.identity, transform.parent).GetComponentInChildren<TaskHolder>();

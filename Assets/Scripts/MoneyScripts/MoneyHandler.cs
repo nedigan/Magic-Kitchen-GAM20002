@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public static class MoneyHandler
+public class MoneyHandler: MonoBehaviour
 {
-    public static int AmountOfMoney { get; private set; } = 400;
+    public int AmountOfMoney { get; private set; } = 400;
+    public int StartingMoney { get; private set; }
 
-    public static void AddMoney(int amount)
+    public int Expenses { get; private set; } = 100;
+
+    private void Start()
+    {
+        // Maybe load from Playerprefs eventually???
+        StartingMoney = AmountOfMoney;
+    }
+
+    public void AddMoney(int amount)
     {
         AmountOfMoney += amount;
     }
 
-    public static void RemoveMoney(int amount)
+    public  void RemoveMoney(int amount)
     {
         AmountOfMoney -= amount;
     }
