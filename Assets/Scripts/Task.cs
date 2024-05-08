@@ -1,7 +1,9 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public abstract class Task : ScriptableObject
 {
@@ -9,7 +11,7 @@ public abstract class Task : ScriptableObject
     public TaskHolder Holder;
 
     [Tooltip("An IdleTask will set TaskHolder.PerformingTask to false so it can still recive a new Task from the TaskManager. " +
-        "use for things like a Task to send an animal back to a wating area")]
+        "use for things like a Task to send an animal back to a wating area. Set in Task.StartTask()")]
     public bool IsIdleTask = false;
 
     [Tooltip("When true this Task is re-added to the TaskManager when canceled. " +
@@ -19,16 +21,17 @@ public abstract class Task : ScriptableObject
     private Thought _taskThought;
     private ThoughtManager _taskThoughtManager;
 
+    protected MoneyHandler MoneyHandler;
+
+
     public abstract TaskHolder FindTaskHolder();
     public abstract void PerformTask();
     public abstract void StartTask();
     public abstract void FinishTask();
 
-    protected MoneyHandler MoneyHandler;
-
-    public void CancelTask()
+    public void CancelTask(bool setDefault = true)
     {
-        Holder.RemoveCurrentTask();
+        Holder.RemoveCurrentTask(setDefault);
         if (RemanageTaskOnCancel) { Manager.ManageTask(this); }
         UnsetTaskThought();
         if (Holder.TryGetComponent(out Animal animal))
@@ -37,6 +40,11 @@ public abstract class Task : ScriptableObject
             animal.SetDestination(animal);
         }
         OnCancelTask();
+    }
+    // for parameterless delagate
+    public void CancelTask()
+    {
+        CancelTask(true);
     }
 
     /// <summary>
@@ -144,5 +152,15 @@ public abstract class Task : ScriptableObject
     public void UnsetTaskThought()
     {
         if (_taskThought != null && _taskThoughtManager != null) { _taskThoughtManager.StopThinkingAbout(_taskThought); }
+    }
+
+    // macros
+
+    protected void SetAnimalDestinaion(Animal animal, IRoomObject destination)
+    {
+        if (animal.SetDestination(destination))
+        {
+            animal.ReachedDestination += FinishTask;
+        }
     }
 }

@@ -131,6 +131,11 @@ public class ThoughtManager : MonoBehaviour
             i++;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawIcon(transform.position, "Icon_ThoughtBubble");
+    }
 }
 
 public enum ThoughtBubbleSortMode

@@ -12,6 +12,8 @@ public class CustomerSpawner : MonoBehaviour
     [SerializeField] private Transform _targetDoor;
     private NavMeshPath _navMeshPath;
 
+    [SerializeField] private Room _room;
+
     public float SpawnTimeInterval { get { return _spawnTimeInterval; } }
 
 
@@ -45,7 +47,9 @@ public class CustomerSpawner : MonoBehaviour
         TaskHolder taskHolder = Instantiate(_customer, transform.position, Quaternion.identity, transform.parent).GetComponentInChildren<TaskHolder>();
         FoxQueue task = ScriptableObject.CreateInstance<FoxQueue>();
 
-        task.Setup(taskHolder.gameObject.GetComponent<Animal>(), _navMeshPath); // yucky
+        Animal animal = taskHolder.gameObject.GetComponent<Animal>(); // yucky
+        animal.SetCurrentRoom(_room);
+        task.Setup(animal, _navMeshPath); 
         taskHolder.SetTask(task);
 
         yield return new WaitForSeconds(_spawnTimeInterval);

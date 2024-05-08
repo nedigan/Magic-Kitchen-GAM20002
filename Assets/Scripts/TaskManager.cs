@@ -27,7 +27,7 @@ public class TaskManager : MonoBehaviour
     // Give a task to a task holder
     private void SendTask(Task task, TaskHolder holder)
     {
-        holder.SetTask(task);
+        holder.SetTask(task, true);
         _tasksToRemove.Enqueue(task);
     }
 

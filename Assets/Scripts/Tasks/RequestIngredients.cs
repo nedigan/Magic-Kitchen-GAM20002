@@ -71,7 +71,8 @@ public class RequestIngredients : Task
 
         // Create Item for the Meal
         _ticket.Meal = Instantiate(_ticket.Recipe.Result);
-        _ticket.Meal.transform.position = _stove.ItemPlaceLocation.transform.position;
+        //_ticket.Meal.transform.position = _stove.ItemPlaceLocation.transform.position;
+        _stove.ItemHolder.PickUpItem(_ticket.Meal);
         //_ticket.Meal.transform.rotation = _stove.ItemPlaceLocation.transform.rotation;
 
         _ticket.Meal.SetCurrentRoom(_stove.CurrentRoom);
