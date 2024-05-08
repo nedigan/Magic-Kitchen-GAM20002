@@ -110,12 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ba4c332e9b69d4189be32c3f0f1784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 1
   Occupied: 0
   _currentRoom: {fileID: 0}
   StandLocation: {fileID: 4887772218851016987}
   TaskHolder: {fileID: 8674299195664460861}
-  ItemPlaceLocation: {fileID: 650485020233010974}
+  _thoughtManager: {fileID: 0}
+  _itemHolder: {fileID: 0}
 --- !u!114 &8674299195664460861
 MonoBehaviour:
   m_ObjectHideFlags: 0

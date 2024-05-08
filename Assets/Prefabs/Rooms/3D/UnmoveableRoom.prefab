@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3754080475818277335, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: m_Name
-      value: UnmoveableRoom
+      value: SimpleMoverrRoom
       objectReference: {fileID: 0}
     - target: {fileID: 4660314381746388564, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: m_Enabled

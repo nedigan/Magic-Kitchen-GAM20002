@@ -12,7 +12,8 @@ public enum AnimalType
 {
     Fox,
     Chicken,
-    Turtle
+    Turtle,
+    Deliverer
 }
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -37,7 +38,6 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
     [SerializeField]
     private GameObject _itemHoldLocation;
     private GameObject _secretThirdItemHoldLocation;
-    private Item _heldItem;
 
     [SerializeField]
     private ThoughtManager _thoughtManager;
@@ -55,17 +55,8 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
     // IThinkable fields
     public Sprite ThoughtIcon => _sprite.sprite;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        if (_currentRoom == null && RoomFinder.TryFindRoomAbove(gameObject, out Room foundRoom))
-        {
-            SetCurrentRoom(foundRoom);
-        }
-        
-        TaskManager manager = FindFirstObjectByType<TaskManager>();
-        if (manager != null ) { manager.Animals.Add(this); }
-
         _prevPos = transform.position;
 
         _itemHolder = GetComponent<ItemHolder>();
@@ -74,6 +65,18 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
         _secretThirdItemHoldLocation.transform.SetParent(_itemHoldLocation.transform);
 
         _itemHolder.HoldLocation = _secretThirdItemHoldLocation;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (_currentRoom == null && RoomFinder.TryFindRoomAbove(gameObject, out Room foundRoom))
+        {
+            SetCurrentRoom(foundRoom);
+        }
+        
+        TaskManager manager = FindFirstObjectByType<TaskManager>();
+        if (manager != null ) { manager.Animals.Add(this); }
     }
 
     // Update is called once per frame
@@ -320,12 +323,6 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
 
     public void PickUpItem(Item item)
     {
-        //if (_heldItem != null) { DropCurrentItemOnGround(); }
-
-        //_heldItem = item;
-
-        //_heldItem.Claimed = true;
-
         _itemHolder.PickUpItem(item);
 
         UpdateSprite();
@@ -333,30 +330,18 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
 
     public void DropCurrentItemOnGround()
     {
-        //if (_heldItem != null)
-        //{
-        //    _heldItem.transform.position = new Vector3(_itemHoldLocation.transform.position.x, 0.1f, _itemHoldLocation.transform.position.z);
-
-        //    RemoveCurrentItem();
-        //}
-
         _itemHolder.DropCurrentItemOnGround();
     }
 
     public void RemoveCurrentItem()
-    {
-        if (_heldItem != null)
-        {
-            _heldItem.Claimed = false;
-
-            _heldItem = null;
-        }        
+    {    
+        _itemHolder.RemoveCurrentItem();
     }
 
     public void SetCurrentRoom(Room room)
     {
         _currentRoom = room;
 
-        if (_heldItem != null) { _heldItem.SetCurrentRoom(room); }
+        if (_itemHolder.Empty == false) { _itemHolder.HeldItem.SetCurrentRoom(room); }
     }
 }

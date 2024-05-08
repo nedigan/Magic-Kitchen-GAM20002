@@ -11,7 +11,7 @@ public class ItemHolder : MonoBehaviour
 
     public bool ClaimHeldItems = true;
 
-    public bool HeldItem => _heldItem;
+    public Item HeldItem => _heldItem;
     public bool Empty => _heldItem == null;
 
     // Start is called before the first frame update
@@ -19,12 +19,6 @@ public class ItemHolder : MonoBehaviour
     {
         if (HoldLocation == null) { HoldLocation = gameObject; }
         if (_heldItem != null) { PickUpItem(_heldItem); }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void PickUpItem(Item item)

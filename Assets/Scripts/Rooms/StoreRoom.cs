@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 
 [RequireComponent(typeof(Room))]
@@ -19,43 +20,14 @@ public class StoreRoom : MonoBehaviour
     {
         _room = GetComponent<Room>();
 
-        List<Item> missings = GetMissingStock();
-
-        foreach (Item item in missings)
-        {
-            foreach (ShelfSpot shelfSpot in ShelfSpots)
-            {
-                if (shelfSpot.StartStocked && shelfSpot.ItemHolder.Empty)
-                {
-                    Item newStock = Instantiate(item);
-                    newStock.SetCurrentRoom(_room);
-                    shelfSpot.ItemHolder.PickUpItem(newStock);
-                }
-            }
-        }
+        //InstaRestock();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //public int TargetStockOfType(ItemType type)
-    //{
-
-    //}
-
-    //public int CurrentStockOfType(ItemType type)
-    //{
-
-    //}
 
     /// <summary>
     /// Returns prefabs of all the missing stock
     /// </summary>
     /// <returns></returns>
-    public List<Item> GetMissingStock()
+    public List<Item> GetMissingStockPrefabs()
     {
         List<Item> currentStock = _currentStock;
         List<Item> missingStock = new();
@@ -74,17 +46,50 @@ public class StoreRoom : MonoBehaviour
             missingStock.Add(target);
         }
 
-        //foreach (Item missing in missingStock)
-        //{
-        //    Debug.Log(missing);
-        //}
-
         return missingStock;
+    }
+
+    public List<Item> GenerateMissingStockItems()
+    {
+        List<Item> missingsPrefabs = GetMissingStockPrefabs();
+        List<Item> missingItems = new();
+
+        foreach (Item item in missingsPrefabs)
+        {
+            foreach (ShelfSpot shelfSpot in ShelfSpots)
+            {
+                if (shelfSpot.StartStocked && shelfSpot.HasOwner == false)
+                {
+                    Item newStock = Instantiate(item);
+                    //newStock.SetCurrentRoom(_room);
+                    newStock.AddToStoreRoom(this, shelfSpot);
+                    missingItems.Add(newStock);
+                    break;
+                }
+            }
+        }
+
+        return missingItems;
     }
 
     public void InstaRestock()
     {
+        List<Item> missings = GetMissingStockPrefabs();
 
+        foreach (Item item in missings)
+        {
+            foreach (ShelfSpot shelfSpot in ShelfSpots)
+            {
+                if (shelfSpot.StartStocked && shelfSpot.HasOwner == false)
+                {
+                    Item newStock = Instantiate(item);
+                    newStock.SetCurrentRoom(_room);
+                    newStock.AddToStoreRoom(this, shelfSpot);
+                    shelfSpot.Station.ItemHolder.PickUpItem(newStock);
+                    break;
+                }
+            }
+        }
     }
 
     private void OnValidate()

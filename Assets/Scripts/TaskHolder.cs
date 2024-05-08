@@ -7,20 +7,29 @@ public class TaskHolder : MonoBehaviour
 {
     public Task Task;
 
-    public bool PerformingTask = false;
+    [Tooltip("If the holder isn't given a task it will do this instead")]
+    public Task DefaultTask;
 
-    public void SetTask(Task task)
+    public bool PerformingTask = false;
+    public bool HasTask => Task != null;
+
+    public void SetTask(Task task, bool cancelCurrentTask = false)
     {
+        if (cancelCurrentTask && Task != null)
+        {
+            Task.CancelTask(false);
+        }
+
         Task = task;
-        PerformingTask = !task.IsIdleTask;
         Task.Holder = this;
         Task.StartTask();
+        PerformingTask = !task.IsIdleTask;
     }
 
     // Called from scene door to redo task when in the other room
     public void ResetTask()
     {
-        if (!PerformingTask)
+        if (!HasTask)
         {
             Debug.Log("There was no task being performed by this animal");
             return;
@@ -34,10 +43,17 @@ public class TaskHolder : MonoBehaviour
         this.ResetTask();
     }
 
-    public void RemoveCurrentTask()
+    public void RemoveCurrentTask(bool setDefault = true)
     {
-        Task = null;
-        PerformingTask = false;
+        if (setDefault && DefaultTask != null) 
+        { 
+            SetTask(DefaultTask); 
+        }
+        else 
+        { 
+            Task = null; 
+            PerformingTask = false;
+        }
     }
 
     private void Update()

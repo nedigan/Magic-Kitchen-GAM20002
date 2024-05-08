@@ -10,6 +10,7 @@ public enum StationType
     Window, // for Turtles to give and take orders
     FoxExit, // For foxes to exit the scene
     ShelfSpot, // for storing Ingredients
+    DelivererExit, // for Deliverers to go to when done
 }
 
 [RequireComponent(typeof(TaskHolder))]
