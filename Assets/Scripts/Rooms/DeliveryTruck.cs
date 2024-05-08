@@ -9,6 +9,7 @@ public class DeliveryTruck : MonoBehaviour
 {
     private Room _room;
     private TaskManager _taskManager;
+    private MoneyHandler _moneyHandler;
     
     public StoreRoom StoreRoom;
 
@@ -37,6 +38,7 @@ public class DeliveryTruck : MonoBehaviour
         _room = GetComponent<Room>();
         _taskManager = FindFirstObjectByType<TaskManager>();
         _mover.transform.position = WaitPosition.position - _mover.Offset;
+        _moneyHandler = FindFirstObjectByType<MoneyHandler>();
     }
 
     // Update is called once per frame
@@ -59,7 +61,7 @@ public class DeliveryTruck : MonoBehaviour
 
         _delivering = true;
 
-        MoneyHandler.RemoveMoney(Cost);
+        _moneyHandler.RemoveMoney(Cost);
 
         _deliverersReadyToLeave = 0;
 
