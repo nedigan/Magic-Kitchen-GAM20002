@@ -44,7 +44,7 @@ public class Door : MonoBehaviour
 
         foreach (Animal animal in Room.Animals)
         {
-            animal.OnDoorConnected();
+            animal.OnDoorConnected(this);
         }
     }
 
@@ -61,7 +61,7 @@ public class Door : MonoBehaviour
 
         foreach (Animal animal in Room.Animals)
         {
-            animal.OnDoorDisconected();
+            animal.OnDoorDisconected(this);
         }
     }
 }

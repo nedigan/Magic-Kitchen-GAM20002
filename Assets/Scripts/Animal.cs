@@ -349,13 +349,13 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
         if (_itemHolder.Empty == false) { _itemHolder.HeldItem.SetCurrentRoom(room); }
     }
 
-    public void OnDoorConnected()
+    public void OnDoorConnected(Door door)
     {
         if (_subscribedToDoorConnectEvents) { TaskHolder.ResetTask(); }
     }
 
-    public void OnDoorDisconected()
+    public void OnDoorDisconected(Door door)
     {
-        if (_subscribedToDoorConnectEvents) { TaskHolder.ResetTask(); }
+        if (_destination == door) { TaskHolder.ResetTask(); }
     }
 }
