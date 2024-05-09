@@ -35,7 +35,7 @@ public class Door : MonoBehaviour
     public void OnConnectedTo(Door door)
     {
         ConnectingDoor = door;
-        Debug.Log($"A door in the {Room.name} has connected to a door in the {door.Room.name}");
+        //Debug.Log($"A door in the {Room.name} has connected to a door in the {door.Room.name}");
         SceneDoor.OnConnectedTo(door);
         TableDoor.OnConnectedTo(door);
 
@@ -52,7 +52,7 @@ public class Door : MonoBehaviour
     {
         ConnectingDoor = null;        
 
-        Debug.Log($"A door in the {Room.name}has disconnected to a door in the {door.Room.name}");
+        //Debug.Log($"A door in the {Room.name}has disconnected to a door in the {door.Room.name}");
         SceneDoor.OnDisconnectFrom(door);
         TableDoor.OnDisconnectFrom(door);
 

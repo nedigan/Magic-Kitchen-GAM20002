@@ -17,19 +17,17 @@ public class GatherIngredient : Task
     public override TaskHolder FindTaskHolder()
     {
         Animal chicken = FindIdleAnimalOfType(AnimalType.Chicken);
+        if (chicken == null) { Debug.LogError("Couldn't find Chicken"); return null; }
+
         Item foundItem = FindUnclaimedItemOfType(_itemType);
+        if (foundItem == null) { Debug.LogError($"Couldn't find Item of Type {_itemType}"); return null; }
 
-        if (chicken != null && foundItem != null)
-        {
-            _chicken = chicken;
+        _chicken = chicken;
 
-            _foundItem = foundItem;
-            _foundItem.Claimed = true;
+        _foundItem = foundItem;
+        _foundItem.Claimed = true;
 
-            return _chicken.TaskHolder;
-        }
-
-        return null;
+        return _chicken.TaskHolder;
     }
 
     public override void FinishTask()
@@ -66,5 +64,7 @@ public class GatherIngredient : Task
         base.OnCancelTask();
 
         _foundItem.Claimed = false;
+
+        _chicken.ReachedDestination -= FinishTask;
     }
 }

@@ -1208,6 +1208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c899728f441fc0246a28c12b8503cadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tasks: []
+  _items: []
 --- !u!4 &777780235
 Transform:
   m_ObjectHideFlags: 0
@@ -4377,7 +4379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ba4c332e9b69d4189be32c3f0f1784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 4
+  Type: 3
   Occupied: 0
   _currentRoom: {fileID: 8759976394232717423}
   StandLocation: {fileID: 2043623837}

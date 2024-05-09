@@ -55,7 +55,7 @@ public class FoxWaitAtTable : Task
     {
         OrderTicket ticket = Manager.OrderManager.GenerateRandomOrderTicket(_fox);
         ticket.Task = this;
-        Debug.Log($"Fox ordered {ticket.Recipe.Result}");
+        //Debug.Log($"Fox ordered {ticket.Recipe.Result}");
 
         TurtleTakeOrder turtleTakeOrder = ScriptableObject.CreateInstance<TurtleTakeOrder>();
         turtleTakeOrder.Setup(ticket);

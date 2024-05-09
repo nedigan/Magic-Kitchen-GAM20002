@@ -39,7 +39,7 @@ public class TurtleReturnOrder : Task
 
     public override void StartTask()
     {
-        Debug.Log("Starting return order task..");
+        //Debug.Log("Starting return order task..");
         // BEWARE: assumes only one window exists in the scene, any others will never be seen by this
         Station window = FindEmptyStationOfType(StationType.Window);
         if (window != null)

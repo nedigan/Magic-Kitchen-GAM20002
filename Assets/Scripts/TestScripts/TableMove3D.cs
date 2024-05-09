@@ -64,7 +64,7 @@ public class TableMove3D : MonoBehaviour
     {
         _mousePos = GetMousePos() - transform.position;
         _moving = true;
-        Debug.Log(this);
+        //Debug.Log(this);
     }
 
     public void OnMouseDragRoom()

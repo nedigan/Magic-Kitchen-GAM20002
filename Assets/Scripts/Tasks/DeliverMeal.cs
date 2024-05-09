@@ -56,7 +56,7 @@ public class DeliverMeal : Task
         if (_turtle.SetDestination(_ticket.Recipient))
         {
             _turtle.ReachedDestination += FinishTask;
-            Debug.LogWarning("Subscribing deliver meal");
+            //Debug.LogWarning("Subscribing deliver meal");
         }
 
         SetTaskThought(_turtle.ThoughtManager, Thought.FromThinkable(_ticket.Recipient).SetEmotion(ThoughtEmotion.Neutral));
@@ -72,5 +72,7 @@ public class DeliverMeal : Task
 
         _turtle.DropCurrentItemOnGround();
         _ticket.Meal.Claimed = false;
+
+        _turtle.ReachedDestination -= FinishTask;
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
-    private List<Task> _tasks = new List<Task>();
+    public List<Task> _tasks = new List<Task>();
 
     private List<Animal> _animals = new List<Animal>();
     private List<Station> _stations = new List<Station>();
-    private List<Item> _items = new List<Item>();
+    public List<Item> _items = new List<Item>();
 
     private OrderManager _orderManager;
 

@@ -15,6 +15,8 @@ public enum ItemType
 // Base class for any object in a room that Animals can pick up
 public class Item : MonoBehaviour, IRoomObject, IThinkable
 {
+    private TaskManager _taskManager;
+
     [SerializeField]
     private ItemType _type;
     public ItemType Type => _type;
@@ -55,8 +57,9 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
             SetCurrentRoom(foundRoom);
         }
 
-        TaskManager manager = FindFirstObjectByType<TaskManager>();
-        if (manager != null) { manager.Items.Add(this); }
+        _taskManager = FindFirstObjectByType<TaskManager>();
+
+        if (_taskManager != null) { _taskManager.Items.Add(this); }
     }
 
     public void OnPickedUp(ItemHolder holder)
@@ -92,5 +95,6 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
     private void OnDestroy()
     {
         RemoveFromCurrentStoreRoom();
+        _taskManager.Items.Remove(this);
     }
 }

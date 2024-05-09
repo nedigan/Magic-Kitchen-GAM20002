@@ -35,7 +35,7 @@ public class SceneDoor : MonoBehaviour
     public void OnConnectedTo(Door door)
     {
         _connectingDoor = door;
-        Debug.Log(_connectingDoor.Room);
+        //Debug.Log(_connectingDoor.Room);
     }
 
     public void OnDisconnectFrom(Door door)
