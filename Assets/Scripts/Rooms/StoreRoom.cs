@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 
 [RequireComponent(typeof(Room))]
@@ -20,7 +19,7 @@ public class StoreRoom : MonoBehaviour
     {
         _room = GetComponent<Room>();
 
-        //InstaRestock();
+        InstaRestock();
     }
 
     /// <summary>
@@ -31,15 +30,19 @@ public class StoreRoom : MonoBehaviour
     {
         List<Item> currentStock = _currentStock;
         List<Item> missingStock = new();
+        Item toRemove = null;
 
         foreach (Item target in TargetStock)
         {
+            if (toRemove != null) { currentStock.Remove(toRemove); }
+
             foreach (Item current in currentStock)
             {
                 if (target.Type == current.Type)
                 {
-                    currentStock.Remove(current);
-                    continue;
+                    //currentStock.Remove(current);
+                    toRemove = current;
+                    break;
                 }
             }
 

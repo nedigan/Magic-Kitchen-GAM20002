@@ -20,6 +20,8 @@ public class ReturnItemToShelf : Task
 
     public override void FinishTask()
     {
+        _item.Claimed = false;
+
         _animal.ItemHolder.RemoveCurrentItem();
         _item.ShelfSpot.Station.ItemHolder.PickUpItem(_item);
 
