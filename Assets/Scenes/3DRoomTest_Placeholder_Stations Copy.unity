@@ -3148,7 +3148,7 @@ MonoBehaviour:
   _customer: {fileID: 3688131001220556852, guid: 78fd30f28556ab1408749dd12506ad8b, type: 3}
   _spawnTimeInterval: 20
   _targetDoor: {fileID: 1467392615}
-  _room: {fileID: 0}
+  _room: {fileID: 8759976394232717423}
 --- !u!1 &1611699847
 GameObject:
   m_ObjectHideFlags: 0

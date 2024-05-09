@@ -41,6 +41,11 @@ public class Door : MonoBehaviour
 
         DoorConnected?.Invoke(this, EventArgs.Empty);
         door.DoorConnected?.Invoke(this, EventArgs.Empty);
+
+        foreach (Animal animal in Room.Animals)
+        {
+            animal.OnDoorConnected();
+        }
     }
 
     public void OnDisconnectFrom(Door door)
@@ -53,5 +58,10 @@ public class Door : MonoBehaviour
 
         DoorDisconnected?.Invoke(this, EventArgs.Empty);
         door.DoorDisconnected?.Invoke(this, EventArgs.Empty);
+
+        foreach (Animal animal in Room.Animals)
+        {
+            animal.OnDoorDisconected();
+        }
     }
 }
