@@ -15,7 +15,7 @@ public class ItemHolder : MonoBehaviour
     public bool Empty => _heldItem == null;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (HoldLocation == null) { HoldLocation = gameObject; }
         if (_heldItem != null) { PickUpItem(_heldItem); }

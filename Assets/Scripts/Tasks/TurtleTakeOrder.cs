@@ -43,7 +43,7 @@ public class TurtleTakeOrder : Task
 
     public override void StartTask()
     {
-        Debug.Log("Going to take fox order");
+        //Debug.Log("Going to take fox order");
         if (_turtle.SetDestination(_ticket.Recipient))
         {
             _turtle.ReachedDestination += FinishTask;

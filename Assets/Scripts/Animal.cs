@@ -143,15 +143,15 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
                 // listen for door connect event
                 if (!_subscribedToDoorConnectEvents)
                 {
-                    door.DoorConnected += TaskHolder.ResetTask;
+                    //door.DoorConnected += TaskHolder.ResetTask;
                     // remove any old disconnect subscriptions
-                    door.DoorDisconnected -= TaskHolder.ResetTask;
+                    //door.DoorDisconnected -= TaskHolder.ResetTask;
                 }
 
                 if (door.ConnectingDoor != null && SetDestination(destination, door.ConnectingDoor.Room, depth + 1, checkedRooms))
                 {
                     SetDestination(door);
-                    door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
+                    //door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
                     //door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
                 }
 
@@ -191,7 +191,7 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
                 // listen for door connect event
                 if (!_subscribedToDoorConnectEvents)
                 {
-                    door.DoorConnected += TaskHolder.ResetTask;
+                    //door.DoorConnected += TaskHolder.ResetTask;
                     // remove any old disconnect subscriptions
                     door.DoorDisconnected -= TaskHolder.ResetTask;
                 }
@@ -201,7 +201,7 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
                     if (door.ConnectingDoor != null && SetDestination(roomType, waitForValidConnection, door.ConnectingDoor.Room, depth + 1, checkedRooms))
                     {
                         SetDestination(door);
-                        door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
+                        //door.ConnectingDoor.DoorDisconnected += TaskHolder.ResetTask;
                         //door.ConnectingDoor.DoorConnected -= TaskHolder.ResetTask; // unsubcribes
                     }
                 }
@@ -228,7 +228,7 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
     {
         if (SetDestination(destination))
         {
-            ReachedDestination += handler;
+            //ReachedDestination += handler;
             return true;
         }
         
@@ -340,8 +340,22 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
 
     public void SetCurrentRoom(Room room)
     {
+        if (_currentRoom != null) { _currentRoom.Animals.Remove(this); }
+
         _currentRoom = room;
 
+        _currentRoom.Animals.Add(this);
+
         if (_itemHolder.Empty == false) { _itemHolder.HeldItem.SetCurrentRoom(room); }
+    }
+
+    public void OnDoorConnected(Door door)
+    {
+        if (_subscribedToDoorConnectEvents) { TaskHolder.ResetTask(); }
+    }
+
+    public void OnDoorDisconected(Door door)
+    {
+        if (_destination == door) { TaskHolder.ResetTask(); }
     }
 }

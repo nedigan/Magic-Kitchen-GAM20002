@@ -16,7 +16,7 @@ public class ShelfSpot : MonoBehaviour
     public bool HasOwner => _owner != null;
 
 
-    private void Start()
+    private void Awake()
     {
         _station = GetComponent<Station>();
     }

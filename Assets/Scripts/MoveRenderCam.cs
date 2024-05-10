@@ -15,8 +15,8 @@ public class MoveRenderCam : MonoBehaviour
         if (_mainCamera == null) { _mainCamera = Camera.main; }
         
         _camera = GetComponent<Camera>();    
-        Debug.Log(_mainCamera.WorldToViewportPoint(_physicalRoom.position));
-        Debug.Log(_camera.WorldToViewportPoint(_camRoom.position));
+        //Debug.Log(_mainCamera.WorldToViewportPoint(_physicalRoom.position));
+        //Debug.Log(_camera.WorldToViewportPoint(_camRoom.position));
     }
 
     // Update is called once per frame
