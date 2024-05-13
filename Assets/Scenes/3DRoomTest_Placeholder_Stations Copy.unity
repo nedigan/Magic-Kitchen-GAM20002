@@ -1388,6 +1388,7 @@ GameObject:
   - component: {fileID: 1000024709}
   - component: {fileID: 1000024708}
   - component: {fileID: 1000024711}
+  - component: {fileID: 1000024712}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1497,7 +1498,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 1
+  m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -1517,6 +1518,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1000024712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000024707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877baf10252841d4dbc6f51fe8c78eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1058343631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8035727310291119436, guid: 896655d7b013d354d8b2942dfc030f0a, type: 3}
