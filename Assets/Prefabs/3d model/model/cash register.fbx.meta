@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5227b3e31a45e3c43a60fc37654231c1
+guid: db4f01b3e54c0a94ab240186d1878d99
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HOOD_BOTTON3
-    second: {fileID: 2100000, guid: 4f924038a65d49d41afdded6ffa1dcd0, type: 2}
+      name: body
+    second: {fileID: 2100000, guid: b3ccc6114778ee947b151eb6697f9bd4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: KITCHEN_HOOD
-    second: {fileID: 2100000, guid: 4dd13f69bcdc28842992106a00ed4ca0, type: 2}
+      name: computer
+    second: {fileID: 2100000, guid: e8a8b3d6450bd254cadb28d1ef728b52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: screen
+    second: {fileID: 2100000, guid: 64c09b2e167d5b64aba61b539c38f06e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small screen
+    second: {fileID: 2100000, guid: 958a1a4356a8a884f9d83090cefdd984, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

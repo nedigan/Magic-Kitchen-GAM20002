@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5227b3e31a45e3c43a60fc37654231c1
+guid: 45f405039c674c347820c3f7af4c7fdf
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HOOD_BOTTON3
-    second: {fileID: 2100000, guid: 4f924038a65d49d41afdded6ffa1dcd0, type: 2}
+      name: money
+    second: {fileID: 2100000, guid: 5e1136f107096c34ab3ad006d1f36b04, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: KITCHEN_HOOD
-    second: {fileID: 2100000, guid: 4dd13f69bcdc28842992106a00ed4ca0, type: 2}
+      name: plate
+    second: {fileID: 2100000, guid: bee65d3ee887fb1428a61333235f3a53, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
