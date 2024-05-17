@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 5227b3e31a45e3c43a60fc37654231c1
+guid: 77ec0f9b504bb174d9d81a398658d148
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: HOOD_BOTTON3
-    second: {fileID: 2100000, guid: 4f924038a65d49d41afdded6ffa1dcd0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: KITCHEN_HOOD
-    second: {fileID: 2100000, guid: 4dd13f69bcdc28842992106a00ed4ca0, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

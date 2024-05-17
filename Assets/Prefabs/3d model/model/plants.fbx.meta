@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5227b3e31a45e3c43a60fc37654231c1
+guid: 60f020ed20fc71b48b5410a85f71e13b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HOOD_BOTTON3
-    second: {fileID: 2100000, guid: 4f924038a65d49d41afdded6ffa1dcd0, type: 2}
+      name: leaf
+    second: {fileID: 2100000, guid: 9bfb7e3bff8572845b11c6285aafd152, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: KITCHEN_HOOD
-    second: {fileID: 2100000, guid: 4dd13f69bcdc28842992106a00ed4ca0, type: 2}
+      name: pot
+    second: {fileID: 2100000, guid: d9d9eb1ff713274498de9b0bcab94acd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: soil
+    second: {fileID: 2100000, guid: c2d78bdaadb16fe4b990a39a02ebd4e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trunk
+    second: {fileID: 2100000, guid: 3dd46a3bc6f716f48870265b815edded, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

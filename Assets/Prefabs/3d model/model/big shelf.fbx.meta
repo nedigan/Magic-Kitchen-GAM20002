@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5227b3e31a45e3c43a60fc37654231c1
+guid: 0ad5edd8757eef941874bff1526fc0b2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HOOD_BOTTON3
-    second: {fileID: 2100000, guid: 4f924038a65d49d41afdded6ffa1dcd0, type: 2}
+      name: board
+    second: {fileID: 2100000, guid: cb7632058621c2a43bcec0cdba62abc9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: KITCHEN_HOOD
-    second: {fileID: 2100000, guid: 4dd13f69bcdc28842992106a00ed4ca0, type: 2}
+      name: pole
+    second: {fileID: 2100000, guid: 9f2a4ec7524f9ec478b15ff3af79e76f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
