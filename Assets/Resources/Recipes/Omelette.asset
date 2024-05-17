@@ -15,3 +15,4 @@ MonoBehaviour:
   Ingredients: 02000000
   Result: {fileID: 7511947524783915223, guid: 9e2f1fcc42bad984981d473d33833f94, type: 3}
   CookTime: 3
+  Tier: 1

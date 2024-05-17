@@ -2,14 +2,18 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 // Handles generating new OrderTickets
 public class OrderManager : MonoBehaviour
 {
     private Recipe[] _recipieCach;
+    [SerializeField] private TMP_Dropdown _dropdown;
 
     private List<float> _recipeWeights = new();
     private float _tier1Probability = 50;
@@ -20,6 +24,12 @@ public class OrderManager : MonoBehaviour
     void Start()
     {
         FillRecipeCach();
+        ResetWeights();
+
+        foreach (Recipe recipe in _recipieCach)
+        {
+            _dropdown.options.Add(new TMP_Dropdown.OptionData() { text = recipe.name });
+        }
 
         int tier1Chosen = 0;
         int tier2Chosen = 0;
@@ -45,7 +55,10 @@ public class OrderManager : MonoBehaviour
     private void FillRecipeCach()
     {
         _recipieCach = GetAllRecipesInProject();
+    }
 
+    private void ResetWeights()
+    {
         int numOfTier1 = _recipieCach.Count(r => r.Tier == Tiers.Tier1);
         int numOfTier2 = _recipieCach.Count(r => r.Tier == Tiers.Tier2);
         int numOfTier3 = _recipieCach.Count(r => r.Tier == Tiers.Tier3);
