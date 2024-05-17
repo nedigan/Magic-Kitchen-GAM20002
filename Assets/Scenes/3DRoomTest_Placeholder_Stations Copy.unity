@@ -1916,8 +1916,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Expenses: -100'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2773,8 +2773,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Day Breakdown
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2953,8 +2953,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Money: 500'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3341,8 +3341,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Money Made: 500'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4594,8 +4594,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Profit: 400'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -297,8 +297,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: START
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -743,8 +743,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1135,8 +1135,8 @@ MonoBehaviour:
 
     MAGIC KITCHEN'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
