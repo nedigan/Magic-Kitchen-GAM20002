@@ -49,7 +49,16 @@ public class OrderManager : MonoBehaviour
         Debug.Log($"Tier 1: {tier1Chosen}");
         Debug.Log($"Tier 2: {tier2Chosen}");
         Debug.Log($"Tier 3: {tier3Chosen}");
+    }
 
+    public void SetMealOfDay()
+    {
+        ResetWeights();
+        int index = _dropdown.value;
+        float thisWeight = _recipeWeights[index];
+        float totalWeight = _recipeWeights.Sum();
+
+        _recipeWeights[index] = totalWeight - thisWeight;
     }
 
     private void FillRecipeCach()
@@ -59,6 +68,7 @@ public class OrderManager : MonoBehaviour
 
     private void ResetWeights()
     {
+        _recipeWeights.Clear();
         int numOfTier1 = _recipieCach.Count(r => r.Tier == Tiers.Tier1);
         int numOfTier2 = _recipieCach.Count(r => r.Tier == Tiers.Tier2);
         int numOfTier3 = _recipieCach.Count(r => r.Tier == Tiers.Tier3);

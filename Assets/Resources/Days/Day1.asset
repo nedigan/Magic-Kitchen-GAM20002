@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Day1
   m_EditorClassIdentifier: 
   DesiredProfit: 300
-  DayLengthSeconds: 60
+  DayLengthSeconds: 300
   AmountOfCustomers: 75
   CustomerGraph:
     serializedVersion: 2
