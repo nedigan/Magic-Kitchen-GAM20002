@@ -16,9 +16,9 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown _dropdown;
 
     private List<float> _recipeWeights = new();
-    private float _tier1Probability = 50;
-    private float _tier2Probability = 35;
-    private float _tier3Probability = 15;
+    [SerializeField] private float _tier1Probability = 50;
+    [SerializeField] private float _tier2Probability = 35;
+    [SerializeField] private float _tier3Probability = 15;
 
     // Start is called before the first frame update
     void Start()
