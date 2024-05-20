@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 //[Serializable]
 //public class WavePair // Thought this is a cool way 
@@ -19,8 +20,10 @@ public class DayManager : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private Day[] _days;
     private int _currentDayIndex = 0;
+    public bool IsOpen { get; private set; }    
 
     public EventHandler OnDayEnd;
+    private static DayManager _instance;
 
     //private int _waveIndex = 0;
     //private bool _waveInProgress = false;
@@ -33,6 +36,11 @@ public class DayManager : MonoBehaviour
 
     private bool _dayEnded = false;
 
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+    }
     public void Start()
     {
         _dayLengthSeconds = _days[_currentDayIndex].DayLengthSeconds;
@@ -46,6 +54,19 @@ public class DayManager : MonoBehaviour
         _dayEnded = true;
 
         OnDayEnd?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void SetStateOfRestaurant(bool open)
+    {
+        IsOpen = open;
+    }
+
+    public static DayManager GetInstance()
+    {
+        if (_instance != null)
+            return _instance;
+        Debug.LogError("There is no daymanager in the scene.");
+        return null;
     }
 
     // Update is called once per frame
