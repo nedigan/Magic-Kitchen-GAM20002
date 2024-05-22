@@ -17,7 +17,7 @@ public class GatherIngredient : Task
     public override TaskHolder FindTaskHolder()
     {
         Animal chicken = FindIdleAnimalOfType(AnimalType.Chicken);
-        if (chicken == null) { Debug.LogError("Couldn't find Chicken"); return null; }
+        if (chicken == null) { /*Debug.LogError("Couldn't find Chicken")*/; return null; }
 
         Item foundItem = FindUnclaimedItemOfType(_itemType);
         if (foundItem == null) { Debug.LogError($"Couldn't find Item of Type {_itemType}"); return null; }

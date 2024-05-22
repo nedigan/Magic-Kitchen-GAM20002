@@ -20,7 +20,7 @@ public class FoxExit : Task
         _fox.TaskHolder.RemoveCurrentTask();
         _fox.ReachedDestination -= FinishTask;
 
-        Destroy(_fox.gameObject);
+        Destroy(_fox.transform.parent.gameObject);
     }
 
     public override void PerformTask()

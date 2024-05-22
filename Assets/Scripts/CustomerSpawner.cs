@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,15 @@ using UnityEngine.AI;
 
 public class CustomerSpawner : MonoBehaviour
 {
+    [SerializeField] private DayManager _dayManager;
     [SerializeField] private GameObject _customer; // fox prefab
     [SerializeField] private float _spawnTimeInterval = 20f;
     [SerializeField] private Transform _targetDoor;
     private NavMeshPath _navMeshPath;
+
+    private int _customerIndex = 0;
+    private bool _spawning = true;
+    private List<float> _customerSpawnTimes;
 
     [SerializeField] private Room _room;
 
@@ -24,25 +30,28 @@ public class CustomerSpawner : MonoBehaviour
         if (!NavMesh.CalculatePath(_targetDoor.position, transform.position, NavMesh.AllAreas, _navMeshPath))
             Debug.LogError("Path couldnt be created");
 
-        StartCoroutine(SpawnCustomer());
+        _customerSpawnTimes = _dayManager.GetCurrentDayCustomerSpawns();
+        Debug.Log(_customerSpawnTimes.Count);
     }
 
-    public void SetSpawnInterval(float interval, bool instantlySpawn)
+    public void Update()
     {
-        _spawnTimeInterval = interval;
-        if (instantlySpawn)
+        if (_spawning && _customerIndex >= _customerSpawnTimes.Count)
+            StopSpawning();
+
+        if (_spawning && _dayManager.DayProgress >= _customerSpawnTimes[_customerIndex])
         {
-            StopAllCoroutines();
-            StartCoroutine(SpawnCustomer());
+            _customerIndex++;
+            SpawnCustomer();
         }
     }
 
     public void StopSpawning()
     {
-        StopAllCoroutines();
+        _spawning = false;
     }
 
-    IEnumerator SpawnCustomer()
+    public void SpawnCustomer()
     {
         TaskHolder taskHolder = Instantiate(_customer, transform.position, Quaternion.identity, transform.parent).GetComponentInChildren<TaskHolder>();
         FoxQueue task = ScriptableObject.CreateInstance<FoxQueue>();
@@ -51,9 +60,5 @@ public class CustomerSpawner : MonoBehaviour
         animal.SetCurrentRoom(_room);
         task.Setup(animal, _navMeshPath); 
         taskHolder.SetTask(task);
-
-        yield return new WaitForSeconds(_spawnTimeInterval);
-
-        StartCoroutine(SpawnCustomer());
     }
 }

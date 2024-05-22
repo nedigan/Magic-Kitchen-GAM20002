@@ -21,7 +21,7 @@ public class TaskManager : MonoBehaviour
 
     private void Awake()
     {
-        _orderManager = gameObject.AddComponent<OrderManager>();
+        _orderManager = GetComponent<OrderManager>();
     }
 
     // Give a task to a task holder
