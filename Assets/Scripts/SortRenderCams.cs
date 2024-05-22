@@ -14,6 +14,8 @@ public class SortRenderCams : MonoBehaviour
 
         foreach (Camera camera in _URPCam.cameraStack)
         {
+            if (camera.CompareTag("MainCamera"))
+                continue;
             _cameraPairs.Add(camera, camera.GetComponent<MoveRenderCam>());
         }
     }
@@ -25,6 +27,10 @@ public class SortRenderCams : MonoBehaviour
 
     private int CompareViewPortYPos(Camera x, Camera y)
     {
+        if (x.CompareTag("MainCamera"))
+            return -1;
+        if (y.CompareTag("MainCamera"))
+            return 1;
 
         if (_cameraPairs[x].ViewPortPos.y == _cameraPairs[y].ViewPortPos.y)
             return 0;
