@@ -297,8 +297,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: START
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -743,8 +743,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 3d5e9e3c90d3ab74ea6b295b8908f82d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: 710ab63d68c6a3e4da6c8ef32aad0fbf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -856,7 +856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -228, y: 29.687}
+  m_AnchoredPosition: {x: -194, y: -87}
   m_SizeDelta: {x: 202.9309, y: 59.3738}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &825580278
@@ -880,7 +880,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1108,8 +1108,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.701}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -236, y: 152}
-  m_SizeDelta: {x: 361.5558, y: 147.1595}
+  m_AnchoredPosition: {x: -126, y: 96}
+  m_SizeDelta: {x: 586.2296, y: 147.1595}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1231344525
 MonoBehaviour:
@@ -1131,10 +1131,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TITLE!
+  m_text: 'MERAZZY''S
+
+    MAGIC KITCHEN'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
-  m_sharedMaterial: {fileID: -4375288479969991118, guid: 1a3a3f1068ae4f34e9d65ca78418bb5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
+  m_sharedMaterial: {fileID: -3081022565180654450, guid: f58093b5b35a8454b97ee8b9982987b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1414,7 +1416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -228, y: -56.374}
+  m_AnchoredPosition: {x: -194, y: -173.061}
   m_SizeDelta: {x: 202.9309, y: 59.3738}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1541800395
@@ -1438,7 +1440,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

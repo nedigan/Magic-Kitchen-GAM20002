@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DesiredProfit: 300
   DayLengthSeconds: 300
-  AmountOfCustomers: 30
+  AmountOfCustomers: 75
   CustomerGraph:
     serializedVersion: 2
     m_Curve:

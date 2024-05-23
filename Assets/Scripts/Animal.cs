@@ -275,10 +275,10 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
     private void OnReachedDestination()
     {
         _moving = false;
-
+        bool dontMoveAnimal = CurrentRoom.RoomType == RoomType.SideWalk && !DayManager.GetInstance().IsOpen;
         if (_destination != null && _destination.TryGetComponent(out Door door))
         {
-            if (door.ConnectingDoor != null)
+            if (door.ConnectingDoor != null && !dontMoveAnimal)
             {
                 MoveToRoom(door.ConnectingDoor);
             }

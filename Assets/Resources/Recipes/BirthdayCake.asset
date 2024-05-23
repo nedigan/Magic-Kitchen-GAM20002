@@ -16,3 +16,4 @@ MonoBehaviour:
   Result: {fileID: 4184123609234482058, guid: 1e4f8260eb0a8694591b0ee8bc774102, type: 3}
   SellPrice: 3700
   CookTime: 7
+  Tier: 2

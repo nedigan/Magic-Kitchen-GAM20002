@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class MoveRenderCam : MonoBehaviour
 {
@@ -8,13 +9,15 @@ public class MoveRenderCam : MonoBehaviour
     [SerializeField] private Transform _physicalRoom;
     [SerializeField] private Camera _mainCamera;
 
-    private Camera _camera;
+    public Vector3 ViewPortPos = Vector3.zero;
+
+    public Camera Camera { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
         if (_mainCamera == null) { _mainCamera = Camera.main; }
         
-        _camera = GetComponent<Camera>();    
+        Camera = GetComponent<Camera>();    
         //Debug.Log(_mainCamera.WorldToViewportPoint(_physicalRoom.position));
         //Debug.Log(_camera.WorldToViewportPoint(_camRoom.position));
     }
@@ -24,12 +27,14 @@ public class MoveRenderCam : MonoBehaviour
     {
         //_camRoom.position = _camera.ViewportToWorldPoint(_mainCamera.WorldToViewportPoint(_physicalRoom.position));
         //Debug.Log(_mainCamera.WorldToViewportPoint(_physicalRoom.position));
-        Vector3 pos = (_mainCamera.WorldToViewportPoint(_physicalRoom.position));
+        ViewPortPos = (_mainCamera.WorldToViewportPoint(_physicalRoom.position));
 
-        float height = 2f* _camera.orthographicSize;
-        float width = height * _camera.aspect;
-        transform.localPosition = new Vector3((-pos.x * width) + width / 2f, (-pos.y * height) +  height / 2f, transform.localPosition.z);
+        float height = 2f* Camera.orthographicSize;
+        float width = height * Camera.aspect;
+        transform.localPosition = new Vector3((-ViewPortPos.x * width) + width / 2f, (-ViewPortPos.y * height) +  height / 2f, transform.localPosition.z);
 
-        _camera.depth = 100 - (pos.y * 100);
+        //_camera.depth = 100 - (ViewPortPos.y * 100);
+        //UniversalAdditionalCameraData mainURPCamera =  _mainCamera.GetUniversalAdditionalCameraData();
+        //mainURPCamera.cameraStack.Sort()
     }
 }
