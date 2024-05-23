@@ -10,6 +10,14 @@ public enum ItemType
     Flour,
     Egg,
     Meal,
+    Rice,
+    Milk,
+    Tomato,
+    Berries,
+    Cheese,
+    CurryPowder,
+    Candles,
+    Pineapple,
 }
 
 // Base class for any object in a room that Animals can pick up
@@ -20,6 +28,8 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
     [SerializeField]
     private ItemType _type;
     public ItemType Type => _type;
+
+    public int Price;
 
     [Tooltip("Has an Animal claimed this Item to be used")]
     public bool Claimed = false;

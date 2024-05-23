@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 233414aa17f5f4443b4946a797aeb42f, type: 3}
-  m_Name: Cake
+  m_Name: Curry
   m_EditorClassIdentifier: 
-  Ingredients: 010000000200000000000000
-  Result: {fileID: 3866102118597900905, guid: a4d9931eca7181c42856766de763b2c3, type: 3}
-  CookTime: 5
+  Ingredients: 04000000090000000200000006000000
+  Result: {fileID: 0}
+  SellPrice: 2500
+  CookTime: 1

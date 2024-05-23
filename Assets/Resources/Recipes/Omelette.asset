@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233414aa17f5f4443b4946a797aeb42f, type: 3}
   m_Name: Omelette
   m_EditorClassIdentifier: 
-  Ingredients: 02000000
+  Ingredients: 02000000020000000500000006000000
   Result: {fileID: 7511947524783915223, guid: 9e2f1fcc42bad984981d473d33833f94, type: 3}
+  SellPrice: 1400
   CookTime: 3

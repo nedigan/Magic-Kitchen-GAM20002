@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 233414aa17f5f4443b4946a797aeb42f, type: 3}
-  m_Name: FriedEgg
+  m_Name: RicePudding
   m_EditorClassIdentifier: 
-  Ingredients: 02000000
-  Result: {fileID: 8046308091856870359, guid: d56841af631c5874784bc0ea09a9b7aa, type: 3}
-  SellPrice: 225
+  Ingredients: 000000000400000004000000
+  Result: {fileID: 0}
+  SellPrice: 600
   CookTime: 1

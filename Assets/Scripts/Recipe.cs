@@ -8,6 +8,7 @@ public class Recipe : ScriptableObject, IThinkable
 {
     public List<ItemType> Ingredients;
     public Item Result;
+    public int SellPrice;
     public float CookTime = 1;
 
     // IThinkable fields

@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ingredients: 0100000002000000
   Result: {fileID: 1807997263119650358, guid: 22353ad49af9cdd4ebb7ac05fcf3602e, type: 3}
+  SellPrice: 350
   CookTime: 3
