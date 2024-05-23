@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Milkshake
   m_EditorClassIdentifier: 
   Ingredients: 050000000000000007000000
-  Result: {fileID: 0}
+  Result: {fileID: 6423617916148662084, guid: f6e5f301ae5d5f8499da9ad7ef887e9b, type: 3}
   SellPrice: 1700
   CookTime: 1

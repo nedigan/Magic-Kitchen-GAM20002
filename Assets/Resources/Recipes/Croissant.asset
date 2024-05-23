@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Croissant
   m_EditorClassIdentifier: 
   Ingredients: 020000000100000000000000
-  Result: {fileID: 0}
+  Result: {fileID: 2957900426150752285, guid: 073f09661104c2c4dbf5ff96190a9618, type: 3}
   SellPrice: 600
   CookTime: 1

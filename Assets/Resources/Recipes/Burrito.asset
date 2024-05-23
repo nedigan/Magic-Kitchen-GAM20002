@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Burrito
   m_EditorClassIdentifier: 
   Ingredients: 010000000800000004000000
-  Result: {fileID: 0}
+  Result: {fileID: 513338567864939197, guid: 6e502a75ab200c04ba26e7225426c681, type: 3}
   SellPrice: 1100
   CookTime: 1

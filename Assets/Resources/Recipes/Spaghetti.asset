@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Spaghetti
   m_EditorClassIdentifier: 
   Ingredients: 02000000010000000600000008000000
-  Result: {fileID: 0}
+  Result: {fileID: 6335969282466569422, guid: 4bb34fb8d78200249a0450e47188679b, type: 3}
   SellPrice: 1550
   CookTime: 1

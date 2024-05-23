@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Curry
   m_EditorClassIdentifier: 
   Ingredients: 04000000090000000200000006000000
-  Result: {fileID: 0}
+  Result: {fileID: 7379848197292619721, guid: 6189c793842a69644beb0febd6c9f5d9, type: 3}
   SellPrice: 2500
   CookTime: 1

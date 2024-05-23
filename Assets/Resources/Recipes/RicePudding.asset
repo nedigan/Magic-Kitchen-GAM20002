@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RicePudding
   m_EditorClassIdentifier: 
   Ingredients: 000000000400000004000000
-  Result: {fileID: 0}
+  Result: {fileID: 8085080577689868049, guid: 8cfa3df763a2ede4ea9aeb0b8594b26f, type: 3}
   SellPrice: 600
   CookTime: 1

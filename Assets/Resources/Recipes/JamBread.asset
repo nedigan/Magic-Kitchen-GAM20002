@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: JamBread
   m_EditorClassIdentifier: 
   Ingredients: 07000000070000000700000000000000
-  Result: {fileID: 0}
+  Result: {fileID: 120843176690683050, guid: 6799ef8d01c2a6548a64a846f87a7c48, type: 3}
   SellPrice: 2750
   CookTime: 1
