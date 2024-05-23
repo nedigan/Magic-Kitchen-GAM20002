@@ -20,9 +20,9 @@ public class TableMove3D : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         if (_concreteScrape == null ) 
         {
-            AudioSource source = gameObject.AddComponent<AudioSource>();
-            source.clip = Resources.Load<AudioClip>("Audio/Table_Move");
-            _concreteScrape = source;
+            //AudioSource source = gameObject.AddComponent<AudioSource>();
+            //source.clip = Resources.Load<AudioClip>("Audio/Table_Move");
+            //_concreteScrape = source;
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Linq;
 
 public class TaskManager : MonoBehaviour
 {
@@ -29,6 +30,11 @@ public class TaskManager : MonoBehaviour
     {
         holder.SetTask(task, true);
         _tasksToRemove.Enqueue(task);
+    }
+
+    public int NumFoxesInRestaurant()
+    {
+        return _animals.Count(a => a.Type == AnimalType.Fox && a.CurrentRoom.RoomType == RoomType.Dining);
     }
 
     // Add task for the TaskManager to manage

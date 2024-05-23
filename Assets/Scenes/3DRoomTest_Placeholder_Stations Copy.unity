@@ -213,6 +213,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7187407420977887231, guid: 188c0acd3d51b574782d66f196a9eeea, type: 3}
+      propertyPath: RoomType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7832733445741209087, guid: 188c0acd3d51b574782d66f196a9eeea, type: 3}
       propertyPath: m_Name
       value: DiningRoom
@@ -1084,6 +1088,7 @@ MonoBehaviour:
   _slider: {fileID: 696261182}
   _days:
   - {fileID: 11400000, guid: 31916b52ce635d1428ebe2729578ba5a, type: 2}
+  _taskManager: {fileID: 777780234}
   DayProgress: 0
 --- !u!4 &407506066
 Transform:
@@ -5701,11 +5706,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818842443}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3a009dd379f80e64eb190f5172e6e6fc, type: 3}
-  m_Resource: {fileID: 8300000, guid: 3a009dd379f80e64eb190f5172e6e6fc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 16703d39c7d86d5459656185d40265fe, type: 3}
+  m_Resource: {fileID: 8300000, guid: 16703d39c7d86d5459656185d40265fe, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -7429,8 +7434,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1102445521}
   - {fileID: 1916537905}
-  - {fileID: 514630885}
   - {fileID: 1000024710}
+  - {fileID: 514630885}
   - {fileID: 429598768}
   - {fileID: 1785596302}
   - {fileID: 1752060229}

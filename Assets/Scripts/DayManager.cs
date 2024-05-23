@@ -19,6 +19,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] private float _dayLengthSeconds = 300f; // 5mins?
     [SerializeField] private Slider _slider;
     [SerializeField] private Day[] _days;
+    [SerializeField] private TaskManager _taskManager;
     private int _currentDayIndex = 0;
     public bool IsOpen { get; private set; }    
 
@@ -79,7 +80,7 @@ public class DayManager : MonoBehaviour
         //// Set slider
         _slider.value = DayProgress;
         
-        if (!_dayEnded && DayProgress >= 1)
+        if (!_dayEnded && DayProgress >= 1 && _taskManager.NumFoxesInRestaurant() == 0)
             EndDay();
     }
 }
