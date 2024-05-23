@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233414aa17f5f4443b4946a797aeb42f, type: 3}
   m_Name: BirthdayCake
   m_EditorClassIdentifier: 
-  Ingredients: 010000000200000000000000
+  Ingredients: 01000000050000000000000002000000070000000a000000
   Result: {fileID: 4184123609234482058, guid: 1e4f8260eb0a8694591b0ee8bc774102, type: 3}
+  SellPrice: 3700
   CookTime: 7
   Tier: 2

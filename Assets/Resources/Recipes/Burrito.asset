@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 233414aa17f5f4443b4946a797aeb42f, type: 3}
-  m_Name: Cake
+  m_Name: Burrito
   m_EditorClassIdentifier: 
-  Ingredients: 010000000200000000000000
-  Result: {fileID: 3866102118597900905, guid: a4d9931eca7181c42856766de763b2c3, type: 3}
-  CookTime: 5
-  Tier: 1
+  Ingredients: 010000000800000004000000
+  Result: {fileID: 513338567864939197, guid: 6e502a75ab200c04ba26e7225426c681, type: 3}
+  SellPrice: 1100
+  CookTime: 1
