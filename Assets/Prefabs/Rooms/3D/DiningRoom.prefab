@@ -151,7 +151,7 @@ PrefabInstance:
     - target: {fileID: 1338353237258280300, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7e2dae7ee86ed8d418a663f314e40d11, type: 2}
+      objectReference: {fileID: 2100000, guid: 76fd0cdb173d6f64bb35c648a60435cd, type: 2}
     - target: {fileID: 1532485734345923840, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.932
@@ -183,7 +183,7 @@ PrefabInstance:
     - target: {fileID: 2218007731247349405, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: be3db27230b0457498c57826c73109f1, type: 2}
+      objectReference: {fileID: 2100000, guid: a17c9101b6f183643ad133f1beb64ad6, type: 2}
     - target: {fileID: 3754080475818277335, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: m_Name
       value: DiningRoom
@@ -191,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 4354879120921561222, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7e2dae7ee86ed8d418a663f314e40d11, type: 2}
+      objectReference: {fileID: 2100000, guid: 77d56668e359a744cb1f5c8cff6b4697, type: 2}
     - target: {fileID: 4440844060382303781, guid: c6fe9ccf5b6721b429c5358fab4b5677, type: 3}
       propertyPath: m_NavMeshData
       value: 
