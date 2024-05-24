@@ -23,6 +23,7 @@ public class TaskManager : MonoBehaviour
     private void Awake()
     {
         _orderManager = GetComponent<OrderManager>();
+        FoxQueue.AnimalsInQueue.Clear(); // temp
     }
 
     // Give a task to a task holder

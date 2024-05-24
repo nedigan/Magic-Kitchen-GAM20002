@@ -45,6 +45,7 @@ public class DayManager : MonoBehaviour
     public void Start()
     {
         _dayLengthSeconds = _days[_currentDayIndex].DayLengthSeconds;
+        _currentTime = 0;
     }
     public List<float> GetCurrentDayCustomerSpawns()
     {
