@@ -71,20 +71,14 @@ public class TableMove3D : MonoBehaviour
     {
         _targetPos = GetMousePos() - _mousePos;
 
-        if (_rb.velocity.magnitude > 0.1f)
-        {
-            if (!_concreteScrape.isPlaying)
-                _concreteScrape.Play();
-        }
-        else
-            _concreteScrape.Pause();
+       
         
         //ClampPosition();
     }
 
     public void OnMouseUpRoom()
     {
-        _concreteScrape.Pause();
+        //_concreteScrape.Pause();
         _moving = false;
         _rb.velocity = Vector3.zero;
     }
