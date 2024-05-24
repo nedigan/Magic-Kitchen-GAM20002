@@ -20,7 +20,7 @@ public class GatherIngredient : Task
         if (chicken == null) { /*Debug.LogError("Couldn't find Chicken")*/; return null; }
 
         Item foundItem = FindUnclaimedItemOfType(_itemType);
-        if (foundItem == null) { Debug.LogError($"Couldn't find Item of Type {_itemType}"); return null; }
+        if (foundItem == null) { /*Debug.LogError($"Couldn't find Item of Type {_itemType}");*/ return null; }
 
         _chicken = chicken;
 
