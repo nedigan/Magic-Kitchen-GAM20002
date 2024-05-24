@@ -30,7 +30,7 @@ public class TurtleGrabMeal : Task
         //throw new System.NotImplementedException();
         _turtle.ReachedDestination -= this.FinishTask;
         _turtle.TaskHolder.RemoveCurrentTask();
-
+        AudioManager.GetInstance().PlayClipIndex(1); // plate sfx
         // Turtle pick up Meal Item
         _turtle.PickUpItem(_ticket.Meal);
 

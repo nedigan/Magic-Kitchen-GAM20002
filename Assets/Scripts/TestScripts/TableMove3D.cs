@@ -64,6 +64,7 @@ public class TableMove3D : MonoBehaviour
     {
         _mousePos = GetMousePos() - transform.position;
         _moving = true;
+        AudioManager.GetInstance().PlayClipIndex(2); // pickup swoosh
         //Debug.Log(this);
     }
 
@@ -81,5 +82,6 @@ public class TableMove3D : MonoBehaviour
         //_concreteScrape.Pause();
         _moving = false;
         _rb.velocity = Vector3.zero;
+        AudioManager.GetInstance().PlayClipIndex(3); // putdown swoosh
     }
 }
