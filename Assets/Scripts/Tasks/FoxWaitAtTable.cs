@@ -79,7 +79,7 @@ public class FoxWaitAtTable : Task
 
     public void DeliverMeal(OrderTicket ticket)
     {
-        MoneyHandler.AddMoney(20); // TODO: Change price based on meal
+        MoneyHandler.AddMoney(ticket.Meal.Price); // TODO: Change price based on meal
         _table.Occupied = false;
 
         Destroy(ticket.Meal.gameObject);
