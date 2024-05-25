@@ -100,13 +100,15 @@ public class StoreRoom : MonoBehaviour
 
     private void OnValidate()
     {
-        int totalTarget = 0;
-        foreach (StoreRoomTarget target in TargetStock) { totalTarget += target.Number; }
+        //int totalTarget = 0;
+        //foreach (StoreRoomTarget target in TargetStock) { totalTarget += target.Number; }
+        //int totalSpots = 0;
+        //foreach (ShelfSpot shelfSpot in ShelfSpots) { totalSpots += shelfSpot.Station.ItemHolder.MaxItems; }
 
-        if (totalTarget > ShelfSpots.Count)
-        {
-            Debug.LogWarning($"StoreRoom {this} has more Target Stock than Shelf Spots. Remove some Target Stock or add more SHelf Spots");
-        }
+        //if (totalTarget > totalSpots)
+        //{
+        //    Debug.LogWarning($"StoreRoom {this} has more Target Stock than Shelf Spots. Remove some Target Stock or add more SHelf Spots");
+        //}
     }
 }
 

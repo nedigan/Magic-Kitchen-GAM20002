@@ -74,7 +74,7 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
 
     public void OnPickedUp(ItemHolder holder)
     {
-        if (_holder != null) { _holder.RemoveCurrentItem(); }
+        if (_holder != null) { _holder.RemoveSpecificItem(this); }
 
         _holder = holder;
     }
