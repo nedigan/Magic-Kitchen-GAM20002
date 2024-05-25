@@ -3,7 +3,52 @@ guid: 9de65edd843441b44a6db2b5dabc37d0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BALL
+    second: {fileID: 2100000, guid: 1cfc0c5191b52ec469f58563fcbb5bbe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FLOWER
+    second: {fileID: 2100000, guid: 8859c4babfe0a684a889226ecde10158, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LEG
+    second: {fileID: 2100000, guid: 10b6c7416ce74b2469d697fd188156b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PAW
+    second: {fileID: 2100000, guid: daa7ec0142378fe4c996ecbb630593ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TAIL
+    second: {fileID: 2100000, guid: 3c2825cc4df863345947a93e9b6e7450, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: 537bad21b50a84746b2dac4c4785bdca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: head
+    second: {fileID: 2100000, guid: 7c08f0e9dcdf66f4486fc3ae247d7003, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mouth
+    second: {fileID: 2100000, guid: b729c605b5f5e624290df91dc4f8ab8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: nose
+    second: {fileID: 2100000, guid: 734707674c6a51a4aaf6244681147fdc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
