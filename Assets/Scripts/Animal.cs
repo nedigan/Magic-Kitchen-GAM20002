@@ -346,7 +346,14 @@ public class Animal : MonoBehaviour, IRoomObject, IThinkable
 
         _currentRoom.Animals.Add(this);
 
-        if (_itemHolder.Empty == false) { _itemHolder.HeldItem.SetCurrentRoom(room); }
+        if (_itemHolder.Empty == false) 
+        {
+            //_itemHolder.HeldItems.SetCurrentRoom(room); 
+            foreach (Item item in _itemHolder.HeldItems)
+            {
+                item.SetCurrentRoom(room);
+            }
+        }
     }
 
     public void OnDoorConnected(Door door)

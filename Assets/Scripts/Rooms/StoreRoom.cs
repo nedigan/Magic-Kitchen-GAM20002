@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Room))]
 public class StoreRoom : MonoBehaviour
 {
-    public List<Item> TargetStock = new();
+    public List<StoreRoomTarget> TargetStock = new();
 
     private List<Item> _currentStock = new();
     public List<Item> CurrentStock => _currentStock;
@@ -32,21 +34,23 @@ public class StoreRoom : MonoBehaviour
         List<Item> missingStock = new();
         Item toRemove = null;
 
-        foreach (Item target in TargetStock)
+        foreach (StoreRoomTarget target in TargetStock)
         {
-            if (toRemove != null) { currentStock.Remove(toRemove); }
-
-            foreach (Item current in currentStock)
+            for (int i = 0; i < target.Number; i++)
             {
-                if (target.Type == current.Type)
-                {
-                    //currentStock.Remove(current);
-                    toRemove = current;
-                    break;
-                }
-            }
+                if (toRemove != null) { currentStock.Remove(toRemove); }
 
-            missingStock.Add(target);
+                foreach (Item current in currentStock)
+                {
+                    if (target.Item.Type == current.Type)
+                    {
+                        toRemove = current;
+                        break;
+                    }
+                }
+
+                missingStock.Add(target.Item);
+            }
         }
 
         return missingStock;
@@ -61,10 +65,9 @@ public class StoreRoom : MonoBehaviour
         {
             foreach (ShelfSpot shelfSpot in ShelfSpots)
             {
-                if (shelfSpot.StartStocked && shelfSpot.HasOwner == false)
+                if (shelfSpot.IsFull == false)
                 {
                     Item newStock = Instantiate(item);
-                    //newStock.SetCurrentRoom(_room);
                     newStock.AddToStoreRoom(this, shelfSpot);
                     missingItems.Add(newStock);
                     break;
@@ -83,7 +86,7 @@ public class StoreRoom : MonoBehaviour
         {
             foreach (ShelfSpot shelfSpot in ShelfSpots)
             {
-                if (shelfSpot.StartStocked && shelfSpot.HasOwner == false)
+                if (shelfSpot.StartStocked && shelfSpot.IsFull == false)
                 {
                     Item newStock = Instantiate(item);
                     newStock.SetCurrentRoom(_room);
@@ -97,9 +100,19 @@ public class StoreRoom : MonoBehaviour
 
     private void OnValidate()
     {
-        if (TargetStock.Count > ShelfSpots.Count)
+        int totalTarget = 0;
+        foreach (StoreRoomTarget target in TargetStock) { totalTarget += target.Number; }
+
+        if (totalTarget > ShelfSpots.Count)
         {
             Debug.LogWarning($"StoreRoom {this} has more Target Stock than Shelf Spots. Remove some Target Stock or add more SHelf Spots");
         }
     }
+}
+
+[System.Serializable]
+public struct StoreRoomTarget
+{
+    public Item Item;
+    public int Number;
 }

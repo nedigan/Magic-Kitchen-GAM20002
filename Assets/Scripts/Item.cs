@@ -90,13 +90,13 @@ public class Item : MonoBehaviour, IRoomObject, IThinkable
         _storeRoom = storeRoom;
 
         _storeRoom.CurrentStock.Add(this);
-        _shelfSpot.SetOwner(this);
+        _shelfSpot.AddOwnedItem(this);
     }
 
     public void RemoveFromCurrentStoreRoom()
     {
         _storeRoom?.CurrentStock.Remove(this);
-        _shelfSpot?.RemoveCurrentOwner();
+        _shelfSpot?.RemoveOwnedItem(this);
 
         _storeRoom = null;
         _shelfSpot = null;
