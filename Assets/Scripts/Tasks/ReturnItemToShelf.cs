@@ -27,7 +27,16 @@ public class ReturnItemToShelf : Task
 
         _animal.ReachedDestination -= FinishTask;
 
-        _animal.TaskHolder.RemoveCurrentTask();
+        if (_animal.ItemHolder.Empty == false)
+        {
+            ReturnItemToShelf returnItemToShelf = CreateInstance<ReturnItemToShelf>();
+            returnItemToShelf.SetUp(_animal.ItemHolder.Top, _animal);
+            _animal.TaskHolder.SetTask(returnItemToShelf);
+        }
+        else
+        {
+            _animal.TaskHolder.RemoveCurrentTask();
+        }
     }
 
     public override void PerformTask()

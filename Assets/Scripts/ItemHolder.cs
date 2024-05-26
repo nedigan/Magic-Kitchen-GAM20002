@@ -27,6 +27,7 @@ public class ItemHolder : MonoBehaviour
     public List<Item> HeldItems => _items;
     public bool Full => _items.Count == MaxItems;
     public bool Empty => _items.Count == 0;
+    public Item Top => _items.Last();
 
     // Start is called before the first frame update
     void Awake()
@@ -52,7 +53,7 @@ public class ItemHolder : MonoBehaviour
     {
         if (!Empty) 
         {
-            _items.Last().transform.SetParent(null, true);
+            Top.transform.SetParent(null, true);
 
             RemoveCurrentItem();
         }
@@ -62,7 +63,7 @@ public class ItemHolder : MonoBehaviour
     {
         if (!Empty) 
         {
-            Item item = _items.Last();
+            Item item = Top;
             _items.RemoveAt(_items.Count - 1);
 
             item.OnPutDown();

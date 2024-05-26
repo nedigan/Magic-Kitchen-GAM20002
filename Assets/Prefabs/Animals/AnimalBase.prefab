@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Task: {fileID: 0}
+  DefaultTask: {fileID: 0}
   PerformingTask: 0
 --- !u!195 &1908024567325461365
 NavMeshAgent:
@@ -186,8 +187,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldLocation: {fileID: 1037669328877389554}
-  _heldItem: {fileID: 0}
+  _items: []
+  MaxItems: 1
   ClaimHeldItems: 1
+  WidthSeparation: 1
+  HeightSeparation: 1
+  Columns: 1
+  FillRowsFirst: 0
 --- !u!1 &7419068983182596301
 GameObject:
   m_ObjectHideFlags: 0

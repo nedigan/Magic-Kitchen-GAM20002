@@ -30,33 +30,12 @@ public class StoreRoom : MonoBehaviour
     /// <returns></returns>
     public List<Item> GetMissingStockPrefabs()
     {
-        List<Item> currentStock = _currentStock;
         List<Item> missingStock = new();
-        //Item toRemove = null;
-
-        //foreach (StoreRoomTarget target in TargetStock)
-        //{
-        //    for (int i = 0; i < target.Number; i++)
-        //    {
-        //        if (toRemove != null) { currentStock.Remove(toRemove); }
-
-        //        foreach (Item current in currentStock)
-        //        {
-        //            if (target.Item.Type == current.Type)
-        //            {
-        //                toRemove = current;
-        //                break;
-        //            }
-        //        }
-
-        //        missingStock.Add(target.Item);
-        //    }
-        //}
 
         foreach (StoreRoomTarget target in TargetStock)
         {
             int currentNumber = 0;
-            foreach (Item current in currentStock)
+            foreach (Item current in _currentStock)
             {
                 if (current.Type == target.Item.Type) { currentNumber++; }
             }

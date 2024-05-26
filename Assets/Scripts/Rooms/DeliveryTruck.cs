@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -108,18 +110,49 @@ public class DeliveryTruck : MonoBehaviour
 
     private void GenerateDeliverTasks()
     {
-        int tasksGenerated = 0;
-        foreach (Item item in _missingIngredients)
+        //int tasksGenerated = 0;
+        //Stack<Item> itemStack = new Stack<Item>();
+        //foreach (Item item in _missingIngredients)
+        //{
+        //    itemStack.Push(item);
+
+        //    if (itemStack.Count >= Deliverers[0].ItemHolder.MaxItems)
+        //    {
+        //        DelivererCollect delivererCollect = ScriptableObject.CreateInstance<DelivererCollect>();
+        //        delivererCollect.SetUp(this, item);
+
+        //        _taskManager.ManageTask(delivererCollect);
+
+        //        tasksGenerated++;
+        //    }            
+        //}
+
+        //List <Item[]> = _missingIngredients.Select((item, index) => new { index, item })
+        //               .GroupBy(x => x.index % parts)
+        //               .Select(x => x.Select(y => y.item));
+
+        int parts = (int)Math.Ceiling((float)_missingIngredients.Count / (float)Deliverers[0].ItemHolder.MaxItems);
+
+        List<IEnumerable<Item>> chunks = _missingIngredients.Select((item, index) => new { index, item }).GroupBy(x => x.index % parts).Select(x => x.Select(y => y.item)).ToList();
+
+        foreach (IEnumerable chunk in chunks)
         {
+            Stack<Item> stack = new Stack<Item>();
+            foreach (Item item in chunk)
+            {
+                stack.Push(item);
+            }
+
+            Item first = stack.Pop();
+
             DelivererCollect delivererCollect = ScriptableObject.CreateInstance<DelivererCollect>();
-            delivererCollect.SetUp(this, item);
+            delivererCollect.SetUp(this, first, stack);
 
             _taskManager.ManageTask(delivererCollect);
-
-            tasksGenerated++;
         }
 
-        _deliverersSent = Math.Clamp(Deliverers.Count, 0, tasksGenerated);
+
+        _deliverersSent = Math.Clamp(Deliverers.Count, 0, chunks.Count);
 
         // set up deliverer Default Tasks
         foreach (Animal deliverer in Deliverers)

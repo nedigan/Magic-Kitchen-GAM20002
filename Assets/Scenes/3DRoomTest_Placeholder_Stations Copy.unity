@@ -5560,19 +5560,19 @@ PrefabInstance:
       objectReference: {fileID: 1000024709}
     - target: {fileID: 208726635945637151, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: StartStocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 583010853945734425, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: StartStocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1231153474909634456, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: StartStocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1304543245990765968, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: StartStocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1472042392149453726, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5614,9 +5614,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2547677801497584766, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
+      propertyPath: PerformingTask
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2750921405755446489, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: StartStocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3024754434321566866, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5628,7 +5632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3305385412355400969, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: StartStocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3676978615316819237, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5637,6 +5641,10 @@ PrefabInstance:
     - target: {fileID: 3676978615316819237, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: m_LocalPosition.z
       value: 493.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617132364472340119, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
+      propertyPath: PerformingTask
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4653180519016806871, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: m_ClearFlags
@@ -5648,7 +5656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5000489185185791536, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: StartStocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5212252496352171966, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5657,6 +5665,26 @@ PrefabInstance:
     - target: {fileID: 5212252496352171966, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
       propertyPath: m_LocalPosition.z
       value: 464.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467778523025686343, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
+      propertyPath: PerformingTask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267665040356192081, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
+      propertyPath: PerformingTask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937911370545557335, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
+      propertyPath: PerformingTask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369040740649353182, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
+      propertyPath: PerformingTask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587109475083544022, guid: ef05d4aa41119684c87cce2a461bdbbf, type: 3}
+      propertyPath: PerformingTask
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

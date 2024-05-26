@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 197795523345828924, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
+      propertyPath: Columns
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 197795523345828924, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
+      propertyPath: MaxItems
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 590792196594317219, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
       propertyPath: m_Controller
       value: 
@@ -27,6 +35,14 @@ PrefabInstance:
     - target: {fileID: 803991797525483857, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908024567325461365, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
+      propertyPath: m_Speed
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908024567325461365, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
+      propertyPath: m_Acceleration
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3456044932022558832, guid: 5109a0653b24e4e4f8f434292a314310, type: 3}
       propertyPath: m_LocalPosition.x
