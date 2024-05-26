@@ -14,17 +14,21 @@ public class DeliveryTruck : MonoBehaviour
     public StoreRoom StoreRoom;
 
     public int Cost = 100;
+    public KeyCode Key = KeyCode.P;
 
     private bool _delivering = false;
     private List<Item> _missingIngredients;
 
     [SerializeField]
     private Vector2 _deliveriesArea;
+    [SerializeField]
+    private Vector3 _deliveriesPosition;
 
     public List<Animal> Deliverers = new();
     public List<Station> ExitSpots;
 
     private int _deliverersReadyToLeave = 0;
+    private int _deliverersSent = 0;
 
     [SerializeField]
     private SimpleMover _mover;
@@ -44,7 +48,7 @@ public class DeliveryTruck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(Key))
         {
             RequestDelivery();
             //GenerateDeliverTasks();
@@ -89,7 +93,7 @@ public class DeliveryTruck : MonoBehaviour
             newItem.Claimed = true;
 
             newItem.transform.position =
-                transform.position +
+                transform.position + _deliveriesPosition +
                 new Vector3(
                     Random.Range(-_deliveriesArea.x, _deliveriesArea.x),
                     0,
@@ -104,13 +108,18 @@ public class DeliveryTruck : MonoBehaviour
 
     private void GenerateDeliverTasks()
     {
+        int tasksGenerated = 0;
         foreach (Item item in _missingIngredients)
         {
             DelivererCollect delivererCollect = ScriptableObject.CreateInstance<DelivererCollect>();
             delivererCollect.SetUp(this, item);
 
             _taskManager.ManageTask(delivererCollect);
+
+            tasksGenerated++;
         }
+
+        _deliverersSent = Math.Clamp(Deliverers.Count, 0, tasksGenerated);
 
         // set up deliverer Default Tasks
         foreach (Animal deliverer in Deliverers)
@@ -126,7 +135,7 @@ public class DeliveryTruck : MonoBehaviour
     {
         _deliverersReadyToLeave += 1;
 
-        if (_deliverersReadyToLeave >= Deliverers.Count)
+        if (_deliverersReadyToLeave >= _deliverersSent)
         {
             DriveAway();
         }
@@ -150,6 +159,6 @@ public class DeliveryTruck : MonoBehaviour
     {
         Gizmos.color = Color.blue;
 
-        Gizmos.DrawWireCube(transform.position, new Vector3(_deliveriesArea.x * 2, 0.5f, _deliveriesArea.y * 2));
+        Gizmos.DrawWireCube(transform.position + _deliveriesPosition, new Vector3(_deliveriesArea.x * 2, 0.5f, _deliveriesArea.y * 2));
     }
 }

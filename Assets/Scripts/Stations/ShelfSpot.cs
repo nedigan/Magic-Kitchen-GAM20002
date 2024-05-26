@@ -11,9 +11,10 @@ public class ShelfSpot : MonoBehaviour
 
     public bool StartStocked = true;
 
-    private Item _owner;
-    public Item Owner => _owner;
-    public bool HasOwner => _owner != null;
+    private List<Item> _ownedItems = new();
+
+    public int OwnedItems => _ownedItems.Count;
+    public bool IsFull => _ownedItems.Count >= _station.ItemHolder.MaxItems;
 
 
     private void Awake()
@@ -21,15 +22,13 @@ public class ShelfSpot : MonoBehaviour
         _station = GetComponent<Station>();
     }
 
-    public void SetOwner(Item owner)
+    public void AddOwnedItem(Item item)
     {
-        if (_owner != null) { RemoveCurrentOwner(); }
-
-        _owner = owner;
+        _ownedItems.Add(item);
     }
 
-    public void RemoveCurrentOwner()
+    public void RemoveOwnedItem(Item item)
     {
-        _owner = null;
+        _ownedItems.Remove(item);
     }
 }

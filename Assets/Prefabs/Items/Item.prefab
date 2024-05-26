@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
+  Price: 0
   Claimed: 0
   _currentRoom: {fileID: 0}
   _sprite: {fileID: 1718670430996249293}
