@@ -6,13 +6,16 @@ public class DelivererCollect : Task
 {
     private DeliveryTruck _deliveryTruck;
     private Item _delivery;
+    private Stack<Item> _itemStack;
 
     private Animal _deliverer;
 
-    public void SetUp(DeliveryTruck deliveryTruck, Item delivery)
+    public void SetUp(DeliveryTruck deliveryTruck, Item delivery, Stack<Item> itemStack, Animal deliverer = null)
     {
         _deliveryTruck = deliveryTruck;
         _delivery = delivery;
+        _itemStack = itemStack;
+        if (deliverer != null) { _deliverer = deliverer; }
     }
 
     public override TaskHolder FindTaskHolder()
@@ -37,9 +40,20 @@ public class DelivererCollect : Task
         _deliverer.ReachedDestination -= FinishTask;
 
         // set new task
-        ReturnItemToShelf returnItemToShelf = CreateInstance<ReturnItemToShelf>();
-        returnItemToShelf.SetUp(_delivery, _deliverer);
-        _deliverer.TaskHolder.SetTask(returnItemToShelf);
+        if (_itemStack.Count > 0 )
+        {
+            Item item = _itemStack.Pop();
+
+            DelivererCollect delivererCollect = CreateInstance<DelivererCollect>();
+            delivererCollect.SetUp(_deliveryTruck, item, _itemStack, _deliverer);
+            _deliverer.TaskHolder.SetTask(delivererCollect);
+        }
+        else
+        {
+            ReturnItemToShelf returnItemToShelf = CreateInstance<ReturnItemToShelf>();
+            returnItemToShelf.SetUp(_delivery, _deliverer);
+            _deliverer.TaskHolder.SetTask(returnItemToShelf);
+        }
 
         UnsetTaskThought();
     }
