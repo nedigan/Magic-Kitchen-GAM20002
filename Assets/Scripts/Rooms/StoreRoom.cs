@@ -32,23 +32,37 @@ public class StoreRoom : MonoBehaviour
     {
         List<Item> currentStock = _currentStock;
         List<Item> missingStock = new();
-        Item toRemove = null;
+        //Item toRemove = null;
+
+        //foreach (StoreRoomTarget target in TargetStock)
+        //{
+        //    for (int i = 0; i < target.Number; i++)
+        //    {
+        //        if (toRemove != null) { currentStock.Remove(toRemove); }
+
+        //        foreach (Item current in currentStock)
+        //        {
+        //            if (target.Item.Type == current.Type)
+        //            {
+        //                toRemove = current;
+        //                break;
+        //            }
+        //        }
+
+        //        missingStock.Add(target.Item);
+        //    }
+        //}
 
         foreach (StoreRoomTarget target in TargetStock)
         {
-            for (int i = 0; i < target.Number; i++)
+            int currentNumber = 0;
+            foreach (Item current in currentStock)
             {
-                if (toRemove != null) { currentStock.Remove(toRemove); }
+                if (current.Type == target.Item.Type) { currentNumber++; }
+            }
 
-                foreach (Item current in currentStock)
-                {
-                    if (target.Item.Type == current.Type)
-                    {
-                        toRemove = current;
-                        break;
-                    }
-                }
-
+            for (int i = 0; i < target.Number - currentNumber; i++)
+            {
                 missingStock.Add(target.Item);
             }
         }

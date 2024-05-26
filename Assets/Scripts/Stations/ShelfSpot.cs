@@ -11,10 +11,8 @@ public class ShelfSpot : MonoBehaviour
 
     public bool StartStocked = true;
 
-    private ItemType _reserveType;
     private List<Item> _ownedItems = new();
 
-    public ItemType ReserveType => _reserveType;
     public int OwnedItems => _ownedItems.Count;
     public bool IsFull => _ownedItems.Count >= _station.ItemHolder.MaxItems;
 
