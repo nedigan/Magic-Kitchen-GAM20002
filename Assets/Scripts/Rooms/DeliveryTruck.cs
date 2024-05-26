@@ -141,6 +141,7 @@ public class DeliveryTruck : MonoBehaviour
             foreach (Item item in chunk)
             {
                 stack.Push(item);
+                _moneyHandler.RemoveMoney(item.Price);
             }
 
             Item first = stack.Pop();
